@@ -21,29 +21,23 @@
       "mobile": false,
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        
         "styles.css",
-        "./assets/css/main.css"
+        "assets/css/main.css",
+        "assets/css/custom.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/tether/dist/js/tether.min.js",
-        
-        
-        "./assets/js/jquery.min.js",
-        "./assets/js/jquery.dropotron.min.js",
-        "./assets/js/jquery.scrolly.min.js",
-        "./assets/js/jquery.onvisible.min.js",
-        "./assets/js/skel.min.js",
-        "./assets/js/util.js",
-
-
-        "./assets/js/main.js"
-
-  
-  
-  
-  
-
+        "assets/js/jquery.min.js",
+        "assets/js/jquery.dropotron.min.js",
+        "assets/js/jquery.scrolly.min.js",
+        "assets/js/jquery.onvisible.min.js",
+        "assets/js/skel.min.js",
+        "assets/js/util.js",
+        "assets/js/main.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
