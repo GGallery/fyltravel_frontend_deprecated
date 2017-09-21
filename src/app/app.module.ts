@@ -9,6 +9,7 @@ import {BookService} from "./book/book.service";
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { CaroselloComponent } from './carosello/carosello.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FooterComponent } from './footer/footer.component';
     UserComponent,
     HeaderComponent,
     FooterComponent,
+    CaroselloComponent,
   ],
   imports: [
     BrowserModule,

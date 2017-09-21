@@ -3,9 +3,16 @@ font-size: 15pt;
     line-height: 1.85em;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
-    width: 300px !important;
+    width: 40vw !important;
     height: 56px;
     border-radius: 5px;
     padding: 5px;
 
+}
+
+
+@media screen and (max-width: 425px) {
+    #search{
+    width: 80vw !important;
+}
 }
