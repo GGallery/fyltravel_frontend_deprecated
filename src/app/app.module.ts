@@ -10,6 +10,15 @@ import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CaroselloComponent } from './carosello/carosello.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+
+const routes: Routes = [
+  { path: 'user',      component: UserComponent },
+  { path: '', redirectTo: '/',  pathMatch: 'full' },  
+  { path: '**', component: HomeComponent  }
+];
+
 
 @NgModule({
   declarations: [
@@ -19,11 +28,13 @@ import { CaroselloComponent } from './carosello/carosello.component';
     HeaderComponent,
     FooterComponent,
     CaroselloComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule, 
+    RouterModule.forRoot(routes)
   ],
   providers: [BookService],
   bootstrap: [AppComponent]
