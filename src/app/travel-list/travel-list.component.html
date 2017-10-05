@@ -1,0 +1,27 @@
+<md-card *ngFor="let travel of travels" class="travel-card">
+  <md-card-header>
+    <div md-card-avatar class="example-header-image"></div>
+    <md-card-title>{{travel.title}}</md-card-title>
+    <md-card-subtitle>{{travel.user.name}}</md-card-subtitle>
+  </md-card-header>
+  <div class="row">
+    <div class="8u">
+      <md-card-content>
+        <p>
+          {{(travel.description.length>6)? (travel.description | slice:0:400)+'...':(travel.description)}}
+        </p>
+      </md-card-content>
+      <md-card-actions>
+        <i (click)="like" class="material-icons">thumb_up</i>
+
+
+      </md-card-actions>
+
+    </div>
+    <div class="4u">
+      <img md-card-image src="data/travel/{{travel.id}}/cover.jpg" alt="{{travel.title}}">
+    </div>
+  </div>
+
+
+</md-card>

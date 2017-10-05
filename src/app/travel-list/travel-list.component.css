@@ -1,0 +1,17 @@
+.travel-card {
+    width: 100%;
+  }
+  
+  .example-header-image {
+    background-image: url('../../assets/images/profilo.jpg');
+    background-size: cover;
+  }
+  
+
+  .material-icons{
+    cursor: pointer;  
+  }
+
+  .mat-card{
+    margin-bottom: 15px;
+  }
