@@ -21,11 +21,17 @@ import { TravelComponent } from './travel/travel.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdCardModule, MatIconModule} from '@angular/material';
 
+import { FacebookModule } from 'ngx-facebook';
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
-  { path: 'user',      component: UserComponent },
-  { path: '', redirectTo: '/',  pathMatch: 'full' },  
-  { path: '**', component: HomeComponent  }
+  { path: 'user',        component: UserComponent },
+  { path: 'signin',      component: SigninComponent },
+  { path: 'signup',      component: SignupComponent },
+  { path: '',            redirectTo: '/',  pathMatch: 'full' },  
+  { path: '**',          component: HomeComponent  }
 ];
 
 @NgModule({
@@ -38,7 +44,9 @@ const routes: Routes = [
     CaroselloComponent,
     HomeComponent,
     TravelListComponent,
-    TravelComponent
+    TravelComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -54,9 +62,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule, 
+    FacebookModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
-  providers: [BookService, TravelService],
+  providers: [BookService, TravelService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
