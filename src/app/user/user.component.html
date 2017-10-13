@@ -17,10 +17,13 @@
           <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
             #search [formControl]="searchControl">
         </div> -->
-        <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+      
+      
+      
+        <!-- <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
           <agm-marker *ngFor="let pos of positions  " [latitude]="pos.latitude" [longitude]="pos.longitude" [title]="pos.title">
           </agm-marker>
-        </agm-map>
+        </agm-map> -->
 
         <!-- per marker piu complessi -->
         <!-- https://developers.google.com/maps/documentation/javascript/examples/icon-complex -->

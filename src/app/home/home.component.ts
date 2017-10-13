@@ -14,11 +14,7 @@ export class HomeComponent implements OnInit {
 
     console.log('Initializing Facebook');
     
-        fb.init({
-          appId: '1927971220769787',
-          version: 'v2.9'
-        });
-
+      
    }
 
   ngOnInit() {
@@ -40,6 +36,12 @@ export class HomeComponent implements OnInit {
    * Login with additional permissions/options
    */
   loginWithOptions() {
+    this.fb.init({
+      appId: '174233093153100',
+      version: 'v2.10'
+    });
+
+
 
     const loginOptions: LoginOptions = {
       enable_profile_selector: true,
@@ -55,6 +57,12 @@ export class HomeComponent implements OnInit {
 
   }
 
+  logout() {
+    this.fb.logout()
+      .then(console.log.bind(console))
+      .catch(console.error.bind(console));
+  }
+
   getLoginStatus() {
     this.fb.getLoginStatus()
       .then(console.log.bind(console))
@@ -65,8 +73,8 @@ export class HomeComponent implements OnInit {
   /**
    * Get the user's profile
    */
-  getProfile() {
-    this.fb.api('/me')
+  getProfile(loginOptions) {
+    this.fb.api('/me','get',loginOptions)
       .then((res: any) => {
         console.log('Got the users profile', res);
       })

@@ -26,6 +26,21 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { AuthService } from './services/auth.service';
 
+import { Angular2SocialLoginModule } from "angular2-social-login";
+
+let providers = {
+  // "google": {
+  //   "clientId": "GOOGLE_CLIENT_ID"
+  // },
+  // "linkedin": {
+  //   "clientId": "LINKEDIN_CLIENT_ID"
+  // },
+  "facebook": {
+    "clientId": "174233093153100",
+    "apiVersion": "v2.10" //like v2.4 
+  }
+};
+
 const routes: Routes = [
   { path: 'user',        component: UserComponent },
   { path: 'signin',      component: SigninComponent },
@@ -58,6 +73,9 @@ const routes: Routes = [
     
     MdCardModule,
     MatIconModule,
+
+    Angular2SocialLoginModule,
+
     
     FormsModule,
     ReactiveFormsModule,
@@ -70,5 +88,6 @@ const routes: Routes = [
 })
 export class AppModule { }
 
+Angular2SocialLoginModule.loadProvidersScripts(providers);
 
 // AIzaSyB7XKfgnB2YT82wrC1W7lW7V7PbQkv77m8

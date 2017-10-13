@@ -8,7 +8,7 @@ import { TravelService } from '../services/travel.service';
 })
 export class TravelListComponent implements OnInit {
 
-  private travels;
+  public travels;
   private errMesg :string;
 
   constructor(private travelService: TravelService) {
