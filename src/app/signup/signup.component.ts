@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-// import { AuthService } from '../services/auth.service';
+
 
 import { AuthService } from "angular2-social-login";
+import { AuthAppService } from '../services/auth.service';
 
 
 @Component({
@@ -12,12 +13,12 @@ import { AuthService } from "angular2-social-login";
 })
 export class SignupComponent implements OnInit {
 
-public user;
-sub: any;
+  public user;
+  sub: any;
 
   constructor(
-    private authService: AuthService, 
-    private _auth:AuthService
+    private AuthServiceApp: AuthAppService,
+    private AuthServiceSocial: AuthService
 
   ) {
   }
@@ -27,29 +28,36 @@ sub: any;
 
 
   onSignup(form: NgForm) {
-    // this.authService.signup(form.value.username, form.value.email, form.value.password).
-    //   subscribe(
-    //   response => console.log(response),
-    //   error => console.log(error),
-    // );
+    this.AuthServiceApp.signup(form.value.username, form.value.email, form.value.password).
+      subscribe(
+      response => console.log(response),
+      error => console.log(error),
+    );
   }
 
 
-  signIn(provider){
-    this.sub = this._auth.login(provider).subscribe(
+  socialSignup(provider) {
+    this.sub = this.AuthServiceSocial.login(provider).subscribe(
       (data) => {
-                  console.log(data);
-                  //user data 
-                  //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
-                }
+        console.log(data);
+        this.user = data;
+
+
+        this.AuthServiceApp.signup(this.user.name, this.user.email, this.user.uid).
+          subscribe(
+          response => console.log(response),
+          error => console.log(error),
+        );
+
+      }
     )
   }
- 
-  logout(){
-    this._auth.logout().subscribe(
-      (data)=>{//return a boolean value.
+
+  logout() {
+    this.AuthServiceSocial.logout().subscribe(
+      (data) => {//return a boolean value.
         console.log(data);
-      } 
+      }
     )
   }
 

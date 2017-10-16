@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
+
 import 'rxjs/Rx';
+import { environment } from '../../environments/environment';
 
 @Injectable()
-export class AuthService {
+export class AuthAppService {
+
+private api = environment.apiUrl;
 
   constructor(private http: Http) { }
 
   signup(username: string, email: string, password: string) {
-    return this.http.post('http://localhost:8000/api/signup',
+    return this.http.post(this.api + 'signup',
       { name: username, email: email, password: password },
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
   }
 
   signin(email: string, password: string) {
-    return this.http.post('http://localhost:8000/api/signin',
+    return this.http.post(this.api + 'signin',
       { email: email, password: password },
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(

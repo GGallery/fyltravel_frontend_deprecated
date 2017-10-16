@@ -1,8 +1,8 @@
-<!-- <div class="col-md-3">
+<div class="col-md-3 center">
   <form (ngSubmit)="onSignup(f)" #f="ngForm">
 
     <div class="form-group">
-      <label for="username">Username</label>
+      <label for="username">Nome</label>
       <input type="text" id="username" name="username" ngModel class="form-control" required>
     </div>
 
@@ -15,44 +15,39 @@
       <label for="password">Password</label>
       <input type="password" id="password" name="password" ngModel class="form-control" required>
     </div>
-    <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Signup</button>
+    <button type="submit" [disabled]="!f.valid" class="btn btn-primary btn-block">Registrati</button>
   </form>
+
+
 
   <hr>
 
- <button (click)="loginWithOptions()" class="btn btn-lg btn-primary btn-block">
-    Registrati con Facebook
-  </button>
+  <button (click)="socialSignup('google')" class="btn    btn-block">Google</button>
+  <button (click)="socialSignup('facebook')" class="btn  btn-primary btn-block">Facebook</button>
+  <!-- <button (click)="logout()">logout</button> -->
 
-</div> -->
-
-
-<!-- <h1>Angular2 Social login</h1>{{status}} -->
-<button (click)="signIn('google')">google</button>
-<button (click)="signIn('linkedin')">linkedIn</button>
-<button (click)="signIn('facebook')">facebook</button>
-<button (click)="logout()">logout</button>
-<div *ngIf="user">
-  <table>
-    <tr>
-      <td>Name:</td>
-      <td>{{user.name}}</td>
-    </tr>
-    <tr>
-      <td>Email</td>
-      <td>{{user.email}}</td>
-    </tr>
-    <tr>
-      <td>UID</td>
-      <td>{{user.uid}}</td>
-    </tr>
-    <tr>
-      <td>Provider</td>
-      <td>{{user.provider}}</td>
-    </tr>
-    <tr>
-      <td>Image</td>
-      <td>{{user.image}}</td>
-    </tr>
-  </table>
+  <div *ngIf="user">
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td>{{user.name}}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td>UID</td>
+        <td>{{user.uid}}</td>
+      </tr>
+      <tr>
+        <td>Provider</td>
+        <td>{{user.provider}}</td>
+      </tr>
+      <tr>
+        <td>Image</td>
+        <td>{{user.image}}</td>
+      </tr>
+    </table>
+  </div>
 </div>

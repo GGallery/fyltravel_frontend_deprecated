@@ -1,16 +1,46 @@
 <div class="col-md-3">
-    <form (ngSubmit)="onSignin(f)" #f="ngForm">
-   
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" ngModel class="form-control" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" ngModel class="form-control" required>
-      </div>
-      <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Signup</button>
-    </form>
-  
+  <form (ngSubmit)="onSignin(f)" #f="ngForm">
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" ngModel class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" ngModel class="form-control" required>
+    </div>
+    <button type="submit" [disabled]="!f.valid" class="btn btn-primary btn-block">Accedi</button>
+  </form>
+
+  <hr>
+
+  <button (click)="socialSignup('google')" class="btn    btn-block">Google</button>
+  <button (click)="socialSignup('facebook')" class="btn  btn-primary btn-block">Facebook</button>
+  <!-- <button (click)="logout()">logout</button> -->
+
+  <div *ngIf="user">
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td>{{user.name}}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td>UID</td>
+        <td>{{user.uid}}</td>
+      </tr>
+      <tr>
+        <td>Provider</td>
+        <td>{{user.provider}}</td>
+      </tr>
+      <tr>
+        <td>Image</td>
+        <td>{{user.image}}</td>
+      </tr>
+    </table>
   </div>
+</div>

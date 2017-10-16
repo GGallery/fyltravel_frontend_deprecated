@@ -24,22 +24,13 @@ import {MdCardModule, MatIconModule} from '@angular/material';
 import { FacebookModule } from 'ngx-facebook';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
-import { AuthService } from './services/auth.service';
+
 
 import { Angular2SocialLoginModule } from "angular2-social-login";
+import { AuthAppService } from './services/auth.service';
+import { environment } from '../environments/environment';
 
-let providers = {
-  // "google": {
-  //   "clientId": "GOOGLE_CLIENT_ID"
-  // },
-  // "linkedin": {
-  //   "clientId": "LINKEDIN_CLIENT_ID"
-  // },
-  "facebook": {
-    "clientId": "174233093153100",
-    "apiVersion": "v2.10" //like v2.4 
-  }
-};
+
 
 const routes: Routes = [
   { path: 'user',        component: UserComponent },
@@ -83,11 +74,11 @@ const routes: Routes = [
     FacebookModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
-  providers: [BookService, TravelService, AuthService],
+  providers: [BookService, TravelService, AuthAppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-Angular2SocialLoginModule.loadProvidersScripts(providers);
+Angular2SocialLoginModule.loadProvidersScripts(environment.providers);
 
 // AIzaSyB7XKfgnB2YT82wrC1W7lW7V7PbQkv77m8

@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs";
 import { Travel } from '../travel/travel';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
 export class TravelService {
 
+  private api = environment.apiUrl;
+
   constructor(private _http: Http) { }
 
-
-
   getTravels(): Observable<any[]> {
-    let url = 'http://localhost:8000/api/travels';
+    let url = this.api + '/travels';
     return this._http.get(url)
       .map(res => res.json())
       .catch(this.handleError)
@@ -23,7 +24,6 @@ export class TravelService {
 
 
   private handleError(error: Response | any) {
-    // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';

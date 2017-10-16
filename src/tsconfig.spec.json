@@ -12,6 +12,7 @@
     "module": "commonjs",
     "target": "es6",
     "baseUrl": "",
+    // "angular2-social-login": "node_modules/angular2-social-login/dist/bundles/angular2-social-login.min.js",
     "types": [
       "jasmine",
       "node"
