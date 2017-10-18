@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   apiUrl : "http://api.fyltravel.it:8000/api/",
 
-  providers : {
+  socialProviders : {
     "google": { 
       "clientId": "546741882410-qnsepcr5183n5hi25f49dn5ms5hqo5ku.apps.googleusercontent.com"
     },
@@ -18,7 +18,12 @@ export const environment = {
       "clientId": "174233093153100",
       "apiVersion": "v2.10" //like v2.4 
     }
-  }
+  }, 
+
+  googleMapKey:  "AIzaSyD7NNtxuD_Hz1fd-SWydS1baKxJO12RtTE"
+
+
+
 
 
 };

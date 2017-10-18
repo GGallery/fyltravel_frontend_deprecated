@@ -11,8 +11,26 @@ font-size: 15pt;
 }
 
 
+.travel-card{
+    background-color: whitesmoke;
+}
+
+.mat-card-actions{
+    margin: 0px !important;
+}
+
+.nav_bar{
+    background-color: orangered;
+
+}
+
+
 @media screen and (max-width: 425px) {
     #search{
     width: 80vw !important;
 }
+
+
+
+
 }

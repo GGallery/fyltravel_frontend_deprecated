@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { AuthService } from "angular2-social-login";
 import { AuthAppService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,8 +18,9 @@ export class SignupComponent implements OnInit {
   sub: any;
 
   constructor(
-    private AuthServiceApp: AuthAppService,
-    private AuthServiceSocial: AuthService
+    private AuthAppService: AuthAppService,
+    private AuthServiceSocial: AuthService, 
+    private router: Router
 
   ) {
   }
@@ -28,9 +30,13 @@ export class SignupComponent implements OnInit {
 
 
   onSignup(form: NgForm) {
-    this.AuthServiceApp.signup(form.value.username, form.value.email, form.value.password).
+    this.AuthAppService.signup(form.value.username, form.value.email, form.value.password).
       subscribe(
-      response => console.log(response),
+      response => {
+        console.log(response),
+        this.router.navigate(['signin']);
+
+      },
       error => console.log(error),
     );
   }
@@ -43,7 +49,7 @@ export class SignupComponent implements OnInit {
         this.user = data;
 
 
-        this.AuthServiceApp.signup(this.user.name, this.user.email, this.user.uid).
+        this.AuthAppService.signup(this.user.name, this.user.email, this.user.uid).
           subscribe(
           response => console.log(response),
           error => console.log(error),

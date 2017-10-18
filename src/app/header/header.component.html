@@ -1,14 +1,26 @@
 <!-- Header -->
-				<div id="header">
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<!-- <li><a href="index.html">Home</a></li> -->
-								<li><a href="#" [routerLink]="['/']">Home</a> </li>
-								<li><a href="#" [routerLink]="['/signup']">Signup</a> </li>
-								<li><a href="#" [routerLink]="['/signin']">Signin</a> </li>
-							</ul>
-						</nav>
+<div id="header" >
+	<!-- Nav -->
+	<nav id="nav" class="nav_bar">
+		<ul>
+			<!-- <li><a href="index.html">Home</a></li> -->
+			<li><a href="#" [routerLink]="['/']">Home</a> </li>
+			<li><a href="#" [routerLink]="['/travels']">Travels</a> </li>
 
-				</div>
-			<!-- Banner -->
+
+			<ng-template [ngIf]="!this.AuthAppService.isAuthenticated()">
+				<li><a href="#" [routerLink]="['/signup']">Signup</a> </li>
+				<li><a href="#" [routerLink]="['/signin']">Signin</a> </li>
+			</ng-template>
+
+			<ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
+				<li>Ciao {{this.AuthAppService.user }}</li>
+				<li><a href="#" (click)="logout()">Logout</a> </li>
+			</ng-template>
+
+
+		</ul>
+	</nav>
+
+</div>
+<!-- Banner -->

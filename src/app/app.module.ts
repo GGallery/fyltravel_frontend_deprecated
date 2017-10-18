@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
-import {BookService} from "./book/book.service";
+import { BookService} from "./book/book.service";
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -21,7 +21,6 @@ import { TravelComponent } from './travel/travel.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdCardModule, MatIconModule} from '@angular/material';
 
-import { FacebookModule } from 'ngx-facebook';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 
@@ -34,6 +33,7 @@ import { environment } from '../environments/environment';
 
 const routes: Routes = [
   { path: 'user',        component: UserComponent },
+  { path: 'travels',     component: TravelListComponent },
   { path: 'signin',      component: SigninComponent },
   { path: 'signup',      component: SignupComponent },
   { path: '',            redirectTo: '/',  pathMatch: 'full' },  
@@ -56,7 +56,7 @@ const routes: Routes = [
   ],
   imports: [
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyB7XKfgnB2YT82wrC1W7lW7V7PbQkv77m8",
+      apiKey: environment.googleMapKey,
       libraries: ["places"]
     }),
     BrowserModule,
@@ -71,7 +71,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule, 
-    FacebookModule.forRoot(),
+    
     RouterModule.forRoot(routes)
   ],
   providers: [BookService, TravelService, AuthAppService],
@@ -79,6 +79,6 @@ const routes: Routes = [
 })
 export class AppModule { }
 
-Angular2SocialLoginModule.loadProvidersScripts(environment.providers);
+Angular2SocialLoginModule.loadProvidersScripts(environment.socialProviders);
 
 // AIzaSyB7XKfgnB2YT82wrC1W7lW7V7PbQkv77m8
