@@ -37,6 +37,10 @@ font-size: 15pt;
     text-decoration: dotted;
 }
 
+.container {
+  margin-top: 55px !important;
+}
+
 @media screen and (max-width: 425px) {
     #search{
     width: 80vw !important;

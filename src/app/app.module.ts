@@ -25,7 +25,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 
 
-import { Angular2SocialLoginModule } from "angular2-social-login";
+import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { AuthAppService } from './services/auth.service';
 import { environment } from '../environments/environment';
 import { CreatetravelComponent } from './createtravel/createtravel.component';
