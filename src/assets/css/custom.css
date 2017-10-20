@@ -19,11 +19,23 @@ font-size: 15pt;
     margin: 0px !important;
 }
 
-.nav_bar{
+/* .nav_bar{
     background-color: orangered;
 
-}
+} */
 
+
+#headernav {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 43px;
+    z-index: 2500;
+    background-color:#EF5350;
+    color: whitesmoke;
+    text-decoration: dotted;
+}
 
 @media screen and (max-width: 425px) {
     #search{

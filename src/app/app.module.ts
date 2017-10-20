@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
-import { BookService} from "./book/book.service";
+import { BookService } from "./book/book.service";
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -18,8 +18,8 @@ import { TravelService } from './services/travel.service';
 import { TravelListComponent } from './travel-list/travel-list.component';
 import { TravelComponent } from './travel/travel.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdCardModule, MatIconModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdCardModule, MatIconModule } from '@angular/material';
 
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
@@ -28,16 +28,17 @@ import { SigninComponent } from './signin/signin.component';
 import { Angular2SocialLoginModule } from "angular2-social-login";
 import { AuthAppService } from './services/auth.service';
 import { environment } from '../environments/environment';
-
+import { CreatetravelComponent } from './createtravel/createtravel.component';
 
 
 const routes: Routes = [
-  { path: 'user',        component: UserComponent },
-  { path: 'travels',     component: TravelListComponent },
-  { path: 'signin',      component: SigninComponent },
-  { path: 'signup',      component: SignupComponent },
-  { path: '',            redirectTo: '/',  pathMatch: 'full' },  
-  { path: '**',          component: HomeComponent  }
+  { path: 'user', component: UserComponent },
+  { path: 'travels', component: TravelListComponent },
+  { path: 'createtravel', component: CreatetravelComponent },
+  { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
@@ -52,7 +53,8 @@ const routes: Routes = [
     TravelListComponent,
     TravelComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    CreatetravelComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -61,17 +63,18 @@ const routes: Routes = [
     }),
     BrowserModule,
     BrowserAnimationsModule,
-    
+
     MdCardModule,
     MatIconModule,
 
     Angular2SocialLoginModule,
 
-    
+
     FormsModule,
     ReactiveFormsModule,
-    HttpModule, 
-    
+    HttpModule,
+
+
     RouterModule.forRoot(routes)
   ],
   providers: [BookService, TravelService, AuthAppService],

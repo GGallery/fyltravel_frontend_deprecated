@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
 
   logout() {
+    this.AuthAppService.logout();
     console.log(this.AuthAppService.currentToken);
     console.log(this.AuthAppService.userAuthenticated);
   }

@@ -34,13 +34,7 @@ export class SigninComponent implements OnInit {
         console.log(data);
         this.user = data;
 
-
-        this.AuthAppService.signin(this.user.email, this.user.uid).
-          subscribe(
-          response => console.log(response),
-          error => console.log(error),
-        );
-
+        this.signIn(this.user.email, this.user.uid);
       }
     )
   }
@@ -50,7 +44,6 @@ export class SigninComponent implements OnInit {
     this.AuthAppService.signin(email, password).
       subscribe(
       tokenData => {
-        console.log(tokenData),
           this.router.navigate(['/user']);
       },
       error => console.log(error),

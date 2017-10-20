@@ -1,20 +1,21 @@
 <!-- Header -->
-<div id="header" >
+<div id="headernav" >
 	<!-- Nav -->
-	<nav id="nav" class="nav_bar">
+	<nav id="nav" class=" ">
 		<ul>
 			<!-- <li><a href="index.html">Home</a></li> -->
 			<li><a href="#" [routerLink]="['/']">Home</a> </li>
-			<li><a href="#" [routerLink]="['/travels']">Travels</a> </li>
+			<li><a href="#" [routerLink]="['/travels']">Viaggi</a> </li>
 
 
 			<ng-template [ngIf]="!this.AuthAppService.isAuthenticated()">
-				<li><a href="#" [routerLink]="['/signup']">Signup</a> </li>
-				<li><a href="#" [routerLink]="['/signin']">Signin</a> </li>
+				<li><a href="#" [routerLink]="['/signup']">Registrati</a> </li>
+				<li><a href="#" [routerLink]="['/signin']">Accedi</a> </li>
 			</ng-template>
 
 			<ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
 				<li>Ciao {{this.AuthAppService.user }}</li>
+				<li><a href="#" [routerLink]="['/createtravel']">Nuovo viaggio</a> </li>
 				<li><a href="#" (click)="logout()">Logout</a> </li>
 			</ng-template>
 

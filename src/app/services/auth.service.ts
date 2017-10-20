@@ -33,10 +33,14 @@ export class AuthAppService {
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(
       (response: Response) => {
+        console.log(response);
         const token = response.json().token;
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace('-', '+').replace('_', '/');
-        this.user = "TestTony";
+        
+        const userobj = response.json().user;
+        this.user = userobj.name;
+        
         return { token: token, decoded: JSON.parse(window.atob(base64)) };
       }
       )
@@ -60,8 +64,11 @@ export class AuthAppService {
   }
 
   logout(){
-    // if(localStorage.removeItem('token'))
-    //  this.router.navigate(['/'])
+    localStorage.removeItem('token');
+    this.userAuthenticated = false;
+    this.currentToken = null;
+    this.user = null;
+    this.router.navigate(['/']);
     
   }
 
