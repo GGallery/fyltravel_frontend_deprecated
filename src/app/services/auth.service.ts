@@ -18,7 +18,7 @@ export class AuthAppService {
   constructor(
     private http: Http,
     private router : Router
-  
+
   ) { }
 
   signup(username: string, email: string, password: string) {
@@ -32,26 +32,25 @@ export class AuthAppService {
       { email: email, password: password },
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(
-      (response: Response) => {
-        console.log(response);
-        const token = response.json().token;
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace('-', '+').replace('_', '/');
-        
-        const userobj = response.json().user;
-        this.user = userobj.name;
-        
-        return { token: token, decoded: JSON.parse(window.atob(base64)) };
-      }
+        (response: Response) => {
+          console.log(response);
+          const token = response.json().token;
+          const base64Url = token.split('.')[1];
+          const base64 = base64Url.replace('-', '+').replace('_', '/');
+          const user = response.json().user;
+          return { token: token, user: user, decoded: JSON.parse(window.atob(base64)) };
+        }
       )
       .do(
-      tokenData => {
-        this.currentToken = tokenData.token;
-        this.userAuthenticated = true;
+        tokenData => {
+          this.currentToken = tokenData.token;
+          this.userAuthenticated = true;
+          this.user = tokenData.user;
 
-        localStorage.setItem('token', tokenData.token)
-      }
-      )
+          localStorage.setItem('user', tokenData.user);
+          localStorage.setItem('token', tokenData.token);
+        }
+      );
   }
 
   init() {
@@ -69,7 +68,7 @@ export class AuthAppService {
     this.currentToken = null;
     this.user = null;
     this.router.navigate(['/']);
-    
+
   }
 
 

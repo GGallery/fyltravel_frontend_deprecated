@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 
-import { AuthService } from "angular2-social-login";
+import { AuthService } from 'angular2-social-login';
 import { AuthAppService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private AuthAppService: AuthAppService,
-    private AuthServiceSocial: AuthService, 
+    private AuthServiceSocial: AuthService,
     private router: Router
 
   ) {

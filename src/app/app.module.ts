@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
-import { BookService } from "./book/book.service";
+
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -14,12 +14,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+
 import { TravelService } from './services/travel.service';
 import { TravelListComponent } from './travel-list/travel-list.component';
 import { TravelComponent } from './travel/travel.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdCardModule, MatIconModule } from '@angular/material';
+import { MatCardModule, MatIconModule } from '@angular/material';
 
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
@@ -29,14 +31,18 @@ import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { AuthAppService } from './services/auth.service';
 import { environment } from '../environments/environment';
 import { CreatetravelComponent } from './createtravel/createtravel.component';
+import { SimpleDemoComponent } from './simple-demo/simple-demo.component';
 
+
+import { FileUploadModule } from 'ng2-file-upload';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
-  { path: 'createtravel', component: CreatetravelComponent },
+  { path: 'createtravel', component: SimpleDemoComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'upload', component: SimpleDemoComponent},
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
 ];
@@ -54,19 +60,23 @@ const routes: Routes = [
     TravelComponent,
     SignupComponent,
     SigninComponent,
-    CreatetravelComponent
+    CreatetravelComponent,
+    SimpleDemoComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapKey,
-      libraries: ["places"]
+      libraries: ['places']
     }),
+    AgmSnazzyInfoWindowModule,
+
     BrowserModule,
     BrowserAnimationsModule,
 
-    MdCardModule,
+    MatCardModule,
     MatIconModule,
 
+    FileUploadModule,
     Angular2SocialLoginModule,
 
 
@@ -74,10 +84,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpModule,
 
-
     RouterModule.forRoot(routes)
   ],
-  providers: [BookService, TravelService, AuthAppService],
+  providers: [TravelService, AuthAppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

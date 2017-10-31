@@ -32,19 +32,32 @@ font-size: 15pt;
     right: 0px;
     height: 43px;
     z-index: 2500;
-    background-color:#EF5350;
+    background-color:#f79203;
+
+
     color: whitesmoke;
     text-decoration: dotted;
 }
 
 .container {
-  margin-top: 55px !important;
+  /*margin-top: 80px !important;*/
+}
+
+.navbar > .container, .navbar > .container-fluid {
+  display: -webkit-box !important;
+}
+
+.profilo{
+  width: 30px;
+  height: 30px;
 }
 
 @media screen and (max-width: 425px) {
     #search{
     width: 80vw !important;
 }
+
+
 
 
 

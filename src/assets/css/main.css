@@ -15,7 +15,7 @@
 		border: 0;
 		font-size: 100%;
 		font: inherit;
-		vertical-align: baseline;
+		vertical-align: top;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -2103,7 +2103,7 @@
 		background-attachment: fixed;
 		color: #fff;
 		text-align: center;
-		padding: 0.5em 0 2em 0;
+		padding: 2.5em 0 2em 0;
 		cursor: default;
 
 		background-position-y: -208px;

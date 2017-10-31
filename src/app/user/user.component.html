@@ -11,17 +11,46 @@
           </header>
         </article>
 
-        <!-- <div class="form-group">
-          <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-            #search [formControl]="searchControl">
-        </div> -->
-      
-      
-      
         <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-          <agm-marker *ngFor="let pos of positions  " [latitude]="pos.latitude" [longitude]="pos.longitude" [title]="pos.title">
+          <agm-marker [id]="marker" *ngFor="let travel of positions "
+                      [latitude]="travel.latitude"
+                      [longitude]="travel.longitude"
+                      [title]="travel.title"
+                      [iconUrl]="'assets/images/marker.png'"
+                      (markerClick)="clickedMarker(travel)"
+          >
+
+            <agm-snazzy-info-window
+              [maxWidth]="400"
+              [placement]="top"
+              [closeWhenOthersOpen]="true"
+              [latitude]="travel.latitude"
+              [longitude]="travel.longitude"
+              [showCloseButton]="true"
+            >
+              <ng-template>
+
+                <md-card   class="travel-card">
+                  <md-card-header>
+                    <button type="button" class="close pull-right" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <div md-card-avatar class="example-header-image">
+                      <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
+                    </div>
+                    <md-card-title>{{travel.title}}</md-card-title>
+                    <md-card-subtitle>{{travel.user.name}}</md-card-subtitle>
+                  </md-card-header>
+                  <md-card-content class="mt-4 p-1">
+                    <img md-card-image src="data/travel/{{travel.id}}/cover.jpg" alt="{{travel.title}}">
+                  </md-card-content>
+                </md-card>
+              </ng-template>
+            </agm-snazzy-info-window>
           </agm-marker>
         </agm-map>
+
 
         <!-- per marker piu complessi -->
         <!-- https://developers.google.com/maps/documentation/javascript/examples/icon-complex -->
@@ -36,13 +65,43 @@
       <div class="4u">
         <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
       </div>
+
+      <div *ngIf="currentTravel" class="8u">
+        <md-card   class="travel-card">
+          <md-card-header>
+            <div md-card-avatar class="example-header-image">
+              <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
+            </div>
+            <md-card-title>{{currentTravel.title}}</md-card-title>
+            <md-card-subtitle>{{currentTravel.user.name}}</md-card-subtitle>
+          </md-card-header>
+          <md-card-content class="mt-4 p-1">
+            {{currentTravel.descrizione}}
+            <img md-card-image src="data/travel/{{currentTravel.id}}/cover.jpg" alt="{{currentTravel.title}}">
+          </md-card-content>
+        </md-card>
+      </div>
+
+
+      <div *ngIf="!currentTravel" class="4u">
+        Viaggi fatti: 15 <br> Tipo di viaggiatore: Solitario <br> Abito a.... <br> Ho viaggiato con...
+      </div>
+      <div *ngIf="!currentTravel" class="4u">
+        Top 5 viaggi <br>
+      </div>
+
+
       <div class="4u">
         Viaggi fatti: 15 <br> Tipo di viaggiatore: Solitario <br> Abito a.... <br> Ho viaggiato con...
       </div>
       <div class="4u">
-         Top 5 viaggi <br>
+        Top 5 viaggi <br>
       </div>
+
+
     </div>
+
+
     <hr>
     <div class="row">
       <div class="12u important(mobile)" id="content">
@@ -51,15 +110,6 @@
 
       </div>
     </div>
-
-
-
-
-
-
-
-
-
 
     <hr />
     <div class="row">

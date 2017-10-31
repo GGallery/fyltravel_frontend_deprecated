@@ -24,6 +24,7 @@
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/snazzy-info-window/dist/snazzy-info-window.css",
 
         "styles.css",
         "assets/css/main.css",
@@ -32,8 +33,8 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
+
         "../node_modules/tether/dist/js/tether.min.js",
-        "assets/js/jquery.min.js",
         "assets/js/jquery.dropotron.min.js",
         "assets/js/jquery.scrolly.min.js",
         "assets/js/jquery.onvisible.min.js",
