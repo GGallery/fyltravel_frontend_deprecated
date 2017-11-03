@@ -24,6 +24,7 @@ export class UserComponent implements OnInit {
   public positions;
   public currentTravel;
   public searchElementRef: ElementRef;
+  private infowindow: any;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -39,20 +40,25 @@ export class UserComponent implements OnInit {
     this.latitude = 39.8282;
     this.longitude = -98.5795;
 
-    this.positions = [{
-
-    }];
+    this.positions = [];
 
     this.getTravel();
-
-    // load Places Autocomplete
-    // this.mapsAPILoader.load().then(() => {
-    // });
   }
 
 
   clickedMarker(travel: any) {
     this.currentTravel = travel;
+  }
+
+  showInfo(event: any, travel: any  ) {
+    console.log(event);
+    console.log(travel);
+// travel.infoWindow.open();
+
+
+    this.infowindow.latLng = event.coords;
+    // this.infowindow.longitude = event.longitude;
+    this.infowindow.open();
   }
 
 

@@ -11,22 +11,26 @@
           </header>
         </article>
 
-        <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-          <agm-marker [id]="marker" *ngFor="let travel of positions "
+        <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"  [fitBounds]="latlngBounds">
+          <agm-marker *ngFor="let travel of positions    "
                       [latitude]="travel.latitude"
                       [longitude]="travel.longitude"
                       [title]="travel.title"
                       [iconUrl]="'assets/images/marker.png'"
                       (markerClick)="clickedMarker(travel)"
+                      (mouseOver)="showInfo($event, travel  )"
           >
 
+
             <agm-snazzy-info-window
+              [id]="infowindow"
               [maxWidth]="400"
               [placement]="top"
               [closeWhenOthersOpen]="true"
-              [latitude]="travel.latitude"
-              [longitude]="travel.longitude"
               [showCloseButton]="true"
+              [latitude]=""
+              [longitude]=""
+
             >
               <ng-template>
 
@@ -48,12 +52,22 @@
                 </md-card>
               </ng-template>
             </agm-snazzy-info-window>
+
           </agm-marker>
         </agm-map>
 
 
+
+
+
+
+
+
         <!-- per marker piu complessi -->
         <!-- https://developers.google.com/maps/documentation/javascript/examples/icon-complex -->
+
+        <!--per gallerie di immagini e altro !!!! bello!!!-->
+        <!--http://www.unheap.com/media/galleries/-->
 
 
       </div>
