@@ -64,6 +64,8 @@
 
       <div class="4u">
         <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
+
+        <a href="#" routerLink="/createtravel"><button class="w-100 btn-sm"> <i class="fa fa-plane fa-2x" aria-hidden="true"></i>Aggiungi viaggio</button></a>
       </div>
 
       <div *ngIf="currentTravel" class="8u">
@@ -87,14 +89,6 @@
         Viaggi fatti: 15 <br> Tipo di viaggiatore: Solitario <br> Abito a.... <br> Ho viaggiato con...
       </div>
       <div *ngIf="!currentTravel" class="4u">
-        Top 5 viaggi <br>
-      </div>
-
-
-      <div class="4u">
-        Viaggi fatti: 15 <br> Tipo di viaggiatore: Solitario <br> Abito a.... <br> Ho viaggiato con...
-      </div>
-      <div class="4u">
         Top 5 viaggi <br>
       </div>
 

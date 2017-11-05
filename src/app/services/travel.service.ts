@@ -12,20 +12,23 @@ export class TravelService {
   private api = environment.apiUrl;
 
   constructor(
-    private _http: Http, 
+    private _http: Http ,
     private AuthAppService: AuthAppService
   ) { }
 
   getTravels(): Observable<any[]> {
-    let url = this.api + 'travels?token='+ this.AuthAppService.currentToken;
+    const url = this.api + 'travels?token=' + this.AuthAppService.currentToken;
     return this._http.get(url)
       .map(res => res.json())
       .catch(this.handleError)
   }
 
-
-
-
+  newTravel():  Observable<any[]>{
+    const url = this.api + 'newtravel?token=' + this.AuthAppService.currentToken;
+    return this._http.get(url)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
 
   private handleError(error: Response | any) {
     let errMsg: string;

@@ -1,5 +1,10 @@
-#nav {
+.navbar {
   background-color:#009D57 !important;
   color: whitesmoke;
   text-decoration: dotted;
+}
+
+
+.navbar > .container, .navbar > .container-fluid {
+  display: inline-flex !important;
 }
