@@ -31,18 +31,19 @@ import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { AuthAppService } from './services/auth.service';
 import { environment } from '../environments/environment';
 import { CreatetravelComponent } from './createtravel/createtravel.component';
-import { SimpleDemoComponent } from './simple-demo/simple-demo.component';
+
 
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { ModifytravelComponent } from './modifytravel/modifytetravel.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
-  { path: 'createtravel', component: SimpleDemoComponent },
+  { path: 'createtravel', component: CreatetravelComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'upload', component: SimpleDemoComponent},
+  { path: 'upload', component: ModifytravelComponent},
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
 ];
@@ -61,7 +62,7 @@ const routes: Routes = [
     SignupComponent,
     SigninComponent,
     CreatetravelComponent,
-    SimpleDemoComponent
+    ModifytravelComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

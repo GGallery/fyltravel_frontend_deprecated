@@ -1,108 +1,25 @@
-<!-- Header -->
-<!--<div id="headernav" >-->
-<!-- Nav -->
-<!--<nav id="nav" class="   ">-->
-<!--<ul>-->
-<!--&lt;!&ndash; <li><a href="index.html">Home</a></li> &ndash;&gt;-->
-<!--<li><a href="#" [routerLink]="['/']">Home</a> </li>-->
-<!--<li><a href="#" [routerLink]="['/travels']">Viaggi</a> </li>-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top ">
+<div class="container">
+  <a class="navbar-brand" href="#" routerLink="/"><img width="108" src="/assets/images/fyl_verde.jpg"></a>
+  <form class="form-inline  ">
+    <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Cerca un viaggio" aria-label="Search">
+  </form>
 
+  <ul class="navbar-nav ml-auto">
+    <li class="navbar-item">
+      <!--<a href="#" [routerLink]="['/travels']">Viaggi</a>-->
+      <ng-template [ngIf]="!this.AuthAppService.isAuthenticated()" >
+        <a class="justify-content-end" href="#" [routerLink]="['/signin']">Accedi</a>
+      </ng-template>
+    </li>
 
-<!--<ng-template [ngIf]="!this.AuthAppService.isAuthenticated()">-->
-<!--<li><a href="#" [routerLink]="['/signup']">Registrati</a> </li>-->
-<!--<li><a href="#" [routerLink]="['/signin']">Accedi</a> </li>-->
-<!--</ng-template>-->
-
-<!--<ng-template [ngIf]="this.AuthAppService.isAuthenticated()">-->
-
-
-
-<!--<form class="form-inline">-->
-<!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--</form>-->
-
-
-
-
-<!--<li>Ciao {{this.AuthAppService.user }}</li>-->
-<!--<li><a href="#" [routerLink]="['/createtravel']">Nuovo viaggio</a> </li>-->
-<!--<li><a href="#" (click)="logout()">Logout</a> </li>-->
-<!--</ng-template>-->
-
-
-<!--</ul>-->
-<!--</nav>-->
-
-
-<!--Questa buona-->
-
-<nav id="nav" class="navbar fixed-top p-0 nav navbar-nav   ">
-
-    <ul>
-      <li>    <a class="navbar-brand2" href="#"><img width="108" src="/assets/images/fyl_verde.jpg"></a> </li>
-
-      <li>
-        <form class="form-inline justify-content-end ">
-          <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Cerca un viaggio" aria-label="Search">
-        </form>
-      </li>
-
-      <li>
-        <!--<a href="#" [routerLink]="['/travels']">Viaggi</a>-->
-        <ng-template [ngIf]="!this.AuthAppService.isAuthenticated()" >
-          <a class="justify-content-end" href="#" [routerLink]="['/signin']">Accedi</a>
-        </ng-template>
-      </li>
-      <li>
-        <ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
-          <a class="justify-content-end" href="#" routerLink="/user" class=""><img src="assets/images/profilo.jpg" alt="" class="profilo rounded-circle float-right" width="50"/></a>
-          <!--<a href="#" [routerLink]="['/createtravel']">Nuovo viaggio</a>-->
-          <!--<a href="#" (click)="logout()">Logout</a>-->
-        </ng-template>
-      </li>
-    </ul>
-
-
+    <li class="navbar-item ">
+      <ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
+        <a class="" href="#" routerLink="/user" class=""><img src="assets/images/profilo.jpg" alt="" class="profilo rounded-circle float-right" width="50"/></a>
+        <!--<a href="#" [routerLink]="['/createtravel']">Nuovo viaggio</a>-->
+        <!--<a href="#" (click)="logout()">Logout</a>-->
+      </ng-template>
+    </li>
+  </ul>
+</div>
 </nav>
-
-
-
-
-
-<!--ROBA BUONA PER LA NAV BAR-->
-
-<!--<nav class="navbar navbar-toggleable-sm navbar-inverse bg-faded fixed-top">-->
-<!--<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
-<!--aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--<span class="navbar-toggler-icon"></span>-->
-<!--</button>-->
-<!--<a class="navbar-brand" href="#">-->
-<!--<img alt='Brand' src='../assets/images/logo-white.png' class='navbar-logo-img d-inline-block align-top '>-->
-<!--<span class="navbar-logo-text">Oncoscape</span>-->
-<!--</a>-->
-
-<!--<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">-->
-<!--<ul class="navbar-nav float-left">-->
-<!--<a class="navbar-items nav-item nav-link active "  >-->
-<!--<span class="fa fa-dashboard"></span>Dashboard-->
-<!--</a>-->
-<!--<a class="nav-item nav-link navbar-items active" href="http://resources.sttrcancer.org/oncoscape-contact">-->
-<!--<span class="fa fa-comments"></span>Feedback-->
-<!--</a>-->
-<!--<li class="nav-item dropdown">-->
-<!--<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--<img    class="navbar-pic" src={{user.thumbnail}} alt="Smiley face">-->
-<!--</a>-->
-<!--<div   class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">-->
-<!--<a class="dropdown-item" (click)="toProfile()">Account</a>-->
-<!--<div class="dropdown-item">-->
-<!--login-->
-<!--&lt;!&ndash;<app-login></app-login>&ndash;&gt;-->
-<!--</div>-->
-<!--</div>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-<!--</nav>-->
-
