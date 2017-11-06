@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs";
-import { Travel } from '../travel/travel';
+import { Travel } from '../model/travel';
 import { environment } from '../../environments/environment';
 import { AuthAppService } from './auth.service';
 

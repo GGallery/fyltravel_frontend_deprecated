@@ -1,22 +1,22 @@
 #search{
-font-size: 15pt;
-    line-height: 1.85em;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 300;
-    width: 40vw !important;
-    height: 56px;
-    border-radius: 5px;
-    padding: 5px;
+  font-size: 15pt;
+  line-height: 1.85em;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  width: 40vw !important;
+  height: 56px;
+  border-radius: 5px;
+  padding: 5px;
 
 }
 
 
 .travel-card{
-    background-color: whitesmoke;
+  background-color: whitesmoke;
 }
 
 .mat-card-actions{
-    margin: 0px !important;
+  margin: 0px !important;
 }
 
 /* .nav_bar{
@@ -26,17 +26,17 @@ font-size: 15pt;
 
 
 #headernav {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    height: 43px;
-    z-index: 2500;
-    background-color:#f79203;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 43px;
+  z-index: 2500;
+  background-color:#f79203;
 
 
-    color: whitesmoke;
-    text-decoration: dotted;
+  color: whitesmoke;
+  text-decoration: dotted;
 }
 
 .container {
@@ -52,14 +52,13 @@ font-size: 15pt;
   height: 30px;
 }
 
-@media screen and (max-width: 425px) {
-    #search{
-    width: 80vw !important;
+
+.fyl_color{
+  background-color: #009d57 !important;
 }
 
-
-
-
-
-
+@media screen and (max-width: 425px) {
+  #search{
+    width: 80vw !important;
+  }
 }
