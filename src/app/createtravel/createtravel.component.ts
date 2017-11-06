@@ -1,7 +1,7 @@
 import { Component, OnInit  } from '@angular/core';
 import { AuthAppService} from '../services/auth.service';
-import { Travel } from '../model/travel';
-import { Form} from '@angular/forms';
+
+import {Form, NgForm} from '@angular/forms';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { Form} from '@angular/forms';
 })
 export class CreatetravelComponent implements OnInit {
 
-  private travel: Travel ;
+
 
   constructor(
     private AuthAppService: AuthAppService
@@ -27,8 +27,9 @@ export class CreatetravelComponent implements OnInit {
     console.log('ok');
   }
 
-  onSubmit(form: Form) {
-    console.log(form);
+  onSubmit(form: NgForm) {
+    console.log(JSON.stringify(form.value));
+
   }
 
 }

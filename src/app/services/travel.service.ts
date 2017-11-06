@@ -20,10 +20,10 @@ export class TravelService {
     const url = this.api + 'travels?token=' + this.AuthAppService.currentToken;
     return this._http.get(url)
       .map(res => res.json())
-      .catch(this.handleError)
+      .catch(this.handleError);
   }
 
-  newTravel():  Observable<any[]>{
+  newTravel():  Observable<any[]> {
     const url = this.api + 'newtravel?token=' + this.AuthAppService.currentToken;
     return this._http.get(url)
       .map(res => res.json())
