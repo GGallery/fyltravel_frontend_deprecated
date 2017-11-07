@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
-import { Observable } from "rxjs";
-import { Travel } from '../model/travel';
+import { Http, Response, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { AuthAppService } from './auth.service';
+import {NgForm} from '@angular/forms';
 
 
 @Injectable()
@@ -23,12 +23,16 @@ export class TravelService {
       .catch(this.handleError);
   }
 
-  newTravel():  Observable<any[]> {
-    const url = this.api + 'newtravel?token=' + this.AuthAppService.currentToken;
-    return this._http.get(url)
+  newTravel(form: NgForm):  Observable<any> {
+
+    return this._http.post(this.api + 'newtravel',
+      {token: this.AuthAppService.currentToken, title: form.value.title, description: form.value.description},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
       .catch(this.handleError);
   }
+
+
 
   private handleError(error: Response | any) {
     let errMsg: string;

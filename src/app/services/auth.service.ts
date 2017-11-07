@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
@@ -17,14 +17,14 @@ export class AuthAppService {
 
   constructor(
     private http: Http,
-    private router : Router
+    private router: Router
 
   ) { }
 
   signup(username: string, email: string, password: string) {
     return this.http.post(this.api + 'signup',
       { name: username, email: email, password: password },
-      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
   }
 
   signin(email: string, password: string) {
@@ -62,7 +62,7 @@ export class AuthAppService {
     }
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     this.userAuthenticated = false;
     this.currentToken = null;
