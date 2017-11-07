@@ -25,6 +25,8 @@ export class CreatetravelComponent implements OnInit {
 
     this.TravelService.newTravel(form).subscribe(
       (res) => {
+        const travel = res;
+          alert('l id del tuo viaggio è' + travel.id);
         console.log(res);
       }
     );

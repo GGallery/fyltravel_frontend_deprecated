@@ -36,7 +36,7 @@ export class SigninComponent implements OnInit {
 
         this.signIn(this.user.email, this.user.uid);
       }
-    )
+    );
   }
 
 
