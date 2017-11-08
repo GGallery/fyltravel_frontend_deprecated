@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { TravelService } from '../services/travel.service';
-import { Travel } from '../model/travel';
+
 
 
 @Component({

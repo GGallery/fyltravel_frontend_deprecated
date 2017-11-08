@@ -40,6 +40,7 @@ import { ModifytravelComponent } from './modifytravel/modifytetravel.component';
 const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
+  { path: 'travel/:id', component: TravelComponent },
   { path: 'createtravel', component: CreatetravelComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },

@@ -26,7 +26,7 @@ export class TravelService {
   newTravel(form: NgForm):  Observable<any> {
 
     return this._http.post(this.api + 'newtravel?token=' + this.AuthAppService.currentToken,
-      {token: this.AuthAppService.currentToken, title: form.value.title, description: form.value.description},
+      {title: form.value.title, description: form.value.description},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
       .catch(this.handleError);

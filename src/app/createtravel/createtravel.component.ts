@@ -1,6 +1,7 @@
 import { Component, OnInit  } from '@angular/core';
 import { NgForm} from '@angular/forms';
 import {TravelService} from '../services/travel.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class CreatetravelComponent implements OnInit {
 
 
   constructor(
-    private TravelService: TravelService
+    private TravelService: TravelService,
+    private router: Router
   ) {
   }
 
@@ -26,8 +28,7 @@ export class CreatetravelComponent implements OnInit {
     this.TravelService.newTravel(form).subscribe(
       (res) => {
         const travel = res;
-          alert('l id del tuo viaggio è' + travel.id);
-        console.log(res);
+        this.router.navigate(['/travel', travel.id]);
       }
     );
   }
