@@ -10,7 +10,7 @@
           </header>
         </article>
 
-        <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"  [fitBounds]="latlngBounds">
+        <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"   >
           <agm-marker *ngFor="let travel of positions    "
                       [latitude]="travel.latitude"
                       [longitude]="travel.longitude"
@@ -22,13 +22,10 @@
 
 
             <agm-snazzy-info-window
-              [id]="infowindow"
               [maxWidth]="400"
               [placement]="top"
               [closeWhenOthersOpen]="true"
               [showCloseButton]="true"
-              [latitude]=""
-              [longitude]=""
 
             >
               <ng-template>

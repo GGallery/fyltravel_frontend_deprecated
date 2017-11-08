@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { TravelService } from '../services/travel.service';
+import { Travel } from '../model/travel';
 
 
 
@@ -56,9 +57,9 @@ export class UserComponent implements OnInit {
 // travel.infoWindow.open();
 
 
-    this.infowindow.latLng = event.coords;
-    // this.infowindow.longitude = event.longitude;
-    this.infowindow.open();
+    // this.infowindow.latLng = event.coords;
+    // // this.infowindow.longitude = event.longitude;
+    // this.infowindow.open();
   }
 
 
