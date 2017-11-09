@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl 1 --ssl-key 'ssl/local.brianflove.com.key' --ssl-cert 'ssl/local.brianflove.com.crt' --disable-host-check",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -1,8 +1,8 @@
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {FormControl} from '@angular/forms';
-import { } from 'googlemaps';
-import {MapsAPILoader} from '@agm/core';
+
+
 import {FileUploader} from 'ng2-file-upload';
 import {environment} from '../../environments/environment';
 
@@ -20,10 +20,6 @@ export class TravelComponent implements OnInit {
   public id: number;
 
 
-  public latitude: number;
-  public longitude: number;
-  public searchControl: FormControl;
-  public zoom: number;
 
   // Media Upload
   public uploader_copertina: FileUploader = new FileUploader({url: URL_COPERTINA});
@@ -38,9 +34,7 @@ export class TravelComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
 
-    // Map
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+   
 
 
   ) {
@@ -56,41 +50,5 @@ export class TravelComponent implements OnInit {
           console.log(this.id);
         }
       );
-
-    this.searchControl = new FormControl();
-
-    // set current position
-    this.setCurrentPosition();
-
-    this.mapsAPILoader.load().then(() => {
-      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ['address']
-      });
-      autocomplete.addListener('place_changed', () => {
-        this.ngZone.run(() => {
-          // get the place result
-          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          // verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-
-          // // set latitude, longitude and zoom
-          // this.latitude = place.geometry.location.lat();
-          // this.longitude = place.geometry.location.lng();
-          this.zoom = 3;
-        });
-      });
-    });
-
-
-  }
-
-  private setCurrentPosition() {
-    // this.latitude = ;
-    // this.longitude = ;
-    this.zoom = 3;
-  }
-
+}
 }
