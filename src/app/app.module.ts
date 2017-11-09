@@ -36,10 +36,13 @@ import { CreatetravelComponent } from './createtravel/createtravel.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { ModifytravelComponent } from './modifytravel/modifytetravel.component';
+import { MappatravelComponent } from "./mappatravel/mappatravel.component";
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
+  
+
   { path: 'travel/:id', component: TravelComponent },
   { path: 'createtravel', component: CreatetravelComponent },
   { path: 'signin', component: SigninComponent },
@@ -63,7 +66,8 @@ const routes: Routes = [
     SignupComponent,
     SigninComponent,
     CreatetravelComponent,
-    ModifytravelComponent
+    ModifytravelComponent, 
+    MappatravelComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

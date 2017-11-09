@@ -25,18 +25,7 @@
     </div>
 
     <div class="col-md-6">
-      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-      </agm-map>
-
-      <div class="form-group mt-2">
-        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
-      </div>
-
-
-      Non esistono tappe per il tuo viaggio!
-      <br>
-      <a href="">        <button class="btn btn-sm fyl_color "><i class="fa fa-plus "></i>Aggiungi tappe</button>       </a>
+      <app-mappatravel  [travel_id]='id'></app-mappatravel>
     </div>
 
 

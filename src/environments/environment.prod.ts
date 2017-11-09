@@ -16,6 +16,6 @@ export const environment = {
     }
   }, 
 
-  googleMapKey:  "AIzaSyD7NNtxuD_Hz1fd-SWydS1baKxJO12RtTE"
+  googleMapKey:  "AIzaSyDAat_fwjWbHV6KanrhyZzcNEVBuzpVND8"
   
 };
