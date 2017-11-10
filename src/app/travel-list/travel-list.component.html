@@ -2,15 +2,10 @@
   <div class="row justify-content-center">
     <div class="col-12">
       
-      <mat-card *ngFor="let travel of travels" class="travel-card">
-        <i *ngIf="travel.author == $curr_user"  class="material-icons pull-right">mode_edit</i>
-
+      <mat-card *ngFor="let travel of travels" class="travel-card" >
         <mat-card-header>
-
-          
-
           <div md-card-avatar class="example-header-image"></div>
-          <mat-card-title class="display-3">{{travel.title}}</mat-card-title>
+          <mat-card-title class="display-3"><a href="#" routerLink="/travel/{{travel.id}}">{{travel.title}}</a></mat-card-title>
           <mat-card-subtitle>{{travel.user.name}}</mat-card-subtitle>
         </mat-card-header>
         <div class="row pr-4">

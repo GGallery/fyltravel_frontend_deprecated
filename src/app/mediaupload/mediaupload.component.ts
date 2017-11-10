@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
@@ -7,18 +7,20 @@ const URL = 'http://api.fyltravel.it:8000/api/upload';
 
 
 @Component({
-  selector: 'app-simple-demo',
-  templateUrl: './simple-demo.component.html',
-  styleUrls: ['./simple-demo.component.css']
+  selector: 'app-mediaupload',
+  templateUrl: './mediaupload.component.html',
+  styleUrls: ['./mediaupload.component.css']
 
 })
-export class SimpleDemoComponent {
+export class MediauploadComponent {
   public uploader_copertina: FileUploader = new FileUploader({url: URL});
   public uploader: FileUploader = new FileUploader({url: URL});
   public hasBaseDropZoneOver: boolean = false;
   public hasAnotherDropZoneOver: boolean = false;
 
   private backgroundImg: SafeStyle;
+
+  @Input() travel_id:number;
 
   constructor(private sanitizer: DomSanitizer) {
 

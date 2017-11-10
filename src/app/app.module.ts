@@ -37,6 +37,12 @@ import { CreatetravelComponent } from './createtravel/createtravel.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ModifytravelComponent } from './modifytravel/modifytetravel.component';
 import { MappatravelComponent } from "./mappatravel/mappatravel.component";
+import { GalleryComponent } from './gallery/gallery.component';
+
+import 'hammerjs';
+import 'mousetrap';
+import { ModalGalleryModule } from 'angular-modal-gallery';
+import { MediauploadComponent } from './mediaupload/mediaupload.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -67,13 +73,19 @@ const routes: Routes = [
     SigninComponent,
     CreatetravelComponent,
     ModifytravelComponent, 
-    MappatravelComponent
+    MappatravelComponent, 
+    GalleryComponent,
+    MediauploadComponent
+    
   ],
   imports: [
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapKey,
       libraries: ['places']
     }),
+
+    ModalGalleryModule.forRoot(),
+
     AgmSnazzyInfoWindowModule,
 
     BrowserModule,
