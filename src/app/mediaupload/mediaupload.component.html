@@ -1,22 +1,4 @@
 
-  <div class="row">
-    
-
-      <div ng2FileDrop
-           [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-           (fileOver)="upload_copertina($event)"
-           [uploader]="uploader_copertina"
-           class="well my-drop-zone"
-           [style.background-image]="backgroundImg">
-
-        Trascina l'immagine di copertina
-      </div>
-      <div class="progress" style="">
-        <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_copertina.progress + '%' }"></div>
-      </div>
-
-
-      <br>
       <div ng2FileDrop
            [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
            (fileOver)="upload_images($event)"
@@ -35,5 +17,3 @@
       <!--<input type="file" ng2FileSelect [uploader]="uploader" multiple  />-->
       <!--<input type="file" ng2FileSelect [uploader]="uploader" />-->
 
-  
-</div>

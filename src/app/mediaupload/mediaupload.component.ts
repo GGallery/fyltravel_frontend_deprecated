@@ -20,7 +20,7 @@ export class MediauploadComponent {
 
   private backgroundImg: SafeStyle;
 
-  @Input() travel_id:number;
+  @Input() travel_id: number;
 
   constructor(private sanitizer: DomSanitizer) {
 
@@ -31,6 +31,7 @@ export class MediauploadComponent {
 
   public upload_copertina(e: any): void {
     this.hasBaseDropZoneOver = e;
+
     this.uploader_copertina.uploadAll();
 
     this.uploader_copertina.onSuccessItem = (item: any, response: any, status: any, headers: any) => {

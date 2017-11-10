@@ -4,5 +4,6 @@ export class Travel {
     public title: string,
     public author: number,
     public description: string,
+    public image: string
   ) {   }
 }

@@ -11,10 +11,11 @@
         </article>
 
         <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"   >
-          <agm-marker *ngFor="let travel of positions    "
-                      [latitude]="travel.latitude"
-                      [longitude]="travel.longitude"
-                      [title]="travel.title"
+          <div *ngFor="let travel of travels" >
+          <agm-marker *ngFor="let tappa of travel.tappe    "
+                      [latitude]="tappa.latitude"
+                      [longitude]="tappa.longitude"
+                      [title]="'Viaggio: ' + travel.title + ', tappa: '+ tappa.location"
                       [iconUrl]="'assets/images/marker.png'"
                       (markerClick)="clickedMarker(travel)"
                       (mouseOver)="showInfo($event, travel  )"
@@ -50,6 +51,8 @@
             </agm-snazzy-info-window>
 
           </agm-marker>
+
+          </div>
         </agm-map>
 
 
@@ -74,33 +77,33 @@
     <div class="row">
 
 
-      <div class="col-4">
+      <div class="col-md-4">
         <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
 
         <a href="#" routerLink="/createtravel"><button class="w-100 btn-sm fyl_color"> <i class="fa fa-plane fa-2x" aria-hidden="true"></i>Aggiungi viaggio</button></a>
       </div>
 
-      <div *ngIf="currentTravel" class="col-8">
-        <md-card   class="travel-card">
-          <md-card-header>
-            <div md-card-avatar class="example-header-image">
+      <div *ngIf="currentTravel" class="col-md-8">
+        <mat-card   class="travel-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
               <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
             </div>
-            <md-card-title>{{currentTravel.title}}</md-card-title>
-            <md-card-subtitle>{{currentTravel.user.name}}</md-card-subtitle>
-          </md-card-header>
-          <md-card-content class="mt-4 p-1">
+            <mat-card-title>{{currentTravel.title}}</mat-card-title>
+            <mat-card-subtitle>{{currentTravel.user.name}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="mt-4 p-1">
             {{currentTravel.descrizione}}
-            <img md-card-image src="data/travel/{{currentTravel.id}}/cover.jpg" alt="{{currentTravel.title}}">
-          </md-card-content>
-        </md-card>
+            <img mat-card-image src="{{travelImagePath + currentTravel.image }}" alt="{{currentTravel.title}}">
+          </mat-card-content>
+        </mat-card>
       </div>
 
 
-      <div *ngIf="!currentTravel" class="col-4">
+      <div *ngIf="!currentTravel" class="col-md-4">
         Viaggi fatti: 15 <br> Tipo di viaggiatore: Solitario <br> Abito a.... <br> Ho viaggiato con...
       </div>
-      <div *ngIf="!currentTravel" class="col-4">
+      <div *ngIf="!currentTravel" class="col-md-4">
         Top 5 viaggi <br>
       </div>
 
@@ -110,7 +113,7 @@
 
     <hr>
     <div class="row">
-      <div class="12u important(mobile)" id="content">
+      <div class="col-md-12 important(mobile)" id="content">
 
         <app-travel-list></app-travel-list>
 
@@ -119,7 +122,7 @@
 
     <hr />
     <div class="row">
-      <article class="4u 12u(mobile) special">
+      <article class="col-md-4 12u(mobile) special">
         <a href="#" class="image featured"><img src="assets/images/pic07.jpg" alt="" /></a>
         <header>
           <h3><a href="#">Gravida aliquam penatibus</a></h3>
@@ -129,7 +132,7 @@
           cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
         </p>
       </article>
-      <article class="4u 12u(mobile) special">
+      <article class="col-md-4 12u(mobile) special">
         <a href="#" class="image featured"><img src="assets/images/pic08.jpg" alt="" /></a>
         <header>
           <h3><a href="#">Sed quis rhoncus placerat</a></h3>
@@ -139,7 +142,7 @@
           cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
         </p>
       </article>
-      <article class="4u 12u(mobile) special">
+      <article class="col-md-4 12u(mobile) special">
         <a href="#" class="image featured"><img src="assets/images/pic09.jpg" alt="" /></a>
         <header>
           <h3><a href="#">Magna laoreet et aliquam</a></h3>

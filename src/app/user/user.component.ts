@@ -6,6 +6,8 @@ import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { TravelService } from '../services/travel.service';
 import { Travel } from '../model/travel';
+import {environment} from "../../environments/environment";
+
 
 
 
@@ -26,6 +28,10 @@ export class UserComponent implements OnInit {
   public currentTravel;
   public searchElementRef: ElementRef;
   private infowindow: any;
+  public travels;
+
+  public travelImagePath = environment.travelImagePath;
+
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -41,7 +47,9 @@ export class UserComponent implements OnInit {
     this.latitude = 39.8282;
     this.longitude = -98.5795;
 
-    this.positions = [];
+    this.travels = [];
+
+
 
     this.getUserTravels();
   }
@@ -67,7 +75,8 @@ export class UserComponent implements OnInit {
     this.travelService.getUserTravels()
       .subscribe(
         travels => {
-          this.positions = travels,
+          this.travels = travels,
+
             console.log(travels);
         },
         error => this.errMesg = <any>error

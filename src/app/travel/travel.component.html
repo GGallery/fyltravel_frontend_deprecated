@@ -1,42 +1,28 @@
 <div class="container">
-
-
-
-  <div class="display-3">Nome del Viaggio  </div>
-<hr>
+  <div class="display-3">{{title}}</div>
   <div class="row">
-
     <div class="col-md-6">
-
-      <img src="http://via.placeholder.com/350x150" class="w-100"/>
-      <div class="lead text-justify">Erano le cinque del pomeriggio. Davanti alla mia solita tazza di caffè, guardando fuori dalla finestra, stavo pensando al mio ultimo viaggio. Nella mente mi passavano tantissimi ricordi: mari, monti, monumenti, persone, vicoli, negozi e discoteche. Forse troppi da memorizzare sia per me che per il mio smartphone, tornato in patria completamente intasato di foto e video. Dopo aver gustato il decaffeinato ho deciso così di mettere nero su bianco, o almeno provarci, il mio piccolo road trip.
-        Il Portogallo è un nazione fondamentalmente piccola. Dalle scogliere di Cabo de Roca, punto più occidentale del paese, fino al Parque Natural da Serra de São Mamede, riserva naturale al confine con la Spagna, la distanza è di poco inferiore ai 300 chilometri. Questo però non significa che in Portogallo non ci sia nulla da vedere, anzi. Il vecchio detto nella botte piccola c’è il vino buono infatti, anche in questo caso, non si smentisce.
-        Come prima tappa abbiamo deciso di fermarci a Lisbona per quattro notti. Scelta banale? Assolutamente no. Lisboa, come la scrivono i portoghesi,  è una città che non delude nessun tipo di aspettativa. Capitale del mondo sin dai tempi del medioevo, oggi, con i suoi 500 mila abitanti, è uno dei centri portuali più importanti d’Europa nonché fondamentale luogo di meeting internazionali. E’ stato proprio qui che nel 2007 i capi di stato europei si incontrarono per firmare il Trattato di Lisbona (uno dei più importanti), apportando ampie modifiche al Trattato sull'Unione europea. Ma Lisbona è anche una città ricca di storia e divertimento. Meta ideale per giovani vogliosi di far festa, è una città perfetta per  scoprire e gustare le più antiche e curiose tradizioni del luogo. A dimostrazione di ciò lo è il forte incremento nell’ultimo periodo degli studenti erasmus che hanno scelto proprio la capitale come luogo per trascorrere un periodo di studio all’estero. Tutto questo semplicemente perché Lisbona è una mix perfetto di divertimento e cultura.
-        Il nostro appartamento si trovava nel quartiere di Bairro Alto, fulcro della movida cittadina, che ogni notte attraeva, e attrae, migliaia di persone nei suoi ristoranti e locali. Per fermasi a gustare una birra ghiacciata (vi consiglio di provare la Sagres!) o mangiare qualche specialità del posto (per esempio il baccalà) c’è semplicemente l’imbarazzo della scelta. A far apprezzare ancor di più tutto l’insieme erano i bassi, anzi bassissimi, costi del Portogallo. Un rapporto qualità-prezzo fantastico che vi farà innamorare di questa particolare città. Dal punto di vista culturale, oltre alle passeggiate nel centro storico percorrendo i ripidi vicoli attraversati dai tram, vi consiglio vivamente di recarvi al quartiere di Santa Maria de Belém a visitare l’omonima torre, non ne resterete delusi.
-        Dopo quattro giorni così abbiamo deciso di affittare una macchina e iniziare il nostro viaggio attraverso il Portogallo. Come prima meta ci siamo recati a Cabo de Roca. Il poeta Luís Vaz de Camões definì questo luogo come “Qui... dove la terra finisce e il mare comincia”, e arrivati sul posto ci si rene conto che effettivamente aveva ragione. Vedere il mare davanti a se è una cosa a cui noi italiani siamo piuttosto abituati. Trovarsi però per la prima volta davanti all’oceano atlantico e rendersi conto che per migliaia di chilometri non c’è altro che mare è una sensazione che affascina e intimorisce allo stesso tempo. Tuttavia Cabo de Roca, punto dove il vecchio continente (geograficamente parlando) finisce, con le sua scogliere a picco sul mare è un luogo che difficilmente riuscirete a dimenticarvi.
-        Proseguendo per la nostra strada abbiamo imboccato la via in direzione Nazaré.  Situata nel distretto di Leiria, Nazaré è una località balneare della Costa da Prata, famosa in tutto il mondo per le sue onde. Ogni anno, in autunno, i più spericolati surfisti del mondo si recano proprio in questo luogo per cavalcare onde che arrivano oltre i 25 metri. E’ stato proprio qui che nel novembre del 2011 il surfista Garret McNamara riuscì a surfare un’onda alta 24 metri stabilendo il primato mondiale.
-        Se stavate quindi cercando l’acqua cristallina per fare una piacevole nuotata, scoratevela. Tuttavia Nazaré è un paese molto affascinante, ottimo per il cibo, per la compagnia e ricco di spettacolari point of view per scattare eccezionali fotografie.
-        Nei giorni seguenti abbiamo deciso di fermarci per una notte nel piccolo villaggio medioevale di Òbisos. Questo piccolo centro abitato, di poco più di 10 mila abitanti, si trova anch’esso nel distretto di Leira. Dopo una bella passeggiata tra le torri e le mura merlate della città vi consiglio di gustarvi il  Ginjinha (detta anche Ginja) liquore di amarene, da assaggiare insieme al cioccolato, che ha reso Òbidos famoso in tutto il Portogallo.
-        Come ultima tappa, dopo aver fatto una breve sosta nei laghetti della Serra da Estrela (il più alto gruppo montuoso del paese) ci siamo diretti per gli ultimi giorni a Porto. Seconda città per numero di abitanti del Portogallo, si contende, ormai da centinaia di anni, con Lisbona il posto di città più popolare della nazione. Importante polo universitario, commerciale e sportivo (il Futebol Clube do Porto è la squadra più forte e tifata del Portogallo) è diventata famosa nel mondo grazie all’omonimo vino.  Prodotto esclusivamente  da uve provenienti dalla regione del Douro, nel nord del Portogallo, è una bevanda liquorosa che vi consiglio di guastarvi in uno dei numerosi locali nel quartiere di Cais da Ribeir sulle sponde del fiume Duoro, con la vista sul ponte Dom Luís I progettato dall’ingegnere belga Théophile Seyrig allievo del più famoso Gustave Eiffel.  Porto è quindi una città ricca di storia e tradizione ma allo stesso tempo moderna e molto dinamica che riesce ad offrire ai propri visitatori mezzi di trasporto e infrastrutture all’avanguardia, degne di una città dell’Unione europea.
+      <div ng2FileDrop
+           [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+           (fileOver)="upload_copertina($event)"
+           [uploader]="uploader_copertina"
+           class="well my-drop-zone"
+           [style.background-image]="backgroundImg">
+        <img [src]="image"  class="w-100"/>
+      </div>
+      <div class="progress" style="">
+        <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_copertina.progress + '%' }"></div>
       </div>
 
-      <div> {{id}} </div>
+      <div class="lead text-justify">
+        {{description}}
+      </div>
 
     </div>
 
     <div class="col-md-6">
-      <app-mappatravel  [travel_id]='id'></app-mappatravel>
-
-      <app-mediaupload  [travel_id]='id'></app-mediaupload>
-
-
-
+      <app-mappatravel  [travel_id]='id' ></app-mappatravel>
+      <app-mediaupload  [travel_id]='id' ></app-mediaupload>
     </div>
-
-
   </div>
-
-
-
-
 </div>

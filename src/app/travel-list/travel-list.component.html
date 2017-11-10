@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
-      
+
       <mat-card *ngFor="let travel of travels" class="travel-card" >
         <mat-card-header>
           <div md-card-avatar class="example-header-image"></div>
@@ -16,20 +16,20 @@
               </p>
 
               <p>
-                <i  class="material-icons">location_on</i> {{travel.tappe.length}} tappe in questo viaggio <br>  
-                <i  class="material-icons ">label</i> RELAX - ADVENTURE - UNDERGROUND  
+                <i  class="material-icons">location_on</i> {{travel.tappe.length}} tappe in questo viaggio <br>
+                <i  class="material-icons ">label</i> RELAX - ADVENTURE - UNDERGROUND
                 </p>
             </mat-card-content>
             <mat-card-actions>
                 <i (click)="like" class="material-icons">thumb_up</i>
                 <i (click)="loyalty" class="material-icons">loyalty</i>
-                
+
               </mat-card-actions>
 
           </div>
           <div class="col ">
-            <img src="data/travel/{{travel.id}}/cover.jpg" class="img-fluid img-thumbnail" alt="{{travel.title}}">
-            
+            <img src="{{travelImagePath + travel.image}}" class="img-fluid img-thumbnail" alt="{{travel.title}}">
+
           </div>
 
         </div>

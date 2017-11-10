@@ -1,3 +1,22 @@
 agm-map {
   height: 300px;
 }
+
+
+.my-drop-zone { border: dotted 3px lightgray;
+  min-height: 150px;
+}
+.nv-file-over { border: dotted 3px #009D57; } /* Default class applied to drop zones on over */
+.another-file-over-class { border: dotted 3px green; }
+
+
+/*html, body { height: 100%; }*/
+
+
+.progress-bar-fyl {
+  height: 0.2rem;
+  line-height: 1rem;
+  color: #fff;
+  background-color: #009D57;
+  transition: width 0.6s ease;
+}

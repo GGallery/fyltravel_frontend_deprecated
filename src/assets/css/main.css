@@ -1626,7 +1626,7 @@
 	}
 
 		a:hover {
-			color: #ef8376;
+			color: #009D57;
 			border-bottom-color: transparent;
 		}
 
@@ -1857,7 +1857,7 @@
 			}
 
 				ul.icons li a:hover {
-					color: #ef8376;
+					color: #009D57;
 				}
 
 	ol.default {
@@ -1903,7 +1903,7 @@
 		form select:focus,
 		form textarea:focus {
 			background: #fff;
-			border-color: #df7366;
+			border-color: #009D57;
 		}
 
 	form input[type="text"],
@@ -1990,7 +1990,7 @@
 	.button {
 		position: relative;
 		display: inline-block;
-		background: #df7366;
+		background: #009D57;
 		color: #fff;
 		text-align: center;
 		border-radius: 0.5em;
@@ -2012,7 +2012,7 @@
 		button:hover,
 		.button:hover {
 			color: #fff;
-			background: #ef8376;
+			background: #009D57;
 		}
 
 		input[type="button"].alt,
@@ -2298,7 +2298,7 @@
 			}
 
 			.dropotron li:hover {
-				color: #ef8376;
+				color: #009D57;
 			}
 
 			.dropotron li a, .dropotron li span {
