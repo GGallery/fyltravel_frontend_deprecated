@@ -16,8 +16,15 @@ export class TravelService {
     private AuthAppService: AuthAppService
   ) { }
 
-  getTravels(): Observable<any[]> {
+getTravels(): Observable<any[]> {
     const url = this.api + 'travels?token=' + this.AuthAppService.currentToken;
+    return this._http.get(url)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  getUserTravels(): Observable<any[]> {
+    const url = this.api + 'userTravels?token=' + this.AuthAppService.currentToken;
     return this._http.get(url)
       .map(res => res.json())
       .catch(this.handleError);

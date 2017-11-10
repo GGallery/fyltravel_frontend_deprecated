@@ -1,33 +1,46 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
-      <md-card *ngFor="let travel of travels" class="travel-card">
-        <md-card-header>
+      
+      <mat-card *ngFor="let travel of travels" class="travel-card">
+        <i *ngIf="travel.author == $curr_user"  class="material-icons pull-right">mode_edit</i>
+
+        <mat-card-header>
+
+          
+
           <div md-card-avatar class="example-header-image"></div>
-          <md-card-title>{{travel.title}}</md-card-title>
-          <md-card-subtitle>{{travel.user.name}}</md-card-subtitle>
-        </md-card-header>
+          <mat-card-title class="display-3">{{travel.title}}</mat-card-title>
+          <mat-card-subtitle>{{travel.user.name}}</mat-card-subtitle>
+        </mat-card-header>
         <div class="row pr-4">
           <div class="col">
-            <md-card-content>
+            <mat-card-content>
               <p>
                 {{(travel.description.length>6)? (travel.description | slice:0:400)+'...':(travel.description)}}
               </p>
-            </md-card-content>
-            <md-card-actions>
+
+              <p>
+                <i  class="material-icons">location_on</i> {{travel.tappe.length}} tappe in questo viaggio <br>  
+                <i  class="material-icons ">label</i> RELAX - ADVENTURE - UNDERGROUND  
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
                 <i (click)="like" class="material-icons">thumb_up</i>
-                <i> RELAX - ADVENTURE - UNDERGROUND  </i>
-              </md-card-actions>
+                <i (click)="loyalty" class="material-icons">loyalty</i>
+                
+              </mat-card-actions>
 
           </div>
           <div class="col ">
-            <img md-card-image src="data/travel/{{travel.id}}/cover.jpg" alt="{{travel.title}}">
+            <img src="data/travel/{{travel.id}}/cover.jpg" class="img-fluid img-thumbnail" alt="{{travel.title}}">
+            
           </div>
 
         </div>
 
 
-      </md-card>
+      </mat-card>
     </div>
 
   </div>

@@ -22,10 +22,5 @@ export const environment = {
 
   googleMapKey:  "AIzaSyDAat_fwjWbHV6KanrhyZzcNEVBuzpVND8"
 
-  
-
-
-
-
 
 };

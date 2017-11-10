@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
 
     this.positions = [];
 
-    this.getTravel();
+    this.getUserTravels();
   }
 
 
@@ -62,8 +62,8 @@ export class UserComponent implements OnInit {
   }
 
 
-  private getTravel() {
-    this.travelService.getTravels()
+  private getUserTravels() {
+    this.travelService.getUserTravels()
       .subscribe(
         travels => {
           this.positions = travels,
