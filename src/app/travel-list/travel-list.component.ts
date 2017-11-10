@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TravelService } from '../services/travel.service';
+import { AuthAppService } from "../services/auth.service";
 
 @Component({
   selector: 'app-travel-list',
@@ -11,17 +12,20 @@ export class TravelListComponent implements OnInit {
   public travels;
   private errMesg :string;
 
-  constructor(private travelService: TravelService) {
-    this.travels =[];
+  constructor(
+    private travelService: TravelService,
+    private auth: AuthAppService
+  ) {
+    this.travels = [];
     this.errMesg;
    }
 
   ngOnInit() {
-    this.getTravel();
+    this.getUserTravels();
   }
 
-  private getTravel() {
-    this.travelService.getTravels()
+  private getUserTravels() {
+    this.travelService.getUserTravels()
       .subscribe(
       travels => {
         this.travels = travels,
