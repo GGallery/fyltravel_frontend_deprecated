@@ -1,4 +1,3 @@
-///<reference path="../../environments/environment.ts"/>
 import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {FileUploader} from 'ng2-file-upload';

@@ -70,6 +70,15 @@ export class TravelService {
   }
 
 
+  getImages(travel_id: number ):  Observable<any> {
+    return this._http.post(this.api + 'get_images?token=' + this.AuthAppService.currentToken,
+      {travel_id:  travel_id},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+
   private handleError(error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {

@@ -22,7 +22,7 @@ export class MappatravelComponent implements OnInit {
 
   public tappe: any[] = [];
 
-  @Input() travel_id:number;
+  @Input() travel_id: number;
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
