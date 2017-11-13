@@ -1,15 +1,12 @@
+///<reference path="../../environments/environment.ts"/>
 import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {FormControl} from '@angular/forms';
-
-
 import {FileUploader} from 'ng2-file-upload';
 import {environment} from '../../environments/environment';
 import {TravelService} from '../services/travel.service';
+import {AuthAppService} from '../services/auth.service';
 
-const URL_COPERTINA = environment.apiUrl + 'upload_copertina';
-const URL_MEDIA = environment.apiUrl + 'upload_media';
-const URL_VIDEO = environment.apiUrl + 'upload_video';
+const URL_COPERTINA = environment.apiUrl + 'upload_cover';
 
 @Component({
   selector: 'app-travel',
@@ -21,7 +18,8 @@ export class TravelComponent implements OnInit {
   public id: number;
   public title: string;
   public description: string;
-  public image: string;
+  public cover: string;
+  public coverurl: string;
   public tappe: any[];
 
   public backgroundImg: string;
@@ -29,10 +27,8 @@ export class TravelComponent implements OnInit {
 
 
   // Media Upload
-  public uploader_copertina: FileUploader = new FileUploader({url: URL_COPERTINA});
-  public uploader_immagini: FileUploader = new FileUploader({url: URL_MEDIA});
-  public hasBaseDropZoneOver: boolean = false;
-  public hasAnotherDropZoneOver: boolean = false;
+  public uploader_cover: FileUploader = new FileUploader({url: URL_COPERTINA});
+  public hasBaseDropZoneOver = false;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -40,7 +36,8 @@ export class TravelComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private travelservice: TravelService
+    private travelservice: TravelService,
+    public auth: AuthAppService
 
   ) {
   }
@@ -55,7 +52,8 @@ export class TravelComponent implements OnInit {
               const travel = res;
               this.title = travel.title;
               this.description = travel.description;
-              this.image = environment.travelImagePath + travel.image;
+              this.cover = travel.cover;
+              this.coverurl = environment.travelCoverPath + this.cover;
               console.log(this.tappe);
             }
           );
@@ -63,23 +61,21 @@ export class TravelComponent implements OnInit {
       );
   }
 
-  public upload_copertina(e: any): void {
+  public upload_cover(e: any): void {
     this.hasBaseDropZoneOver = e;
-    this.uploader_copertina.uploadAll();
 
-    this.uploader_copertina.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
+
+    this.uploader_cover.onBuildItemForm = (fileItem: any, form: any) => {
+      form.append('token' , this.auth.currentToken);
+      form.append('travel_id' , 1);
+      form.append('current_cover' , this.cover );
+    };
+    this.uploader_cover.uploadAll();
+
+    this.uploader_cover.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
       const responsePath = JSON.parse(response);
-      this.image = environment.travelImagePath + responsePath.file;
-      this.travelservice.updateTravelImage(this.id, responsePath.file).subscribe(
-        (res) => {
-          console.log('fatto');
-        }
-      );
-
-      // const url = 'https://api.fyltravel.it/media/travel/' + responsePath.filename;
-      // this.backgroundImg = this.sanitizer.bypassSecurityTrustStyle('url(' + url + ')');
-
-
+      this.cover = responsePath.file;
+      this.coverurl = environment.travelCoverPath + this.cover;
     };
   }
 

@@ -42,14 +42,6 @@ export class TravelService {
   }
 
 
-  updateTravelImage(travel_id: number, image: string):  Observable<any> {
-    return this._http.post(this.api + 'updatetravelimage?token=' + this.AuthAppService.currentToken,
-      {travel_id:  travel_id, image: image},
-      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
-      .map(res => res.json())
-      .catch(this.handleError);
-  }
-
   getTravel(travel_id: number ):  Observable<any> {
     return this._http.post(this.api + 'get_travel?token=' + this.AuthAppService.currentToken,
       {travel_id:  travel_id},

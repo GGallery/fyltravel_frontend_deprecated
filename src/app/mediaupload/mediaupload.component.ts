@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
 
 
-const URL = 'http://api.fyltravel.it:8000/api/upload';
+const URL_MEDIA = environment.apiUrl + 'upload_media';
 
 
 @Component({
@@ -13,10 +14,9 @@ const URL = 'http://api.fyltravel.it:8000/api/upload';
 
 })
 export class MediauploadComponent {
-  public uploader_copertina: FileUploader = new FileUploader({url: URL});
-  public uploader: FileUploader = new FileUploader({url: URL});
-  public hasBaseDropZoneOver: boolean = false;
-  public hasAnotherDropZoneOver: boolean = false;
+  public uploader_immagini: FileUploader = new FileUploader({url: URL_MEDIA,    });
+  public hasBaseDropZoneOver = false;
+  public hasAnotherDropZoneOver = false;
 
   private backgroundImg: SafeStyle;
 
@@ -29,21 +29,25 @@ export class MediauploadComponent {
   }
 
 
-  public upload_copertina(e: any): void {
+  public upload_immagini(e: any): void {
     this.hasBaseDropZoneOver = e;
 
-    this.uploader_copertina.uploadAll();
-
-    this.uploader_copertina.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
+    this.uploader_immagini.onBuildItemForm = (fileItem: any, form: any) => {
+      form.append('travel_id' , 1);
+    };
+    this.uploader_immagini.uploadAll();
+    this.uploader_immagini.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
       const responsePath = JSON.parse(response);
-      console.log(response, responsePath);
-      const url = '/assets/images/' + responsePath.filename;
+      console.log(responsePath);
+      // this.image = environment.travelImagePath + responsePath.file;
+      // this.travelservice.updateTravelImage(this.id, responsePath.file).subscribe(
+      //   (res) => {
+      //     console.log('fatto');
+      //   }
+      // );
+
+      // const url = 'https://api.fyltravel.it/media/travel/' + responsePath.filename;
       // this.backgroundImg = this.sanitizer.bypassSecurityTrustStyle('url(' + url + ')');
     };
   }
-  public upload_images(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-    this.uploader.uploadAll();
-  }
-
 }

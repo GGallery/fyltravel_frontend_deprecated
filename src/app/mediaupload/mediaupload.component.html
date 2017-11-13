@@ -1,17 +1,16 @@
 
-      <div ng2FileDrop
-           [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}"
-           (fileOver)="upload_images($event)"
-           [uploader]="uploader"
-           class="well my-drop-zone">
-
-
-        Trascina qui le immagini del viaggio
-
-      </div>
+<div ng2FileDrop
+     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+     (fileOver)="upload_immagini($event)"
+     [uploader]="uploader_immagini"
+     class="well my-drop-zone"
+     >
+  Trascina qui le immagini
+</div>
       <div class="progress" style="">
-        <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+        <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_immagini.progress + '%' }"></div>
       </div>
+
 
 
       <!--<input type="file" ng2FileSelect [uploader]="uploader" multiple  />-->

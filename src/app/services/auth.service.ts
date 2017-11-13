@@ -12,7 +12,7 @@ export class AuthAppService {
 
   public user: any;
   public currentToken: string;
-  public userAuthenticated: boolean = false;
+  public userAuthenticated  = false;
   private api = environment.apiUrl;
 
   constructor(
