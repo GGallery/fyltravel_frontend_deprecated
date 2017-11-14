@@ -14,9 +14,17 @@
       </li>
 
       <ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
+        <li>
+          {{user_id}}
+        </li>
+        <li>
+          {{isAuthenticated}}
+        </li>
+
         <li class="navbar-item ">
           <a class="" href="#" routerLink="/user" class=""><img src="assets/images/profilo.jpg" alt="" class="profilo rounded-circle float-right" width="50"/></a>
         </li>
+
 
         <li class="navbar-item ">
           <a href="#" (click)="logout()"><i class="fa fa-sign-out p-2" aria-hidden="true"></i></a>

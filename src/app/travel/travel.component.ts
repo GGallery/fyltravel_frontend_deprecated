@@ -23,15 +23,13 @@ export class TravelComponent implements OnInit {
 
   public backgroundImg: string;
 
+  public editmode= true;
 
-
-  // Media Upload
   public uploader_cover: FileUploader = new FileUploader({url: URL_COPERTINA});
   public hasBaseDropZoneOver = false;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -53,7 +51,9 @@ export class TravelComponent implements OnInit {
               this.description = travel.description;
               this.cover = travel.cover;
               this.coverurl = environment.travelCoverPath + this.cover;
-              console.log(this.tappe);
+
+
+
             }
           );
         }

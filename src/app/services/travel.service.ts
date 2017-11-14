@@ -6,6 +6,7 @@ import { AuthAppService } from './auth.service';
 import {NgForm} from '@angular/forms';
 
 
+
 @Injectable()
 export class TravelService {
 
@@ -52,6 +53,11 @@ export class TravelService {
 
 
   getTappe(travel_id: number ):  Observable<any> {
+    console.log(this.AuthAppService.currentToken);
+    console.log(this.AuthAppService.user);
+    console.log(this.AuthAppService.user_id);
+
+
     return this._http.post(this.api + 'get_tappe?token=' + this.AuthAppService.currentToken,
       {travel_id:  travel_id},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })

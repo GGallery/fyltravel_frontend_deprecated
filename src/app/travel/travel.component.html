@@ -2,14 +2,16 @@
   <div class="display-3">{{title}}</div>
   <div class="row">
     <div class="col-md-6">
-      <div ng2FileDrop
-           [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-           (fileOver)="upload_cover($event)"
-           [uploader]="uploader_cover"
-           class="well my-drop-zone"
-           [style.background-image]="backgroundImg">
+      <div *ngIf="editmode" ng2FileDrop
+            [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+            (fileOver)="upload_cover($event)"
+            [uploader]="uploader_cover"
+            class="well my-drop-zone"
+            [style.background-image]="backgroundImg">
         <img [src]="coverurl"  class="w-100"/>
       </div>
+
+      <img *ngIf="!editmode" [src]="coverurl"  class="w-100"/>
       <div class="progress" style="">
         <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_cover.progress + '%' }"></div>
       </div>
@@ -21,8 +23,11 @@
     </div>
 
     <div class="col-md-6">
-      <app-mappatravel  [travel_id]='id' ></app-mappatravel>
-      <app-mediaupload  [travel_id]='id' ></app-mediaupload>
+      <app-mappatravel  [editmode]="editmode" [travel_id]='id' ></app-mappatravel>
+
+      <app-gallery [travel_id]='id' ></app-gallery>
+
+      <app-mediaupload *ngIf="editmode" [travel_id]='id' ></app-mediaupload>
     </div>
   </div>
 </div>

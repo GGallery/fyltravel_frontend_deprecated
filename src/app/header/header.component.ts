@@ -1,6 +1,6 @@
 import {   Component, OnInit } from '@angular/core';
 import { AuthAppService } from '../services/auth.service';
-import { Router } from '@angular/router';
+
 
 
 
@@ -11,13 +11,20 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  public user_id: number ;
+  public isAuthenticated: boolean ;
+
   constructor(
-    private AuthAppService: AuthAppService,
-    private router: Router
+    public  AuthAppService: AuthAppService,
+
 
   ) { }
 
   ngOnInit() {
+
+    this.user_id = this.AuthAppService.user_id;
+    this.isAuthenticated = this.AuthAppService.isAuthenticated();
+
   }
 
 

@@ -11,6 +11,7 @@ export class AuthAppService {
 
 
   public user: any;
+  public user_id: number;
   public currentToken: string;
   public userAuthenticated  = false;
   private api = environment.apiUrl;
@@ -38,6 +39,15 @@ export class AuthAppService {
           const base64Url = token.split('.')[1];
           const base64 = base64Url.replace('-', '+').replace('_', '/');
           const user = response.json().user;
+
+          console.log("vvvv user caricato vvvv");
+          console.log(user);
+          this.user_id = user.id;
+
+          console.log("vvvv user.id session vvvv");
+          console.log(this.user_id);
+
+
           return { token: token, user: user, decoded: JSON.parse(window.atob(base64)) };
         }
       )
@@ -45,7 +55,8 @@ export class AuthAppService {
         tokenData => {
           this.currentToken = tokenData.token;
           this.userAuthenticated = true;
-          this.user = tokenData.user;
+          // this.user = tokenData.user;
+          // this.user_id = tokenData.user.id;
 
           localStorage.setItem('user', tokenData.user);
           localStorage.setItem('token', tokenData.token);
@@ -64,6 +75,7 @@ export class AuthAppService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.userAuthenticated = false;
     this.currentToken = null;
     this.user = null;
@@ -75,6 +87,11 @@ export class AuthAppService {
   isAuthenticated() {
     return this.userAuthenticated;
   }
+
+  currentUserId() {
+    return this.user_id;
+  }
+
 
 }
 

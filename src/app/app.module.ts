@@ -39,10 +39,10 @@ import { ModifytravelComponent } from './modifytravel/modifytetravel.component';
 import { MappatravelComponent } from './mappatravel/mappatravel.component';
 import { GalleryComponent } from './gallery/gallery.component';
 
-import 'hammerjs';
-import 'mousetrap';
-import { ModalGalleryModule } from 'angular-modal-gallery';
 import { MediauploadComponent } from './mediaupload/mediaupload.component';
+
+import { NgxGalleryModule } from 'ngx-gallery';
+
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -82,12 +82,13 @@ const routes: Routes = [
       libraries: ['places']
     }),
 
-    ModalGalleryModule.forRoot(),
 
     AgmSnazzyInfoWindowModule,
 
     BrowserModule,
     BrowserAnimationsModule,
+
+    NgxGalleryModule,
 
     MatCardModule,
     MatIconModule,

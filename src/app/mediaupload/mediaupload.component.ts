@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
-import {TravelService} from '../services/travel.service';
+// import {TravelService} from '../services/travel.service';
 
 
 const URL_MEDIA = environment.apiUrl + 'upload_media';
@@ -26,18 +26,18 @@ export class MediauploadComponent implements OnInit {
   @Input() travel_id: number;
 
   constructor(
-    private sanitizer: DomSanitizer,
-    private travelservice: TravelService
+    private sanitizer: DomSanitizer
+    // private travelservice: TravelService
   ) {
 
   }
 
   ngOnInit() {
-    this.travelservice.getImages(this.travel_id).subscribe(
-      (res) => {
-        this.travel_images = res;
-      }
-    );
+    // this.travelservice.getImages(this.travel_id).subscribe(
+    //   (res) => {
+    //     this.travel_images = res;
+    //   }
+    // );
   }
 
   public upload_immagini(e: any): void {

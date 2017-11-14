@@ -12,7 +12,7 @@ export class TravelListComponent implements OnInit {
 
   public travels;
   private errMesg: string;
-  public travelImagePath = environment.travelImagePath;
+  public travelCoverPath = environment.travelCoverPath;
 
   constructor(
     private travelService: TravelService,

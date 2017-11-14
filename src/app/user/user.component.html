@@ -1,17 +1,17 @@
 
-  <div class="container">
+<div class="container">
 
 
-    <div class="row">
-      <div class="col-12">
-        <article id="main">
-          <header>
-            <h2><a href="#">Giacomo Prandi</a></h2>
-          </header>
-        </article>
+  <div class="row">
+    <div class="col-12">
+      <article id="main">
+        <!--<header>-->
 
-        <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"   >
-          <div *ngFor="let travel of travels" >
+        <!--</header>-->
+      </article>
+
+      <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"   >
+        <div *ngFor="let travel of travels" >
           <agm-marker *ngFor="let tappa of travel.tappe    "
                       [latitude]="tappa.latitude"
                       [longitude]="tappa.longitude"
@@ -52,8 +52,8 @@
 
           </agm-marker>
 
-          </div>
-        </agm-map>
+        </div>
+      </agm-map>
 
 
 
@@ -62,96 +62,144 @@
 
 
 
-        <!-- per marker piu complessi -->
-        <!-- https://developers.google.com/maps/documentation/javascript/examples/icon-complex -->
+      <!-- per marker piu complessi -->
+      <!-- https://developers.google.com/maps/documentation/javascript/examples/icon-complex -->
 
-        <!--per gallerie di immagini e altro !!!! bello!!!-->
-        <!--http://www.unheap.com/media/galleries/-->
-
-
-      </div>
-    </div>
-    <hr>
+      <!--per gallerie di immagini e altro !!!! bello!!!-->
+      <!--http://www.unheap.com/media/galleries/-->
 
 
-    <div class="row">
-
-
-      <div class="col-md-4">
-        <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
-
-        <a href="#" routerLink="/createtravel"><button class="w-100 btn-sm fyl_color"> <i class="fa fa-plane fa-2x" aria-hidden="true"></i>Aggiungi viaggio</button></a>
-      </div>
-
-      <div *ngIf="currentTravel" class="col-md-8">
-        <mat-card   class="travel-card">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image">
-              <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
-            </div>
-            <mat-card-title>{{currentTravel.title}}</mat-card-title>
-            <mat-card-subtitle>{{currentTravel.user.name}}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content class="mt-4 p-1">
-            {{currentTravel.descrizione}}
-            <img mat-card-image src="{{travelImagePath + currentTravel.image }}" alt="{{currentTravel.title}}">
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-
-      <div *ngIf="!currentTravel" class="col-md-4">
-        Viaggi fatti: 15 <br> Tipo di viaggiatore: Solitario <br> Abito a.... <br> Ho viaggiato con...
-      </div>
-      <div *ngIf="!currentTravel" class="col-md-4">
-        Top 5 viaggi <br>
-      </div>
-
-
-    </div>
-
-
-    <hr>
-    <div class="row">
-      <div class="col-md-12 important(mobile)" id="content">
-
-        <app-travel-list></app-travel-list>
-
-      </div>
-    </div>
-
-    <hr />
-    <div class="row">
-      <article class="col-md-4 12u(mobile) special">
-        <a href="#" class="image featured"><img src="assets/images/pic07.jpg" alt="" /></a>
-        <header>
-          <h3><a href="#">Gravida aliquam penatibus</a></h3>
-        </header>
-        <p>
-          Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus
-          cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-        </p>
-      </article>
-      <article class="col-md-4 12u(mobile) special">
-        <a href="#" class="image featured"><img src="assets/images/pic08.jpg" alt="" /></a>
-        <header>
-          <h3><a href="#">Sed quis rhoncus placerat</a></h3>
-        </header>
-        <p>
-          Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus
-          cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-        </p>
-      </article>
-      <article class="col-md-4 12u(mobile) special">
-        <a href="#" class="image featured"><img src="assets/images/pic09.jpg" alt="" /></a>
-        <header>
-          <h3><a href="#">Magna laoreet et aliquam</a></h3>
-        </header>
-        <p>
-          Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus
-          cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-        </p>
-      </article>
     </div>
   </div>
+  <hr>
+
+  <!--<div class="row">-->
+  <!--<div class="col-md-4">-->
+  <!--15 luoghi visitati-->
+  <!--</div>-->
+
+  <!--<div class="col-md-4">-->
+  <!--viaggiatore solitario-->
+  <!--</div>-->
+
+  <!--<div class="col-md-4">-->
+  <!--top 5-->
+  <!--</div>-->
+
+
+  <!--</div>-->
+  <div *ngIf="currentTravel" class="row">
+    <div  class="col-md-12">
+      <mat-card   class="travel-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+            <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
+          </div>
+          <mat-card-title>{{currentTravel.title}}</mat-card-title>
+          <mat-card-subtitle>{{currentTravel.user.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="mt-4 p-1">
+          {{currentTravel.descrizione}}
+          <img mat-card-image src="{{travelImagePath + currentTravel.image }}" alt="{{currentTravel.title}}">
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row">
+
+
+    <div class="col-md-4">
+      <h3><a href="#">Giacomo Prandi</a></h3>
+      <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
+      <a href="#" routerLink="/createtravel"><button class="w-100 btn-sm fyl_color"> <i class="fa fa-plane fa-2x" aria-hidden="true"></i>Aggiungi viaggio</button></a>
+
+      <ul>
+        <li>
+          Località visitate: 15
+        </li>
+
+        <li>
+          Tipo di viaggiatore: solitario
+        </li>
+
+        <li>
+          Vive a Genova
+        </li>
+
+      </ul>
+    </div>
+
+
+    <!--<div *ngIf="currentTravel" class="col-md-8">-->
+    <!--<mat-card   class="travel-card">-->
+    <!--<mat-card-header>-->
+    <!--<div mat-card-avatar class="example-header-image">-->
+    <!--<a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>-->
+    <!--</div>-->
+    <!--<mat-card-title>{{currentTravel.title}}</mat-card-title>-->
+    <!--<mat-card-subtitle>{{currentTravel.user.name}}</mat-card-subtitle>-->
+    <!--</mat-card-header>-->
+    <!--<mat-card-content class="mt-4 p-1">-->
+    <!--{{currentTravel.descrizione}}-->
+    <!--<img mat-card-image src="{{travelImagePath + currentTravel.image }}" alt="{{currentTravel.title}}">-->
+    <!--</mat-card-content>-->
+    <!--</mat-card>-->
+    <!--</div>-->
+
+
+    <!--<div *ngIf="!currentTravel" class="col-md-4">-->
+    <!--Viaggi fatti: 15 <br> Tipo di viaggiatore: Solitario <br> Abito a.... <br> Ho viaggiato con...-->
+    <!--</div>-->
+    <!--<div *ngIf="!currentTravel" class="col-md-4">-->
+    <!--Top 5 viaggi <br>-->
+    <!--</div>-->
+
+
+  </div>
+
+
+  <hr>
+  <div class="row">
+    <div class="col-md-12 important(mobile)" id="content">
+
+      <app-travel-list></app-travel-list>
+
+    </div>
+  </div>
+
+  <hr />
+  <div class="row">
+    <article class="col-md-4 12u(mobile) special">
+      <a href="#" class="image featured"><img src="assets/images/pic07.jpg" alt="" /></a>
+      <header>
+        <h3><a href="#">Gravida aliquam penatibus</a></h3>
+      </header>
+      <p>
+        Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus
+        cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
+      </p>
+    </article>
+    <article class="col-md-4 12u(mobile) special">
+      <a href="#" class="image featured"><img src="assets/images/pic08.jpg" alt="" /></a>
+      <header>
+        <h3><a href="#">Sed quis rhoncus placerat</a></h3>
+      </header>
+      <p>
+        Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus
+        cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
+      </p>
+    </article>
+    <article class="col-md-4 12u(mobile) special">
+      <a href="#" class="image featured"><img src="assets/images/pic09.jpg" alt="" /></a>
+      <header>
+        <h3><a href="#">Magna laoreet et aliquam</a></h3>
+      </header>
+      <p>
+        Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus
+        cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
+      </p>
+    </article>
+  </div>
+</div>
 
