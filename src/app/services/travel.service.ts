@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { AuthAppService } from './auth.service';
 import {NgForm} from '@angular/forms';
-
-
+import 'rxjs/Rx';
 
 @Injectable()
 export class TravelService {
@@ -76,11 +75,21 @@ export class TravelService {
   }
 
 
-  getImages(travel_id: number ):  Observable<any> {
+  getImages(travel_id: number ) {
     return this._http.post(this.api + 'get_images?token=' + this.AuthAppService.currentToken,
       {travel_id:  travel_id},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
-      .map(res => res.json())
+      .map(
+        (response: Response) => {
+          const data = response.json();
+          for ( const image of data ){
+            image.small = environment.travelImagePath + 'small/' + image.filename;
+            image.medium = environment.travelImagePath + 'medium/' + image.filename;
+            image.big = environment.travelImagePath + 'big/' + image.filename;
+          }
+          return data;
+        }
+      )
       .catch(this.handleError);
   }
 
