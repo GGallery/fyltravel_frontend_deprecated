@@ -23,31 +23,34 @@
 
 
             <agm-snazzy-info-window
-              [maxWidth]="400"
-              [placement]="top"
+              [maxWidth]="600"
               [closeWhenOthersOpen]="true"
-              [showCloseButton]="true"
-
             >
               <ng-template>
 
-                <md-card   class="travel-card">
-                  <md-card-header>
-                    <button type="button" class="close pull-right" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
 
-                    <div md-card-avatar class="example-header-image">
-                      <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
-                    </div>
-                    <md-card-title>{{travel.title}}</md-card-title>
-                    <md-card-subtitle>{{travel.user.name}}</md-card-subtitle>
-                  </md-card-header>
-                  <md-card-content class="mt-4 p-1">
-                    <img md-card-image src="data/travel/{{travel.id}}/cover.jpg" alt="{{travel.title}}">
-                  </md-card-content>
-                </md-card>
+                {{travel.title}}
+                {{travel.user.name}}
+
+                <!--<mat-card   class="travel-card">-->
+                <!--<mat-card-header>-->
+
+                <!--&lt;!&ndash;<button type="button btn-sm" class="close pull-right" aria-label="Close">&ndash;&gt;-->
+                <!--&lt;!&ndash;<span aria-hidden="true">&times;</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</button>&ndash;&gt;-->
+
+                <!--<div mat-card-avatar class="example-header-image">-->
+                <!--<a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>-->
+                <!--</div>-->
+                <!--<mat-card-title>{{travel.title}}</mat-card-title>-->
+                <!--<mat-card-subtitle>{{travel.user.name}}</mat-card-subtitle>-->
+                <!--</mat-card-header>-->
+                <!--<mat-card-content class="mt-4 p-1">-->
+                <!--<img md-card-image src="data/travel/{{travel.id}}/cover.jpg" alt="{{travel.title}}">-->
+                <!--</mat-card-content>-->
+                <!--</mat-card>-->
               </ng-template>
+
             </agm-snazzy-info-window>
 
           </agm-marker>
@@ -88,23 +91,7 @@
 
 
   <!--</div>-->
-  <div *ngIf="currentTravel" class="row">
-    <div  class="col-md-12">
-      <mat-card   class="travel-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image">
-            <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
-          </div>
-          <mat-card-title>{{currentTravel.title}}</mat-card-title>
-          <mat-card-subtitle>{{currentTravel.user.name}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="mt-4 p-1">
-          {{currentTravel.descrizione}}
-          <img mat-card-image src="{{travelImagePath + currentTravel.image }}" alt="{{currentTravel.title}}">
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
+
 
   <div class="row">
 
@@ -114,24 +101,11 @@
       <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
       <a href="#" routerLink="/createtravel"><button class="w-100 btn-sm fyl_color"> <i class="fa fa-plane fa-2x" aria-hidden="true"></i>Aggiungi viaggio</button></a>
 
-      <ul>
-        <li>
-          Località visitate: 15
-        </li>
 
-        <li>
-          Tipo di viaggiatore: solitario
-        </li>
-
-        <li>
-          Vive a Genova
-        </li>
-
-      </ul>
     </div>
 
 
-    <!--<div *ngIf="currentTravel" class="col-md-8">-->
+    <!--<div class="col-md-8">-->
     <!--<mat-card   class="travel-card">-->
     <!--<mat-card-header>-->
     <!--<div mat-card-avatar class="example-header-image">-->
@@ -148,17 +122,21 @@
     <!--</div>-->
 
 
-    <!--<div *ngIf="!currentTravel" class="col-md-4">-->
-    <!--Viaggi fatti: 15 <br> Tipo di viaggiatore: Solitario <br> Abito a.... <br> Ho viaggiato con...-->
-    <!--</div>-->
-    <!--<div *ngIf="!currentTravel" class="col-md-4">-->
-    <!--Top 5 viaggi <br>-->
-    <!--</div>-->
+    <div class="col-md-4">
+      Viaggi fatti: 15 <br> Tipo di viaggiatore: SELEZIONA CHE TIPO DI VIAGGIATORE SEI<br> SELEZIONA DI DOVE SEI <br> Ho viaggiato con...
+    </div>
+    <div  class="col-md-4">
+      Top 5 viaggi <br>
+    </div>
 
 
   </div>
 
-
+  <div class="row">
+    <div  class="col-md-12">
+      INSERISCI QUI LA TUA DESCRIZIONE
+    </div>
+  </div>
   <hr>
   <div class="row">
     <div class="col-md-12 important(mobile)" id="content">

@@ -7,6 +7,7 @@ import { MapsAPILoader } from '@agm/core';
 import { TravelService } from '../services/travel.service';
 import { Travel } from '../model/travel';
 import {environment} from "../../environments/environment";
+import {forEach} from "@angular/router/src/utils/collection";
 
 
 
@@ -30,6 +31,8 @@ export class UserComponent implements OnInit {
   private infowindow: any;
   public travels;
 
+  // public tutteletappe: any[];
+
   public travelImagePath = environment.travelImagePath;
 
 
@@ -49,14 +52,14 @@ export class UserComponent implements OnInit {
 
     this.travels = [];
 
-
-
     this.getUserTravels();
   }
 
 
   clickedMarker(travel: any) {
     this.currentTravel = travel;
+
+
   }
 
   showInfo(event: any, travel: any  ) {
@@ -71,17 +74,17 @@ export class UserComponent implements OnInit {
   }
 
 
-  private getUserTravels() {
+  public getUserTravels() {
     this.travelService.getUserTravels()
       .subscribe(
         travels => {
           this.travels = travels,
-
-            console.log(travels);
+          console.log(travels);
         },
         error => this.errMesg = <any>error
       );
   }
+
 
 
 }

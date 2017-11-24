@@ -20,6 +20,10 @@ export class MappatravelComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
 
+  public latlngBounds: any;
+  public bounds: any;
+
+
   public tappe: any[] = [];
 
   @Input() travel_id: number;
@@ -39,13 +43,14 @@ export class MappatravelComponent implements OnInit {
 
     this.get_tappe();
 
-    this.zoom = 2;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
+    this.zoom = 4;
+    this.latitude = 0;
+    this.longitude = 0;
 
     this.searchControl = new FormControl();
 
     this.setCurrentPosition();
+
 
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -53,7 +58,7 @@ export class MappatravelComponent implements OnInit {
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
           if (place.geometry === undefined || place.geometry === null) {
             return;
@@ -96,13 +101,58 @@ export class MappatravelComponent implements OnInit {
 
     this.travelservice.getTappe(this.travel_id).subscribe(
       (res) => {
+
         this.tappe = res;
+
+        this.bounds = this.generateBounds(this.tappe)
+        this.latitude = (this.bounds.northeast.latitude + this.bounds.southwest.latitude) / 2;
+        this.longitude = (this.bounds.northeast.longitude + this.bounds.southwest.longitude) / 2;
+
+
+
 
       }
     );
 
 
   }
+
+  public generateBounds(markers): any {
+    if (markers && markers.length > 0) {
+      const bounds = new google.maps.LatLngBounds();
+
+      markers.forEach((marker: any) => {
+        console.log(marker);
+        const latlong = new google.maps.LatLng( marker.latitude, marker.longitude );
+        console.log(latlong);
+        bounds.extend(latlong );
+
+
+      });
+
+      // check if there is only one marker
+      if (bounds.getNorthEast().equals(bounds.getSouthWest())) {
+        const extendPoint = new google.maps.LatLng(bounds.getNorthEast().lat() + 0.01, bounds.getNorthEast().lng() + 0.01);
+        bounds.extend(extendPoint);
+      }
+
+      return {
+        northeast: {
+          latitude: bounds.getNorthEast().lat(),
+          longitude: bounds.getNorthEast().lng()
+        },
+        southwest: {
+          latitude: bounds.getSouthWest().lat(),
+          longitude: bounds.getSouthWest().lng()
+        }
+      }
+    }
+    //return empty object when no bundle selected
+    return {};
+  }
+
+
+
 
   public removeTappa(i) {
     console.log(i);

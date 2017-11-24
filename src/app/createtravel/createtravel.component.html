@@ -17,13 +17,30 @@
       <div [hidden]="title.valid || title.pristine" class="alert alert-danger"> Il titolo è obbligatorio </div>
     </div>
 
+
+    <div class="form-group">
+
+      <textarea
+        name="intro"
+        id="intro"
+        class="form-control"
+        aria-describedby="Intro"
+        placeholder="Scrivi qualche riga di introduzione"
+        required
+        ngModel
+        #description="ngModel"
+      >
+      </textarea>
+    </div>
+
+
     <div class="form-group">
 
       <textarea
         name="description"
         id="description"
         class="form-control"
-        aria-describedby="Titolo"
+        aria-describedby="Descrizione"
         placeholder="Descrizione"
         required
         ngModel

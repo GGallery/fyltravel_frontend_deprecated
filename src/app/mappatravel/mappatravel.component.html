@@ -1,6 +1,6 @@
 
 
-<agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"  [fitBounds]="latlngBounds">
+<agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [fitBounds]="latlngBounds">
   <agm-marker *ngFor="let travel of tappe    "
               [latitude]="travel.latitude"
               [longitude]="travel.longitude"
@@ -17,6 +17,8 @@
     </agm-polyline-point>
   </agm-polyline>
 </agm-map>
+
+
 
 
 <div  class="form-group mt-2 mb-4">
