@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+// import { tokenNotExpired } from 'angular2-jwt-session';
+
 
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
@@ -40,14 +42,6 @@ export class AuthAppService {
           const base64 = base64Url.replace('-', '+').replace('_', '/');
           const user = response.json().user;
 
-          console.log("vvvv user caricato vvvv");
-          console.log(user);
-          this.user_id = user.id;
-
-          console.log("vvvv user.id session vvvv");
-          console.log(this.user_id);
-
-
           return { token: token, user: user, decoded: JSON.parse(window.atob(base64)) };
         }
       )
@@ -55,10 +49,9 @@ export class AuthAppService {
         tokenData => {
           this.currentToken = tokenData.token;
           this.userAuthenticated = true;
-          // this.user = tokenData.user;
-          // this.user_id = tokenData.user.id;
+          this.user_id = tokenData.user.id;
 
-          localStorage.setItem('user', tokenData.user);
+          localStorage.setItem('userid', tokenData.user.id);
           localStorage.setItem('token', tokenData.token);
         }
       );
@@ -66,10 +59,11 @@ export class AuthAppService {
 
   init() {
     this.currentToken = localStorage.getItem('token');
+    this.user_id = Number(localStorage.getItem('userid'))
+    
     console.log(this.currentToken);
     if (this.currentToken) {
       this.userAuthenticated = true;
-      console.log(this.userAuthenticated);
     }
   }
 
@@ -78,13 +72,16 @@ export class AuthAppService {
     localStorage.removeItem('user');
     this.userAuthenticated = false;
     this.currentToken = null;
-    this.user = null;
+    this.user_id = null;
     this.router.navigate(['/']);
 
   }
 
 
   isAuthenticated() {
+
+    // console.log(tokenNotExpired());
+
     return this.userAuthenticated;
   }
 

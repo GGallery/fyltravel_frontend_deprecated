@@ -6,6 +6,7 @@ import { AuthAppService } from './auth.service';
 import {NgForm} from '@angular/forms';
 import 'rxjs/Rx';
 
+
 @Injectable()
 export class TravelService {
 
@@ -104,6 +105,8 @@ export class TravelService {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
+    console.log('forse token scaduto? ');
+
     return Observable.throw(errMsg);
   }
 

@@ -76,7 +76,7 @@ export class MappatravelComponent implements OnInit {
           this.travelservice.setTappe(this.travel_id, this.tappe).subscribe(
             (res) => console.log('aggiornate tappe')
         );
-          console.log(this.tappe);
+          //console.log(this.tappe);
 
           //set latitude, longitude and zoom
           //this.latitude = place.geometry.location.lat();

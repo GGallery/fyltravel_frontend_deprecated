@@ -6,13 +6,13 @@
             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
             (fileOver)="upload_cover($event)"
             [uploader]="uploader_cover"
-            class="well my-drop-zone"
+            class="well my-drop-zone "
             [style.background-image]="backgroundImg">
         <img [src]="coverurl"  class="w-100"/>
       </div>
+      <img *ngIf="!editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
 
-      <img *ngIf="!editmode" [src]="coverurl"  class="w-100"/>
-      <div class="progress" style="">
+      <div class="progress">
         <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_cover.progress + '%' }"></div>
       </div>
 
