@@ -59,9 +59,8 @@ export class AuthAppService {
 
   init() {
     this.currentToken = localStorage.getItem('token');
-    this.user_id = Number(localStorage.getItem('userid'))
-    
-    console.log(this.currentToken);
+    this.user_id = Number(localStorage.getItem('userid'));
+
     if (this.currentToken) {
       this.userAuthenticated = true;
     }
