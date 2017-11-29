@@ -42,6 +42,8 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { MediauploadComponent } from './mediaupload/mediaupload.component';
 
 import { NgxGalleryModule } from 'ngx-gallery';
+import { UserService } from './services/user.service';
+import { UsermapComponent } from './usermap/usermap.component';
 
 
 const routes: Routes = [
@@ -73,7 +75,8 @@ const routes: Routes = [
     ModifytravelComponent,
     MappatravelComponent,
     GalleryComponent,
-    MediauploadComponent
+    MediauploadComponent,
+    UsermapComponent
 
   ],
   imports: [
@@ -103,7 +106,7 @@ const routes: Routes = [
 
     RouterModule.forRoot(routes)
   ],
-  providers: [TravelService, AuthAppService],
+  providers: [TravelService, AuthAppService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

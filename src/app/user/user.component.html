@@ -1,127 +1,14 @@
-<div class="container">
+<div class="container mt-2">
 
+  <app-usermap></app-usermap>
 
   <div class="row">
-
-
-
-
-    <div class="col-md-12">
-      <article id="main">
-        <!--<header>-->
-
-        <!--</header>-->
-      </article>
-
-      <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-        <div *ngFor="let travel of travels">
-          <agm-marker *ngFor="let tappa of travel.tappe    " [latitude]="tappa.latitude" [longitude]="tappa.longitude" [title]="'Viaggio: ' + travel.title + ', tappa: '+ tappa.location"
-            [iconUrl]="'assets/images/marker.png'" (markerClick)="clickedMarker(travel)" (mouseOver)="showInfo($event, travel  )">
-
-
-            <agm-snazzy-info-window [maxWidth]="600" [closeWhenOthersOpen]="true" [panOnOpen]="true">
-              <ng-template>
-
-
-                <!--{{travel.title}}-->
-                <!--{{travel.user.name}}-->
-
-                <!--<mat-card   class="travel-card">-->
-                <!--<mat-card-header>-->
-
-                <!--&lt;!&ndash;<button type="button btn-sm" class="close pull-right" aria-label="Close">&ndash;&gt;-->
-                <!--&lt;!&ndash;<span aria-hidden="true">&times;</span>&ndash;&gt;-->
-                <!--&lt;!&ndash;</button>&ndash;&gt;-->
-
-                <!--<div mat-card-avatar class="example-header-image">-->
-                <!--<a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>-->
-                <!--</div>-->
-                <!--<mat-card-title>{{travel.title}}</mat-card-title>-->
-                <!--<mat-card-subtitle>{{travel.user.name}}</mat-card-subtitle>-->
-                <!--</mat-card-header>-->
-                <!--<mat-card-content class="mt-4 p-1">-->
-                <!--<img md-card-image src="data/travel/{{travel.id}}/cover.jpg" alt="{{travel.title}}">-->
-                <!--</mat-card-content>-->
-                <!--</mat-card>-->
-
-
-
-
-              </ng-template>
-            </agm-snazzy-info-window>
-
-          </agm-marker>
-
-        </div>
-      </agm-map>
-
-
-
-
-
-
-
-
-      <!-- per marker piu complessi -->
-      <!-- https://developers.google.com/maps/documentation/javascript/examples/icon-complex -->
-
-      <!--per gallerie di immagini e altro !!!! bello!!!-->
-      <!--http://www.unheap.com/media/galleries/-->
-
-
-    </div>
-  </div>
-  <hr>
-
-  <!--<div class="row">-->
-  <!--<div class="col-md-4">-->
-  <!--15 luoghi visitati-->
-  <!--</div>-->
-
-  <!--<div class="col-md-4">-->
-  <!--viaggiatore solitario-->
-  <!--</div>-->
-
-  <!--<div class="col-md-4">-->
-  <!--top 5-->
-  <!--</div>-->
-
-
-  <!--</div>-->
-  <div class="row">
-    <div *ngIf="currentTravel" class="col-md-12">
-      <mat-card class="travel-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image">
-            <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
-          </div>
-          <mat-card-title>{{currentTravel.title}}</mat-card-title>
-          <mat-card-subtitle>{{currentTravel.user.name}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="mt-4 p-1">
-          {{currentTravel.descrizione}}
-          <img mat-card-image src="{{travelImagePath + currentTravel.image }}" alt="{{currentTravel.title}}">
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-  </div>
-
-  
-  <div class="row">
-
 
     <div class="col-md-4">
       <h3><a href="#">Giacomo Prandi</a></h3>
       <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
       <a href="#" routerLink="/createtravel"><button class="w-100 btn-sm fyl_color"> <i class="fa fa-plane fa-2x" aria-hidden="true"></i>Aggiungi viaggio</button></a>
-
-
     </div>
-
-
-
-
 
     <div class="col-md-4">
       Viaggi fatti: 15 <br> Tipo di viaggiatore: SELEZIONA CHE TIPO DI VIAGGIATORE SEI<br> SELEZIONA DI DOVE SEI <br> Ho
@@ -133,7 +20,6 @@
 
 
   </div>
-
   <div class="row">
     <div class="col-md-12">
       INSERISCI QUI LA TUA DESCRIZIONE

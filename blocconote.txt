@@ -1,0 +1,8 @@
+      per marker piu complessi
+      https://developers.google.com/maps/documentation/javascript/examples/icon-complex
+
+      per gallerie di immagini e altro !!!! bello!!!
+      http://www.unheap.com/media/galleries/
+
+
+      ng serve --ssl 1 --ssl-key 'ssl/local.brianflove.com.key' --ssl-cert 'ssl/local.brianflove.com.crt' --disable-host-check

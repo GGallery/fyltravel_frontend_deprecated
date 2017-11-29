@@ -53,10 +53,10 @@ export class MappatravelComponent implements OnInit {
 
 
     this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["geocode"]
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['geocode']
       });
-      autocomplete.addListener("place_changed", () => {
+      autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
@@ -68,27 +68,20 @@ export class MappatravelComponent implements OnInit {
             'latitude': place.geometry.location.lat(),
             'longitude': place.geometry.location.lng(),
             'location': place.name,
-
           });
 
           this.searchControl.reset();
 
           this.travelservice.setTappe(this.travel_id, this.tappe).subscribe(
             (res) => console.log('aggiornate tappe')
-        );
-          //console.log(this.tappe);
-
-          //set latitude, longitude and zoom
-          //this.latitude = place.geometry.location.lat();
-          //this.longitude = place.geometry.location.lng();
-          //this.zoom = 12;
+          );
         });
       });
     });
   }
 
   private setCurrentPosition() {
-    if ("geolocation" in navigator) {
+    if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
@@ -101,20 +94,12 @@ export class MappatravelComponent implements OnInit {
 
     this.travelservice.getTappe(this.travel_id).subscribe(
       (res) => {
-
         this.tappe = res;
-
         this.bounds = this.generateBounds(this.tappe)
         this.latitude = (this.bounds.northeast.latitude + this.bounds.southwest.latitude) / 2;
         this.longitude = (this.bounds.northeast.longitude + this.bounds.southwest.longitude) / 2;
-
-
-
-
       }
     );
-
-
   }
 
   public generateBounds(markers): any {
@@ -126,8 +111,6 @@ export class MappatravelComponent implements OnInit {
         const latlong = new google.maps.LatLng( marker.latitude, marker.longitude );
         console.log(latlong);
         bounds.extend(latlong );
-
-
       });
 
       // check if there is only one marker
@@ -145,14 +128,10 @@ export class MappatravelComponent implements OnInit {
           latitude: bounds.getSouthWest().lat(),
           longitude: bounds.getSouthWest().lng()
         }
-      }
+      };
     }
-    //return empty object when no bundle selected
     return {};
   }
-
-
-
 
   public removeTappa(i) {
     console.log(i);
