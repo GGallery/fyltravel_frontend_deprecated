@@ -21,7 +21,7 @@ import { TravelListComponent } from './travel-list/travel-list.component';
 import { TravelComponent } from './travel/travel.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatIconModule } from '@angular/material';
+import {MatCardModule, MatIconModule, MatProgressSpinnerModule} from '@angular/material';
 
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
@@ -29,20 +29,22 @@ import { SigninComponent } from './signin/signin.component';
 
 import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { AuthAppService } from './services/auth.service';
+import { UserService } from './services/user.service';
+
+
 import { environment } from '../environments/environment';
 import { CreatetravelComponent } from './createtravel/createtravel.component';
 
 
+import { MediauploadComponent } from './mediaupload/mediaupload.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { ModifytravelComponent } from './modifytravel/modifytetravel.component';
 import { MappatravelComponent } from './mappatravel/mappatravel.component';
 import { GalleryComponent } from './gallery/gallery.component';
 
-import { MediauploadComponent } from './mediaupload/mediaupload.component';
 
 import { NgxGalleryModule } from 'ngx-gallery';
-import { UserService } from './services/user.service';
 import { UsermapComponent } from './usermap/usermap.component';
 
 
@@ -95,6 +97,7 @@ const routes: Routes = [
 
     MatCardModule,
     MatIconModule,
+    MatProgressSpinnerModule,
 
     FileUploadModule,
     Angular2SocialLoginModule,

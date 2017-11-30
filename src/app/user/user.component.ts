@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -8,23 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  private errMesg: any;
-
-  // public travelCoverPath = environment.travelCoverPath;
-  // public travelImagePath = environment.travelImagePath;
-
-  // public tutteletappe: any[];
-
+  public countTravel: number;
+  public userInfo: any;
+  private errMesg: string;
 
   constructor(
+    private userService: UserService
 
   ) { }
 
   ngOnInit() {
-    // set google maps defaults
+    this.get_CountTravel();
+  }
 
+  private get_CountTravel() {
+    this.userService.get_CountTravel().subscribe(
+      (results) =>  this.countTravel = results,
+      (error) => this.errMesg = <any>error
+    );
   }
 
 
+  private get_UserInfo() {
+    this.userService.get_UserInfo().subscribe(
+      (results) =>  this.userInfo = results,
+      (error) => this.errMesg = <any>error
+    );
+  }
 }
 

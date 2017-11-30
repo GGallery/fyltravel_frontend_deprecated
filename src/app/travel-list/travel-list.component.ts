@@ -13,6 +13,7 @@ export class TravelListComponent implements OnInit {
   public travels;
   private errMesg: string;
   public travelCoverPath = environment.travelCoverPath;
+  public loading= true;
 
   constructor(
     private travelService: TravelService,
@@ -31,6 +32,7 @@ export class TravelListComponent implements OnInit {
     this.travelService.getUserTravels()
       .subscribe(
       travels => {
+        this.loading = false;
         this.travels = travels,
           console.log(travels);
 

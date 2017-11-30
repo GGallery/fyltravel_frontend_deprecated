@@ -4,19 +4,32 @@
 
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-3">
       <h3><a href="#">Giacomo Prandi</a></h3>
       <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
       <a href="#" routerLink="/createtravel"><button class="w-100 btn-sm fyl_color"> <i class="fa fa-plane fa-2x" aria-hidden="true"></i>Aggiungi viaggio</button></a>
     </div>
 
     <div class="col-md-4">
-      Viaggi fatti: 15 <br> Tipo di viaggiatore: SELEZIONA CHE TIPO DI VIAGGIATORE SEI<br> SELEZIONA DI DOVE SEI <br> Ho
-      viaggiato con...
+      <ul>
+        <li>
+          {{countTravel}} viaggi fatti!
+        </li>
+        <li>
+          Viaggiatore solitario
+        </li>
+        <li>
+          Seleziona di dove sei
+        </li>
+      </ul>
     </div>
+
+
     <div class="col-md-4">
       Top 5 viaggi <br>
     </div>
+
+
 
 
   </div>
