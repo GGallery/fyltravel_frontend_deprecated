@@ -8,3 +8,8 @@
 .navbar > .container, .navbar > .container-fluid {
   display: inline-flex !important;
 }
+
+
+.material-icons{
+  font-size: 30px;
+}

@@ -17,10 +17,12 @@
         <li class="navbar-item ">
           <a class="" href="#" [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo rounded-circle float-right" width="50"/></a>
         </li>
-
+        <li>
+          <a href="#" routerLink="/createtravel"><i class="material-icons">add_box</i></a>
+        </li>
 
         <li class="navbar-item ">
-          <a href="#" (click)="logout()"><i class="fa fa-sign-out p-2" aria-hidden="true"></i></a>
+          <a href="#" (click)="logout()"><i class="material-icons">exit_to_app</i></a>
         </li>
       </ng-template>
 

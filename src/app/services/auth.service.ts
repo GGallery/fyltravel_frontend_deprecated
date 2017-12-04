@@ -78,6 +78,8 @@ export class AuthAppService {
     this.username = localStorage.getItem('username');
     this.userimage = localStorage.getItem('userimage');
 
+
+    this.userAuthenticated = true;
     if (this.currentToken) {
       this.checkToken(this.currentToken).subscribe(
         data => this.userAuthenticated = true,
