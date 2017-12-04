@@ -14,8 +14,11 @@ import { Router } from '@angular/router';
 export class AuthAppService {
 
 
-  public user: any;
-  public user_id: number;
+  public uid: string;
+  public userid: number;
+  public username: string;
+  public userimage: string;
+
   public currentToken: string;
   public userAuthenticated  = false;
   private api = environment.apiUrl;
@@ -26,9 +29,10 @@ export class AuthAppService {
 
   ) { }
 
-  signup(username: string, email: string, password: string) {
+  signup(username: string, email: string, password: string, provider: string, image: string) {
+    console.log(username, email, password, provider, image );
     return this.http.post(this.api + 'signup',
-      { name: username, email: email, password: password },
+      { name: username, email: email, password: password, provider: provider, image: image },
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
   }
 
@@ -43,6 +47,7 @@ export class AuthAppService {
           const base64Url = token.split('.')[1];
           const base64 = base64Url.replace('-', '+').replace('_', '/');
           const user = response.json().user;
+          console.log(user);
 
           return { token: token, user: user, decoded: JSON.parse(window.atob(base64)) };
         }
@@ -51,9 +56,16 @@ export class AuthAppService {
         tokenData => {
           this.currentToken = tokenData.token;
           this.userAuthenticated = true;
-          this.user_id = tokenData.user.id;
+          this.uid = tokenData.user.uid;
+          this.userid = tokenData.user.id;
+          this.username = tokenData.user.username;
+          this.userimage = tokenData.user.image;
 
+
+          localStorage.setItem('uid', tokenData.user.uid)
           localStorage.setItem('userid', tokenData.user.id);
+          localStorage.setItem('username', tokenData.user.username);
+          localStorage.setItem('userimage', tokenData.user.image);
           localStorage.setItem('token', tokenData.token);
         }
       );
@@ -61,34 +73,70 @@ export class AuthAppService {
 
   init() {
     this.currentToken = localStorage.getItem('token');
-    this.user_id = Number(localStorage.getItem('userid'));
+    this.uid = localStorage.getItem('uid');
+    this.userid = Number(localStorage.getItem('userid'));
+    this.username = localStorage.getItem('username');
+    this.userimage = localStorage.getItem('userimage');
 
     if (this.currentToken) {
-      this.userAuthenticated = true;
+      this.checkToken(this.currentToken).subscribe(
+        data => this.userAuthenticated = true,
+        error => this.dologin()
+      );
     }
   }
 
-  logout() {
+  cleanData() {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('uid');
+    localStorage.removeItem('userid');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userimage');
+
     this.userAuthenticated = false;
     this.currentToken = null;
-    this.user_id = null;
-    this.router.navigate(['/']);
+    this.uid = null;
 
   }
+
+
+  logout() {
+    this.cleanData();
+    this.router.navigate(['/']);
+  }
+
+  dologin() {
+    this.cleanData();
+    this.router.navigate(['/signin']);
+  }
+
+  checkToken(token): Observable<boolean> {
+    const url = this.api + 'checkToken?token=' + token;
+    return this.http.get(url)
+      .catch(this.handleError);
+  }
+
 
 
   isAuthenticated() {
-
-    // console.log(tokenNotExpired());
-
     return this.userAuthenticated;
   }
 
-  currentUserId() {
-    return this.user_id;
+  private handleError(error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error;
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    console.log('forse token scaduto? ');
+
+    return Observable.throw(errMsg);
   }
+
 
 
 }
