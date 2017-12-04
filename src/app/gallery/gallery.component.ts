@@ -25,10 +25,9 @@ export class GalleryComponent implements OnInit {
   ngOnInit() {
 
     this.travelservice.getImages(this.travel_id).subscribe(
-      (image: any[] ) => {
-         this.galleryImages = image,
-          console.log(image);
-
+      (results: any[] ) => {
+        const imagelist = results;
+         this.galleryImages = imagelist;
       },
       (error) => console.log(error)
     );

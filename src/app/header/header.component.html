@@ -15,7 +15,7 @@
 
       <ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
         <li class="navbar-item ">
-          <a class="" href="#" routerLink="/user" class=""><img src="assets/images/profilo.jpg" alt="" class="profilo rounded-circle float-right" width="50"/></a>
+          <a class="" href="#" [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo rounded-circle float-right" width="50"/></a>
         </li>
 
 

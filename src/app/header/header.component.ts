@@ -1,5 +1,6 @@
 import {   Component, OnInit } from '@angular/core';
 import { AuthAppService } from '../services/auth.service';
+import {environment} from '../../environments/environment';
 
 
 
@@ -11,8 +12,9 @@ import { AuthAppService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  public user_id: number ;
   public isAuthenticated: boolean ;
+  public profileImagepath: string;
+  public uid: string;
 
   constructor(
     public  AuthAppService: AuthAppService,
@@ -21,9 +23,11 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    this.user_id = this.AuthAppService.user_id;
+    this.uid = this.AuthAppService.uid;
+    console.log(this.uid);
     this.isAuthenticated = this.AuthAppService.isAuthenticated();
+    this.profileImagepath = environment.profileImagePath  + this.AuthAppService.userimage;
+    console.log(this.profileImagepath);
 
   }
 

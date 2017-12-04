@@ -1,5 +1,5 @@
 <div class="row  ">
-  <div class=" col-md-9 ">
+  <div [class]="mapWidth">
     <mat-card class="p-0">
       <mat-card-content class="p-0">
         <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" class="map-height">
@@ -10,7 +10,7 @@
                         [title]="'Viaggio: ' + travel.title + ', tappa: '+ tappa.location"
                         [iconUrl]="'assets/images/marker.png'"
                         (markerClick)="clickedMarker(travel, tappa)"
-                        >
+            >
 
               <agm-snazzy-info-window [maxWidth]="600" [closeWhenOthersOpen]="true"  >
                 <ng-template>
@@ -24,17 +24,24 @@
     </mat-card>
   </div>
 
-  <div class="col-md-3 pl-0 ml-0 ">
-      <mat-card class="travel-card map-height">
-        <mat-card-content *ngIf="currentTravel" class="">
-          <h3>Viaggio: {{currentTravel.title}}</h3>
-          <h4>Tappa: {{currentTappa.location}}</h4>
-          <img class="w-50 cover-travel-select" src="{{travelCoverPath + currentTravel.cover }}" alt="{{currentTravel.title}}">
-          <span class="description">{{currentTravel.description | slice:0:350}}</span>
-          <a class="w-100 " href="#" routerLink="/travel/{{currentTravel.id}}">
-            <button class="btn btn-primary btn-sm">leggi</button>
-          </a>
-        </mat-card-content>
-      </mat-card>
+
+
+  <div *ngIf="currentTravel" class="col-md-4 pl-0 ml-0 ">
+    <mat-card class="travel-card map-height">
+      <mat-card-content *ngIf="currentTravel" class="">
+        <a (click)="closeCurrentTravel()">
+          <button type="button" class="close pull-right" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </a>
+        <h3>Viaggio: {{currentTravel.title}}</h3>
+        <h4>Tappa: {{currentTappa.location}}</h4>
+        <img class="w-50 cover-travel-select" src="{{travelCoverPath + currentTravel.cover }}" alt="{{currentTravel.title}}">
+        <span class="description">{{currentTravel.description | slice:0:300}}</span>
+        <a class="w-100 " href="#" routerLink="/travel/{{currentTravel.id}}">
+          <button class="btn btn-primary btn-sm">leggi</button>
+        </a>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

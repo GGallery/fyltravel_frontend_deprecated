@@ -30,12 +30,10 @@ export class SignupComponent implements OnInit {
 
 
   onSignup(form: NgForm) {
-    this.AuthAppService.signup(form.value.username, form.value.email, form.value.password).
+    this.AuthAppService.signup(form.value.username, form.value.email, form.value.password, 'mail', '').
       subscribe(
       response => {
-        console.log(response),
         this.router.navigate(['signin']);
-
       },
       error => console.log(error),
     );
@@ -49,14 +47,14 @@ export class SignupComponent implements OnInit {
         this.user = data;
 
 
-        this.AuthAppService.signup(this.user.name, this.user.email, this.user.uid).
+        this.AuthAppService.signup(this.user.name, this.user.email, this.user.uid, provider, this.user.image).
           subscribe(
           response => console.log(response),
           error => console.log(error),
         );
 
       }
-    )
+    );
   }
 
   logout() {

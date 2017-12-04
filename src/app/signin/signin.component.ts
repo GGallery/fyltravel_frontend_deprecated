@@ -44,7 +44,7 @@ export class SigninComponent implements OnInit {
     this.AuthAppService.signin(email, password).
       subscribe(
       tokenData => {
-          this.router.navigate(['/user']);
+          this.router.navigate(['/user/' + tokenData.user.uid ]);
       },
       error => console.log(error),
     );

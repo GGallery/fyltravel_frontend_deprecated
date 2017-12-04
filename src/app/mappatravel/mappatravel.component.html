@@ -1,5 +1,3 @@
-
-
 <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [fitBounds]="latlngBounds" >
   <agm-marker *ngFor="let travel of tappe    "
               [latitude]="travel.latitude"
@@ -18,20 +16,16 @@
   </agm-polyline>
 </agm-map>
 
-
-
-
-<div *ngIf="editmode" class="form-group mt-2 mb-4">
-  <input placeholder="cerca località" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+<div   class="form-group mt-2 mb-4">
+  <input [hidden]="!editmode" placeholder="cerca località" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
 </div>
 
-<div *ngIf="tappe?.length > 0" class="display-5">Tappe </div>
+<div *ngIf="tappe?.length > 0" class="display-5">Tappe</div>
 
 <ul >
   <li *ngFor="let travel of tappe; let i = index">
-
-    <a  *ngIf="editmode"><i class="fa fa-trash pull-right" (click)="removeTappa(i)"></i></a>
-    <h3>{{travel.location}}</h3>
+    <a  [hidden]="!editmode"><i class="fa fa-trash pull-right" (click)="removeTappa(i)"></i></a>
+    <b>{{travel.location}}</b>
   </li>
 </ul>
 <hr>

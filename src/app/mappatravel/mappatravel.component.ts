@@ -135,7 +135,7 @@ export class MappatravelComponent implements OnInit {
 
   public removeTappa(i) {
     console.log(i);
-    this.tappe.splice(i);
+    this.tappe.splice(i, 1);
   }
 
 }

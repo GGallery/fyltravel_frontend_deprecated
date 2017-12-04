@@ -1,5 +1,10 @@
+///<reference path="../../environments/environment.ts"/>
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import {environment } from '../../environments/environment';
+import {forEach} from '@angular/router/src/utils/collection';
+import {TravelService} from '../services/travel.service';
+import {ActivatedRoute, Params} from '@angular/router';
 
 
 @Component({
@@ -9,30 +14,68 @@ import { UserService } from '../services/user.service';
 })
 export class UserComponent implements OnInit {
 
+  private uid: string;
+
+  public userImagepath: string;
+  public userName: string;
+  public userProfile: string[] = [];
+  public userCity: string;
   public countTravel: number;
+  public bestTravels: any[];
+
+  public travelCoverPath = environment.travelCoverPath;
+
   public userInfo: any;
   private errMesg: string;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private travelService: TravelService,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
-    this.get_CountTravel();
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.uid = params['uid'];
+
+      this.get_CountTravel(this.uid);
+      this.get_UserInfo(this.uid);
+      this.getBestTravels(this.uid);
+    });
   }
 
-  private get_CountTravel() {
-    this.userService.get_CountTravel().subscribe(
+  private get_CountTravel(uid: string) {
+    this.userService.get_CountTravel(uid).subscribe(
       (results) =>  this.countTravel = results,
       (error) => this.errMesg = <any>error
     );
   }
 
+  private getBestTravels(uid: string) {
+    this.travelService.getBestTravels(uid)
+      .subscribe(
+        (result) => {
+          const travels = result;
+          this.bestTravels = travels;
+        },
+        error => this.errMesg = <any>error
+      );
+  }
 
-  private get_UserInfo() {
-    this.userService.get_UserInfo().subscribe(
-      (results) =>  this.userInfo = results,
+
+  private get_UserInfo(uid: string ) {
+    this.userService.get_UserInfo(uid).subscribe(
+      (response) => {
+        const user = response;
+        console.log(user);
+        this.userImagepath = environment.profileImagePath + user.image;
+        this.userName = user.name;
+        user.tipology.forEach(single => {
+          this.userProfile.push(single.tipologia);
+        });
+        this.userCity = 'Genova';
+      },
       (error) => this.errMesg = <any>error
     );
   }

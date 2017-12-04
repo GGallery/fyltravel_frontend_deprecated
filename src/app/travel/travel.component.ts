@@ -23,13 +23,11 @@ export class TravelComponent implements OnInit {
 
   public backgroundImg: string;
 
-  public editmode :boolean = false;
+  public editmode: boolean;
 
   public uploader_cover: FileUploader = new FileUploader({ url: URL_COPERTINA });
   public hasBaseDropZoneOver = false;
 
-  @ViewChild('search')
-  public searchElementRef: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,24 +38,28 @@ export class TravelComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editmode = false;
     this.route.params
       .subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.travelservice.getTravel(this.id).subscribe(
-          (res) => {
-            const travel = res;
-            this.title = travel.title;
-            this.description = travel.description;
-            this.cover = travel.cover;
-            this.coverurl = environment.travelCoverPath + this.cover;
+        (params: Params) => {
+          this.id = +params['id'];
+          this.travelservice.getTravel(this.id).subscribe(
+            (res) => {
+              const travel = res;
+              this.title = travel.title;
+              this.description = travel.description;
+              this.cover = travel.cover;
+              this.coverurl = environment.travelCoverPath + this.cover;
 
-            if (this.auth.user_id == travel.author)
-              this.editmode = true;
+              console.log(this.auth.userid);
+              console.log(travel.author);
 
-          }
-        );
-      }
+              if (this.auth.userid === travel.author) {
+                this.editmode = true;
+              }
+            }
+          );
+        }
       );
   }
 

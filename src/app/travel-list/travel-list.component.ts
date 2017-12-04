@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { TravelService } from '../services/travel.service';
 import { AuthAppService } from '../services/auth.service';
 import {environment} from '../../environments/environment';
@@ -15,6 +15,8 @@ export class TravelListComponent implements OnInit {
   public travelCoverPath = environment.travelCoverPath;
   public loading= true;
 
+  @Input() uid: string;
+
   constructor(
     private travelService: TravelService,
     private auth: AuthAppService
@@ -25,17 +27,16 @@ export class TravelListComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getUserTravels();
+    this.getUserTravels(this.uid);
   }
 
-  private getUserTravels() {
-    this.travelService.getUserTravels()
+  private getUserTravels(uid: string) {
+    this.travelService.getUserTravels(uid)
       .subscribe(
-      travels => {
+      results => {
         this.loading = false;
-        this.travels = travels,
-          console.log(travels);
-
+        const travels = results;
+        this.travels = travels;
       },
       error => this.errMesg = <any>error
       );

@@ -1,48 +1,43 @@
 <div class="container mt-2">
 
-  <app-usermap></app-usermap>
+  <app-usermap [uid]="uid"></app-usermap>
 
   <div class="row">
 
-    <div class="col-md-3">
-      <h3><a href="#">Giacomo Prandi</a></h3>
-      <a href="#" class="image fit"><img src="assets/images/profilo.jpg" alt="" /></a>
-      <a href="#" routerLink="/createtravel"><button class="w-100 btn-sm fyl_color"> <i class="fa fa-plane fa-2x" aria-hidden="true"></i>Aggiungi viaggio</button></a>
+    <div class="col-md-auto">
+      <mat-card class="profileimage   p-0">
+        <mat-card-content class="p-0">
+          <img class="w-100" [src]="userImagepath" alt="" />
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+    <!--<a href="#" routerLink="/createtravel"> <i class="fa fa-pencil" aria-hidden="true">modifica</i></a>-->
+    <div class="col-md-4 mt-1 userinfo">
+      <h3><a href="#">{{userName}}</a></h3>
+      <span *ngIf="userCity">vive a <b>{{userCity}}</b>, </span>
+      <span *ngIf="countTravel > 0">ha caricato <b>{{countTravel}}</b> viaggi, </span>
+      <span *ngIf="userProfile?.length > 0 "> è un viaggiatore {{userProfile.join(', ')}} </span>
     </div>
 
-    <div class="col-md-4">
-      <ul>
-        <li>
-          {{countTravel}} viaggi fatti!
-        </li>
-        <li>
-          Viaggiatore solitario
-        </li>
-        <li>
-          Seleziona di dove sei
-        </li>
-      </ul>
+    <div class="col-md-5">
+      <h4>I migliori 5 viaggi</h4>
+      <div class="row justify-content-around mt-1">
+        <div *ngFor="let travel of bestTravels" class="col m-0 p-0">
+          {{travel.title}}
+          <img src="{{travelCoverPath + travel.cover}}" class="img-fluid img-thumbnail" alt="{{travel.title}}">
+        </div>
+      </div>
     </div>
-
-
-    <div class="col-md-4">
-      Top 5 viaggi <br>
-    </div>
-
-
 
 
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      INSERISCI QUI LA TUA DESCRIZIONE
-    </div>
-  </div>
+
   <hr>
   <div class="row">
     <div class="col-md-12 important(mobile)" id="content">
 
-      <app-travel-list></app-travel-list>
+      <app-travel-list [uid]="uid"></app-travel-list>
 
     </div>
   </div>

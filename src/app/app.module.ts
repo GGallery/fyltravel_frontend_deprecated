@@ -21,7 +21,7 @@ import { TravelListComponent } from './travel-list/travel-list.component';
 import { TravelComponent } from './travel/travel.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule, MatIconModule, MatProgressSpinnerModule} from '@angular/material';
+import { MatCardModule, MatIconModule, MatProgressSpinnerModule} from '@angular/material';
 
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
@@ -49,7 +49,7 @@ import { UsermapComponent } from './usermap/usermap.component';
 
 
 const routes: Routes = [
-  { path: 'user', component: UserComponent },
+  { path: 'user/:uid', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
   { path: 'travel/:id', component: TravelComponent },
   { path: 'createtravel', component: CreatetravelComponent },

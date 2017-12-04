@@ -24,17 +24,17 @@ export class UserService {
   //     .catch(this.handleError);
   // }
 
-  get_CountTravel():  Observable<number> {
+  get_CountTravel(uid):  Observable<number> {
     return this._http.post(this.api + 'get_CountTravel?token=' + this.AuthAppService.currentToken,
-      {id: 10},
+      {uid: uid},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
       .catch(this.handleError);
   }
 
-  get_UserInfo():  Observable<number> {
+  get_UserInfo(uid):  Observable<any> {
     return this._http.post(this.api + 'get_UserInfo?token=' + this.AuthAppService.currentToken,
-      {id: 10},
+      {uid: uid},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
       .catch(this.handleError);
