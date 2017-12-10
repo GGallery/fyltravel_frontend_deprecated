@@ -25,13 +25,14 @@ export class TravelService {
       .catch(this.handleError);
   }
 
-  newTravel(form: NgForm):  Observable<any> {
+  newTravel(title: string):  Observable<number> {
     return this._http.post(this.api + 'newtravel?token=' + this.AuthAppService.currentToken,
-      {title: form.value.title, description: form.value.description},
+      {title: title},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
       .catch(this.handleError);
   }
+
 
   getTravel(travel_id: number ):  Observable<any> {
     return this._http.post(this.api + 'get_travel?token=' + this.AuthAppService.currentToken,
@@ -64,7 +65,6 @@ export class TravelService {
       .map(res => res.json())
       .catch(this.handleError);
   }
-
 
   getImages(travel_id: number ) {
     return this._http.post(this.api + 'get_images?token=' + this.AuthAppService.currentToken,

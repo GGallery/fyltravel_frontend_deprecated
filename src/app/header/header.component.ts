@@ -24,10 +24,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.uid = this.AuthAppService.uid;
-    console.log(this.uid);
+
+    console.log('utente corrente' + this.uid);
+
     this.isAuthenticated = this.AuthAppService.isAuthenticated();
     this.profileImagepath = environment.profileImagePath  + this.AuthAppService.userimage;
-    console.log(this.profileImagepath);
 
   }
 

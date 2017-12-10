@@ -39,13 +39,13 @@ import { CreatetravelComponent } from './createtravel/createtravel.component';
 import { MediauploadComponent } from './mediaupload/mediaupload.component';
 
 import { FileUploadModule } from 'ng2-file-upload';
-import { ModifytravelComponent } from './modifytravel/modifytetravel.component';
 import { MappatravelComponent } from './mappatravel/mappatravel.component';
 import { GalleryComponent } from './gallery/gallery.component';
 
 
 import { NgxGalleryModule } from 'ngx-gallery';
 import { UsermapComponent } from './usermap/usermap.component';
+import {ArchwizardModule} from 'ng2-archwizard/dist';
 
 
 const routes: Routes = [
@@ -55,7 +55,7 @@ const routes: Routes = [
   { path: 'createtravel', component: CreatetravelComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'upload', component: ModifytravelComponent},
+
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
 ];
@@ -74,7 +74,6 @@ const routes: Routes = [
     SignupComponent,
     SigninComponent,
     CreatetravelComponent,
-    ModifytravelComponent,
     MappatravelComponent,
     GalleryComponent,
     MediauploadComponent,
@@ -104,6 +103,8 @@ const routes: Routes = [
 
 
     FormsModule,
+    ArchwizardModule,
+
     ReactiveFormsModule,
     HttpModule,
 

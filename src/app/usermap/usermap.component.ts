@@ -28,6 +28,9 @@ export class UsermapComponent implements OnInit {
 
   public mapWidth: string;
 
+  public mappa: any;
+
+
   private errMesg: any;
   public travelCoverPath = environment.travelCoverPath;
 

@@ -33,13 +33,15 @@ export class AuthAppService {
     console.log(username, email, password, provider, image );
     return this.http.post(this.api + 'signup',
       { name: username, email: email, password: password, provider: provider, image: image },
-      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) });
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest'  }) });
   }
 
   signin(email: string, password: string) {
     return this.http.post(this.api + 'signin',
       { email: email, password: password },
-      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest', 'Access-Control-Allow-Headers': 'Content-Type, X-XSRF-TOKEN'   })
+
+      })
       .map(
         (response: Response) => {
           console.log(response);
@@ -79,13 +81,15 @@ export class AuthAppService {
     this.userimage = localStorage.getItem('userimage');
 
 
-    this.userAuthenticated = true;
+
     if (this.currentToken) {
-      this.checkToken(this.currentToken).subscribe(
-        data => this.userAuthenticated = true,
-        error => this.dologin()
-      );
+      this.userAuthenticated = true;
     }
+    //  this.checkToken(this.currentToken).subscribe(
+    //    data => this.userAuthenticated = true,
+    //    error => this.dologin()
+    //  );
+    // }
   }
 
   cleanData() {

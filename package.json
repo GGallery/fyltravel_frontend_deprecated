@@ -5,7 +5,8 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl 1 --ssl-key 'ssl/local.brianflove.com.key' --ssl-cert 'ssl/local.brianflove.com.crt' --disable-host-check",
+    "start": "ng serve",
+    "code": "ng serve --ssl 1 --ssl-key \"C:\\temp\\certs\\server.key\" --ssl-cert \"C:\\temp\\certs\\server.crt\" --disable-host-check",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -28,11 +29,13 @@
     "@angular/router": "^4.4.6",
     "angular2-social-login": "^3.1.1",
     "bootstrap": "^4.0.0-beta.2",
+    "browser-sync": "^2.18.13",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "ipaddr.js": "^1.5.4",
     "jquery": "^1.12.4",
+    "ng2-archwizard": "^2.1.0",
     "ng2-file-upload": "^1.3.0",
     "ngx-gallery": "^3.3.0",
     "rxjs": "^5.5.2",

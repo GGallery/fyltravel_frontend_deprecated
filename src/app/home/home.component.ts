@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit {
   ) {
 
     console.log('Initializing Facebook');
-    
-      
+
+
    }
 
   ngOnInit() {
@@ -25,10 +25,10 @@ export class HomeComponent implements OnInit {
 
   }
 
-  
-  /**
-   * Login with minimal permissions. This allows you to see their public profile only.
-   */
+
+  // /**
+  //  * Login with minimal permissions. This allows you to see their public profile only.
+  //  */
   // login() {
   //   this.fb.login()
   //     .then((res: LoginResponse) => {
@@ -37,9 +37,9 @@ export class HomeComponent implements OnInit {
   //     .catch(this.handleError);
   // }
 
-  /**
-   * Login with additional permissions/options
-   */
+  // /**
+  //  * Login with additional permissions/options
+  //  */
   // loginWithOptions() {
   //   this.fb.init({
   //     appId: '174233093153100',

@@ -14,7 +14,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 })
 export class UserComponent implements OnInit {
 
-  private uid: string;
+  public uid: string;
 
   public userImagepath: string;
   public userName: string;
@@ -68,13 +68,15 @@ export class UserComponent implements OnInit {
     this.userService.get_UserInfo(uid).subscribe(
       (response) => {
         const user = response;
-        console.log(user);
+
         this.userImagepath = environment.profileImagePath + user.image;
         this.userName = user.name;
         user.tipology.forEach(single => {
           this.userProfile.push(single.tipologia);
         });
         this.userCity = 'Genova';
+
+
       },
       (error) => this.errMesg = <any>error
     );

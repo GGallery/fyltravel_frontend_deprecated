@@ -6,8 +6,8 @@
 export const environment = {
   production: false,
   apiUrl : 'https://api.fyltravel.it/api/',
-  travelCoverPath : 'https://api.fyltravel.it/media/_t/',
-  travelImagePath : 'https://api.fyltravel.it/media/_i/',
+  travelCoverPath : 'https://api.fyltravel.it/storage/_t/',
+  travelImagePath : 'https://api.fyltravel.it/storage/_i/',
   profileImagePath : 'https://api.fyltravel.it/storage/_p/big/',
 
   socialProviders : {

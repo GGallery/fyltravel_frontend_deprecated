@@ -6,3 +6,18 @@
 
 
       ng serve --ssl 1 --ssl-key 'ssl/local.brianflove.com.key' --ssl-cert 'ssl/local.brianflove.com.crt' --disable-host-check
+
+//https://scotch.io/tutorials/how-to-deal-with-different-form-controls-in-angular-2
+
+https://github.com/madoar/ng2-archwizard-demo/tree/master/src/app/optional-steps
+
+
+<!--https://stackoverflow.com/questions/34997128/angular-2-get-values-of-multiple-checked-checkboxes-->
+
+
+https://stackoverflow.com/questions/34202588/google-maps-v3-markers-and-polylines-not-rendering-what-is-wrong-with-my-code
+
+
+ng serve --ssl 1 --ssl-key "C:\www\www.fyltravel.it\frontend\node_modules\browser-sync\lib\server\certs\server.key" --ssl-cert "C:\www\www.fyltravel.it\frontend\node_modules\browser-sync\lib\server\certs\server.crt"
+
+ng serve --ssl 1 --ssl-key "C:\www\www.fyltravel.it\frontend\node_modules\browser-sync\lib\server\certs\server.key" --ssl-cert "C:\www\www.fyltravel.it\frontend\node_modules\browser-sync\lib\server\certs\server.crt" --disable-host-check

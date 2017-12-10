@@ -23,6 +23,7 @@ export class MappatravelComponent implements OnInit {
   public latlngBounds: any;
   public bounds: any;
 
+  public mappa: any;
 
   public tappe: any[] = [];
 

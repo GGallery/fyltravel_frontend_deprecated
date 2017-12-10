@@ -1,58 +1,202 @@
-<div class="container my-4 p-4">
+<div class="container wizard-viaggio my-4 p-4">
+  {{id}}
+  <form>
 
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <!--******************************************************************-->
+    <!--VIAGGIO O TAPPA-->
+    <!--******************************************************************-->
 
-    <div class="form-group" >
+    <wizard navBarLayout="large-filled">
+      <wizard-step stepTitle="Viaggio o itinerario?" class="text-center" >
+        <div class="mt-3 p-4">
+          <h2>Benvenuto viaggiatore!</h2>
 
-      <input type="text"
-             name="title"
-             id="title"
-             class="form-control"
-             aria-describedby="Titolo"
-             placeholder="Titolo del viaggio"
-             required
-             ngModel
-             #title="ngModel"
-      >
-      <div [hidden]="title.valid || title.pristine" class="alert alert-danger"> Il titolo è obbligatorio </div>
-    </div>
+        </div>
+
+        <div class="mt-3">
+          <button   type="button" class="btn mt-3" nextStep>Inizia</button>
+        </div>
+      </wizard-step>
 
 
-    <div class="form-group">
 
-      <textarea
-        name="intro"
-        id="intro"
-        class="form-control"
-        aria-describedby="Intro"
-        placeholder="Scrivi qualche riga di introduzione"
-        required
-        ngModel
-        #description="ngModel"
-      >
+
+
+      <!--******************************************************************-->
+      <!--TITOLO DEL VIAGGIO-->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="Titolo del viaggio" class="text-center"  >
+
+        <div class="mt-3 p-4">
+          <h2>Titolo del viaggio</h2>
+        </div>
+
+        <input type="text"
+               name="title"
+               id="title"
+               class="form-control"
+               aria-describedby="Titolo"
+               placeholder="Titolo del viaggio"
+               required
+               [(ngModel)]="title"
+        >
+
+        <div class="mt-3">
+          <button [hidden]="!title" type="button" class="btn" (click)="preinsert()" nextStep>Prosegui</button>
+        </div>
+
+      </wizard-step>
+
+
+
+      <!--******************************************************************-->
+      <!--DESCRIZIONE BREVE DEL VIAGGIO-->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="Descrizione breve del viaggio" class="text-center"    >
+
+        <div class="mt-3 p-4">
+          E' il momento di inserire la descrizione breve del tuo viaggio! Raccontaci in poche righe com'è andata in <b>{{title}}</b>
+        </div>
+
+        <textarea
+          name="description"
+          id="shortdescription"
+          class="form-control"
+          aria-describedby="Descrizione"
+          placeholder="Descrizione"
+          required
+          [(ngModel)]="shortdescription"
+        >
       </textarea>
-    </div>
 
+        <div class="mt-3">
+          <button [hidden]="!shortdescription" type="button" class="btn" nextStep>Prosegui</button>
+        </div>
 
-    <div class="form-group">
+      </wizard-step>
 
-      <textarea
-        name="description"
-        id="description"
-        class="form-control"
-        aria-describedby="Descrizione"
-        placeholder="Descrizione"
-        required
-        ngModel
-        #description="ngModel"
-      >
+      <!--******************************************************************-->
+      <!--DESCRIZIONE DEL VIAGGIO-->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="Descrizione del viaggio" class="text-center"    >
+
+        <div class="mt-3 p-4">
+          E' il momento di inserire la descrizione del tuo viaggio! Raccontaci com'è andata in <b>{{title}}</b>
+        </div>
+
+        <textarea
+          name="description"
+          id="description"
+          class="form-control"
+          aria-describedby="Descrizione"
+          placeholder="Descrizione"
+          required
+          [(ngModel)]="description"
+        >
       </textarea>
-      <div [hidden]="description.valid || description.pristine" class="alert alert-danger"> La descrizione è obbligatoria </div>
-    </div>
 
-    <button type="submit" class="btn fyl_color" [disabled]="!f.valid"> Salva </button>
+        <div class="mt-3">
+          <button [hidden]="!description" type="button" class="btn " nextStep>Prosegui</button>
+        </div>
+
+      </wizard-step>
+
+
+      <!--******************************************************************-->
+      <!--SCOPO -->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="Scopo del viaggio" class="text-center" >
+        <div class="mt-3 p-4">
+          <h2>Scopo del viaggio</h2>
+        </div>
+
+
+        <checkbox-group [(ngModel)]="scopo">
+          <input type="checkbox" value="rating"> Rating<br/>
+          <input type="checkbox" value="date"> Date<br/>
+          <input type="checkbox" value="watches"> Watch count<br/>
+          <input type="checkbox" value="comments"> Comment count<br/>
+        </checkbox-group>
+
+
+          <div *ngFor="let curr_scopo of list_scopo">
+            <input type="checkbox" [(ngModel)]="scopo" value="{{curr_scopo.value}}"> {{curr_scopo.display}}<br/>
+
+          </div>
+        <div class="mt-3">
+          <button type="button" class="btn mt-3" nextStep>Prosegui</button>
+        </div>
+
+      </wizard-step>
+
+
+      <!--******************************************************************-->
+      <!--KEYWORDS -->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="Caratteristiche del viaggio" class="text-center" >
+        <div class="mt-3 p-4">
+          Dammi ancora qualche informazione sul tipo di viaggio... quali sono le parole chiave che lo identificano?
+        </div>
+        <fieldset>
+          <div *ngFor="let curr_key of list_keyword">
+            <label>
+              <input type="checkbox"
+                     name="scopo"
+                     value="{{curr_key.value}}"
+                     [checked]="scopo_map[curr_key.value]"
+                     (click)="updateKeywordOptions(curr_key.value, $event)"
+              />
+              {{curr_key.display}}
+            </label>
+          </div>
+        </fieldset>
+        <div class="mt-3">
+          <button type="button" class="btn mt-3" nextStep>Prosegui</button>
+        </div>
+
+      </wizard-step>
+
+
+      <!--******************************************************************-->
+      <!--CONSIGLIATO A.. -->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="Consigliato a..." class="text-center" >
+        <div class="mt-3 p-4">
+          A chi  consiglieresti questo tipo di viaggio?
+        </div>
+        <fieldset>
+          <div *ngFor="let curr_consiglio of list_consigliatoa">
+            <label>
+              <input type="checkbox"
+                     name="scopo"
+                     value="{{curr_consiglio.value}}"
+                     [checked]="scopo_map[curr_consiglio.value]"
+                     (click)="updateKeywordOptions(curr_consiglio.value, $event)"
+              />
+              {{curr_consiglio.display}}
+            </label>
+          </div>
+        </fieldset>
+        <div class="mt-3">
+          <button type="button" class="btn mt-3" nextStep>Prosegui</button>
+        </div>
+
+      </wizard-step>
+
+
+      <!--******************************************************************-->
+      <!--FINE -->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="FINE"  class="text-center">
+
+        <h2>COMPLIMENTI!</h2>
+
+        <h4 class="m-3">Hai inserito tutte le informazioni per descrivere il tuo viaggio. Fra un attimo potrai caricare foto e video!</h4>
+
+        <button type="button" class="btn btn-success btn-lg m-2"  >FINE</button>
+      </wizard-step>
+    </wizard>
 
   </form>
-
-
 </div>
+
