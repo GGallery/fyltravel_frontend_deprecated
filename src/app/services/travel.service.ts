@@ -17,7 +17,7 @@ export class TravelService {
     private AuthAppService: AuthAppService
   ) { }
 
-   getUserTravels(uid: string):  Observable<any> {
+  getUserTravels(uid: string):  Observable<any> {
     return this._http.post(this.api + 'userTravels?token=' + this.AuthAppService.currentToken,
       {uid:  uid},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
@@ -25,9 +25,37 @@ export class TravelService {
       .catch(this.handleError);
   }
 
-  newTravel(title: string):  Observable<number> {
+  newTravel(title: string ):  Observable<number> {
     return this._http.post(this.api + 'newtravel?token=' + this.AuthAppService.currentToken,
-      {title: title},
+      {title: title },
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  updateTravel(
+    id: number,
+    title: string,
+    description: string,
+    shortdescription: string,
+    rate: number,
+    publish: number,
+    scopi: number[],
+    keywords: number[],
+    consigliatoa: number[]
+  ):  any {
+    return this._http.post(this.api + 'updatetravel?token=' + this.AuthAppService.currentToken,
+      {
+        id:id,
+        title: title,
+        description: description,
+        shortdescription: shortdescription,
+        rate: rate,
+        publish: publish,
+        scopi: scopi,
+        keywords: keywords,
+        consigliatoa: consigliatoa
+      },
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
       .catch(this.handleError);
@@ -83,6 +111,66 @@ export class TravelService {
       )
       .catch(this.handleError);
   }
+
+  getScopi( ) {
+    return this._http.post(this.api + 'get_scopi?token=' + this.AuthAppService.currentToken,
+      { },
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(
+        (response: Response) => {
+          const data = response.json();
+          for ( const obj of data ){
+            obj.stato = false;
+          }
+          return data;
+        }
+      )
+      .catch(this.handleError);
+  }
+
+  getKeywords( ) {
+    return this._http.post(this.api + 'get_keywords?token=' + this.AuthAppService.currentToken,
+      { },
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(
+        (response: Response) => {
+          const data = response.json();
+          for ( const obj of data ){
+            obj.stato = false;
+          }
+          return data;
+        }
+      )
+      .catch(this.handleError);
+  }
+
+  getConsigliatoa( ) {
+    return this._http.post(this.api + 'get_consigliatoa?token=' + this.AuthAppService.currentToken,
+      {},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(
+        (response: Response) => {
+          const data = response.json();
+          for ( const obj of data ){
+            obj.stato = false;
+          }
+          return data;
+        }
+      )
+      .catch(this.handleError);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   private handleError(error: Response | any) {

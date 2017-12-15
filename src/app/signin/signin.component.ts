@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthAppService } from '../services/auth.service';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'angular2-social-login';
@@ -17,7 +17,8 @@ export class SigninComponent implements OnInit {
   constructor(
     private AuthAppService: AuthAppService,
     private AuthServiceSocial: AuthService,
-    private router: Router
+    private router: Router,
+    private zone: NgZone
   ) { }
 
   ngOnInit() {
@@ -42,9 +43,16 @@ export class SigninComponent implements OnInit {
 
   signIn(email: string, password: string) {
     this.AuthAppService.signin(email, password).
-      subscribe(
+    subscribe(
       tokenData => {
-          this.router.navigate(['/user/' + tokenData.user.uid ]);
+        const url = '/user/' + tokenData.user.uid;
+        console.log(url);
+
+        // this.router.navigate([url]);
+
+        this.zone.run(() => this.router.navigate([url]));
+
+
       },
       error => console.log(error),
     );

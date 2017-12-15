@@ -2,9 +2,6 @@ import {   Component, OnInit } from '@angular/core';
 import { AuthAppService } from '../services/auth.service';
 import {environment} from '../../environments/environment';
 
-
-
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,13 +13,23 @@ export class HeaderComponent implements OnInit {
   public profileImagepath: string;
   public uid: string;
 
+
   constructor(
     public  AuthAppService: AuthAppService,
+  ) {
 
-
-  ) { }
+    this.AuthAppService.loginStatus.subscribe(
+      status => console.log('Login satus' + status),
+      this.login()
+    );
+  }
 
   ngOnInit() {
+   this.login();
+  }
+
+
+  login() {
     this.uid = this.AuthAppService.uid;
 
     console.log('utente corrente' + this.uid);

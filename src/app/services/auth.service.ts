@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output} from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 // import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage/LocalStorageEmitter';
 
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthAppService {
 
+  @Output() loginStatus: EventEmitter<any> = new EventEmitter();
 
   public uid: string;
   public userid: number;
@@ -44,6 +45,7 @@ export class AuthAppService {
       })
       .map(
         (response: Response) => {
+
           console.log(response);
           const token = response.json().token;
           const base64Url = token.split('.')[1];
@@ -56,6 +58,8 @@ export class AuthAppService {
       )
       .do(
         tokenData => {
+          console.log(tokenData);
+
           this.currentToken = tokenData.token;
           this.userAuthenticated = true;
           this.uid = tokenData.user.uid;
@@ -63,7 +67,7 @@ export class AuthAppService {
           this.username = tokenData.user.username;
           this.userimage = tokenData.user.image;
 
-
+          // this.loginStatus.emit('true');
           localStorage.setItem('uid', tokenData.user.uid)
           localStorage.setItem('userid', tokenData.user.id);
           localStorage.setItem('username', tokenData.user.username);
@@ -108,6 +112,7 @@ export class AuthAppService {
 
   logout() {
     this.cleanData();
+    this.loginStatus.emit('false');
     this.router.navigate(['/']);
   }
 

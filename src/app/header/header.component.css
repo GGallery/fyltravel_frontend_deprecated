@@ -13,3 +13,19 @@
 .material-icons{
   font-size: 30px;
 }
+
+
+.navbar-brand-custom {
+  background-color: white;
+  padding: 3px;
+  overflow-y: hidden;
+  border-radius: 5px;
+  margin-top: 0px;
+  padding-top: 6px;
+  border: solid 1px lightgray;
+  height: 31px;
+  margin-right: 10px;
+
+
+  /*#000000*/
+}

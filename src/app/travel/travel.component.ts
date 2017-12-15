@@ -51,8 +51,9 @@ export class TravelComponent implements OnInit {
               this.cover = travel.cover;
               this.coverurl = environment.travelCoverPath + this.cover;
 
+
               console.log(this.auth.userid);
-              console.log(travel.author);
+              console.log(travel);
 
               if (this.auth.userid === travel.author) {
                 this.editmode = true;

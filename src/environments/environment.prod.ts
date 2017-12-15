@@ -10,6 +10,8 @@ export const environment = {
   travelImagePath : 'https://api.fyltravel.it/storage/_i/',
   profileImagePath : 'https://api.fyltravel.it/storage/_p/big/',
 
+  customIconPath : 'assets/images/icon/',
+
   socialProviders : {
     'google': {
       'clientId': '546741882410-qnsepcr5183n5hi25f49dn5ms5hqo5ku.apps.googleusercontent.com'

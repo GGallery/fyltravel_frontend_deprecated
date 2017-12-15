@@ -1,10 +1,10 @@
 import { Component, OnInit  } from '@angular/core';
-import { NgForm} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, NgForm, Validators} from '@angular/forms';
 import {TravelService} from '../services/travel.service';
 import {Router} from '@angular/router';
 import {AuthAppService} from '../services/auth.service';
-
-
+import {forEach} from '@angular/router/src/utils/collection';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-createtravel',
@@ -15,143 +15,122 @@ import {AuthAppService} from '../services/auth.service';
 export class CreatetravelComponent implements OnInit {
 
 
-  public list_tipologia = [
-    { value: 10, display: 'Viaggio' },
-    { value: 20, display: 'Tappa' }
-  ];
 
-  public list_scopo = [
-    {value: 1, display: 'Lavoro'  },
-    {value: 2, display: 'Studio' },
-    {value: 3, display: 'Relax' },
-    {value: 4, display: 'Avventura' },
-    {value: 5, display: 'Cultura' },
-    {value: 6, display: 'Svago' },
-    {value: 7, display: 'Sport' },
-    {value: 8, display: 'Trip' }
-  ];
-
-  public list_keyword = [
-    {value: 1, display: 'Night life'  },
-    {value: 2, display: 'Musei' },
-    {value: 3, display: 'Mare' },
-    {value: 4, display: 'Food' },
-    {value: 5, display: 'Drink' },
-    {value: 6, display: 'Escursioni' },
-    {value: 7, display: 'Monumenti' },
-    {value: 9, display: 'Aperitivi' },
-    {value: 10, display: 'Shopping' },
-    {value: 11, display: 'Trekking' },
-    {value: 12, display: 'Natura' },
-    {value: 13, display: 'Terme' },
-    {value: 14, display: 'Sport acqua' },
-    {value: 15, display: 'Sport aria' },
-    {value: 16, display: 'Sport terra' },
-    {value: 17, display: 'Montagna' },
-    {value: 18, display: 'Barbeque' },
-    {value: 19, display: 'Giro in città' },
-    {value: 20, display: 'Concerti' }
-  ];
-
-  public list_consigliatoa = [
-    {value: 1, display: 'Viaggiatore solitario'  },
-    {value: 2, display: 'Coppie' },
-    {value: 3, display: 'Famiglie' },
-    {value: 4, display: 'Gruppi' },
-  ];
-
-
-  public scopo_map = {
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-    6: false,
-    7: false,
-    8: false
-  }
-
-  public keyword_map = {
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-    6: false,
-    7: false,
-    8: false,
-    9: false,
-    10: false,
-    11: false,
-    12: false,
-    13: false,
-    14: false,
-    15: false,
-    16: false,
-    17: false,
-    18: false,
-    19: false,
-    20: false
-  }
-
-
-
-
-
-  public list_viaggi: any[];
+  public list_scopo: any[] = [];
+  public list_keyword: any[] = [];
+  public list_consigliatoa: any[]= [];
 
   public id: number;
-  public tipoviaggio: number;
   public title: string;
-  public shortdescription: string;
   public description: string;
-  public scopo: number[];
+  public shortdescription: string;
+  public rate: number;
+  public scopi: number[] =  [];
+  public keywords: number[] =  [];
+  public consigliatoa: number[] =  [];
+
+
+  public customIconPath = environment.customIconPath;
 
 
   constructor(
     private TravelService: TravelService,
-    private AuthAppService: AuthAppService,
     private router: Router
-  ) {
-  }
+  ) {  }
 
   ngOnInit() {
-    this.getTravel();
+
+    // this.getTravel();
+    this.getScopi();
+    this.getKeywords();
+    this.getConsigliatoa();
   }
 
   onSubmit(form: NgForm) {
     console.log(JSON.stringify(form.value));
-
-    // this.TravelService.newTravel(form).subscribe(
-    //   (res) => {
-    //     const travel = res;
-    //     this.router.navigate(['/travel', travel.id]);
-    //   }
-    // );
   }
 
-  getTravel() {
-    this.TravelService.getUserTravels(this.AuthAppService.uid).subscribe(
-      (response) => this.list_viaggi = response,
-      (error) => console.log(error)
+  getScopi() {
+    this.TravelService.getScopi().subscribe(
+      (response) => this.list_scopo = response,
+      (error) => console.log(error),
+      () => console.log(this.list_scopo)
+    );
+  }
+
+  getKeywords() {
+    this.TravelService.getKeywords().subscribe(
+      (response) => this.list_keyword = response,
+      (error) => console.log(error),
+      () => console.log(this.list_keyword)
+    );
+  }
+
+  getConsigliatoa() {
+    this.TravelService.getConsigliatoa().subscribe(
+      (response) => this.list_consigliatoa = response,
+      (error) => console.log(error),
+      () => console.log(this.list_consigliatoa)
     );
   }
 
   updateScopoOptions(option, event) {
-    this.scopo_map[option] = event.target.checked;
+    this.scopi = [];
+    this.list_scopo[option].stato  = event.target.checked;
+    this.list_scopo.forEach(
+      item => {if (item.stato) {
+        this.scopi.push(item.id);
+      }}
+    );
+    console.log(JSON.stringify(this.scopi));
   }
 
   updateKeywordOptions(option, event) {
-    this.keyword_map[option] = event.target.checked;
+    this.keywords = [];
+    this.list_keyword[option].stato  = event.target.checked;
+    this.list_keyword.forEach(
+      item => {if (item.stato) {
+        this.keywords.push(item.id);
+      }}
+    );
+    console.log(JSON.stringify(this.keywords));
+  }
+
+  updateConsigliatoa(option, event) {
+    this.consigliatoa = [];
+    this.list_consigliatoa[option].stato  = event.target.checked;
+    this.list_consigliatoa.forEach(
+      item => {if (item.stato) {
+        this.consigliatoa.push(item.id);
+      }}
+    );
+    console.log(JSON.stringify(this.consigliatoa));
   }
 
   preinsert() {
-    this.TravelService.newTravel(this.title).subscribe(
+    this.TravelService.newTravel(this.title ).subscribe(
       (res) => this.id = res,
       (error) => console.log(error)
     );
   }
 
+  saveTravel() {
+    this.TravelService.updateTravel(
+      this.id,
+      this.title,
+      this.description,
+      this.shortdescription,
+      this.rate,
+      0,
+      this.scopi,
+      this.keywords,
+      this.consigliatoa
+      ).subscribe(
+      (success) => {
+        this.router.navigate(['/travel/' + this.id ]);
+      },
+      (error) => console.log(error)
+    );
+  }
 
 }

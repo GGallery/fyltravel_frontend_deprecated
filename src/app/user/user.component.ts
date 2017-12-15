@@ -33,16 +33,20 @@ export class UserComponent implements OnInit {
     private travelService: TravelService,
     private activatedRoute: ActivatedRoute
 
-  ) { }
+  ) {
+
+
+
+  }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
+    this.activatedRoute.params.subscribe(params => {
       this.uid = params['uid'];
-
       this.get_CountTravel(this.uid);
       this.get_UserInfo(this.uid);
       this.getBestTravels(this.uid);
     });
+
   }
 
   private get_CountTravel(uid: string) {

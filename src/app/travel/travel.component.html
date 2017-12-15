@@ -3,13 +3,15 @@
   <div class="row">
     <div class="col-md-6">
       <div *ngIf="editmode" ng2FileDrop
-            [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-            (fileOver)="upload_cover($event)"
-            [uploader]="uploader_cover"
-            class="well my-drop-zone "
-            [style.background-image]="backgroundImg">
-        <img [src]="coverurl"  class="w-100"/>
+           [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+           (fileOver)="upload_cover($event)"
+           [uploader]="uploader_cover"
+           class="well my-drop-zone "
+           [style.background-image]="backgroundImg">
+
+        <div [hidden]="cover">Trascian qui l'immagine di copertina del viaggio</div>
       </div>
+
       <img *ngIf="!editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
 
       <div class="progress">
@@ -23,7 +25,7 @@
     </div>
 
     <div class="col-md-6">
-       <app-mappatravel  [editmode]="editmode" [travel_id]='id' ></app-mappatravel>
+      <app-mappatravel  [editmode]="editmode" [travel_id]='id' ></app-mappatravel>
 
       <app-gallery [travel_id]='id' ></app-gallery>
 

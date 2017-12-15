@@ -77,7 +77,7 @@ const routes: Routes = [
     MappatravelComponent,
     GalleryComponent,
     MediauploadComponent,
-    UsermapComponent
+    UsermapComponent,
 
   ],
   imports: [
@@ -108,7 +108,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpModule,
 
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes,  { useHash: true })
   ],
   providers: [TravelService, AuthAppService, UserService],
   bootstrap: [AppComponent]

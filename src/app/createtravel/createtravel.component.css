@@ -11,3 +11,18 @@
   min-height: 500px;
 
 }
+
+
+label3{
+
+  position: relative;
+  float: left;
+  width: 122px;
+
+}
+
+
+.customicon{
+  width: 50px;
+
+}

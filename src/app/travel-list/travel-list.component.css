@@ -1,20 +1,14 @@
 .travel-card {
-    width: 100%;
-  }
+  width: 100%;
+}
 
-  .example-header-image {
-    background-image: url('../../assets/images/profilo.jpg');
-    background-size: cover;
-  }
+.material-icons{
+  cursor: pointer;
+}
 
-
-  .material-icons{
-    cursor: pointer;
-  }
-
-  .mat-card{
-    margin-bottom: 15px;
-  }
+.mat-card{
+  margin-bottom: 15px;
+}
 
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */
@@ -28,4 +22,10 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+.action{
+  border-top: 1px solid gray;
+
 }

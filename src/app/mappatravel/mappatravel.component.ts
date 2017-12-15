@@ -108,9 +108,7 @@ export class MappatravelComponent implements OnInit {
       const bounds = new google.maps.LatLngBounds();
 
       markers.forEach((marker: any) => {
-        console.log(marker);
         const latlong = new google.maps.LatLng( marker.latitude, marker.longitude );
-        console.log(latlong);
         bounds.extend(latlong );
       });
 

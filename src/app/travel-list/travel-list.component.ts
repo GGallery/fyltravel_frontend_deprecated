@@ -13,6 +13,8 @@ export class TravelListComponent implements OnInit {
   public travels;
   private errMesg: string;
   public travelCoverPath = environment.travelCoverPath;
+  public customIconPath = environment.customIconPath
+
   public loading= true;
 
   @Input() uid: string;
@@ -37,6 +39,7 @@ export class TravelListComponent implements OnInit {
         this.loading = false;
         const travels = results;
         this.travels = travels;
+        console.log(travels);
       },
       error => this.errMesg = <any>error
       );
