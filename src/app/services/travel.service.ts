@@ -46,7 +46,7 @@ export class TravelService {
   ):  any {
     return this._http.post(this.api + 'updatetravel?token=' + this.AuthAppService.currentToken,
       {
-        id:id,
+        id: id,
         title: title,
         description: description,
         shortdescription: shortdescription,

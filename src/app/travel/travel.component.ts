@@ -17,9 +17,14 @@ export class TravelComponent implements OnInit {
   public id: number;
   public title: string;
   public description: string;
+  public shortdescription: string;
   public cover: string;
   public coverurl: string;
   public tappe: any[];
+
+  public scopo: any[]= [];
+  public keywords: any[]= [];
+  public consigliatoa: any[]= [];
 
   public backgroundImg: string;
 
@@ -27,6 +32,8 @@ export class TravelComponent implements OnInit {
 
   public uploader_cover: FileUploader = new FileUploader({ url: URL_COPERTINA });
   public hasBaseDropZoneOver = false;
+
+  public customIconPath = environment.customIconPath
 
 
   constructor(
@@ -48,9 +55,12 @@ export class TravelComponent implements OnInit {
               const travel = res;
               this.title = travel.title;
               this.description = travel.description;
+              this.shortdescription = travel.shortdescription;
               this.cover = travel.cover;
+              this.scopo  = travel.scopo;
+              this.keywords = travel.keywords;
+              this.consigliatoa = travel.consigliatoa;
               this.coverurl = environment.travelCoverPath + this.cover;
-
 
               console.log(this.auth.userid);
               console.log(travel);
@@ -79,6 +89,8 @@ export class TravelComponent implements OnInit {
       const responsePath = JSON.parse(response);
       this.cover = responsePath.file;
       this.coverurl = environment.travelCoverPath + this.cover;
+      console.log(this.coverurl);
+
     };
   }
 

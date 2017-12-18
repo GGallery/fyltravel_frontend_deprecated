@@ -1,5 +1,6 @@
 <div class="container">
   <div class="display-3">{{title}}</div>
+
   <div class="row">
     <div class="col-md-6">
       <div *ngIf="editmode" ng2FileDrop
@@ -9,13 +10,39 @@
            class="well my-drop-zone "
            [style.background-image]="backgroundImg">
 
-        <div [hidden]="cover">Trascian qui l'immagine di copertina del viaggio</div>
+        <img *ngIf="editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
+        
+        <div [hidden]="cover">Trascina qui l'immagine di copertina del viaggio</div>
       </div>
 
       <img *ngIf="!editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
 
       <div class="progress">
         <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_cover.progress + '%' }"></div>
+      </div>
+
+      <div class="row p-0 m-0">
+        <div class="col-md-3 p-0 m-0">
+          <span *ngFor="let obj of scopo">
+              <img width="20" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            </span>
+        </div>
+
+        <div class="col-md-3 p-0 m-0">
+          <span *ngFor="let obj of keywords">
+              <img width="20" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            </span>
+        </div>
+        <div class="col-md-3 p-0 m-0">
+          <span *ngFor="let obj of consigliatoa">
+              <img width="20" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            </span>
+        </div>
+
+      </div>
+
+      <div class="lead text-justify">
+        {{shortdescription}}
       </div>
 
       <div class="lead text-justify">
