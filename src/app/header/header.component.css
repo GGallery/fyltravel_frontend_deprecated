@@ -29,3 +29,35 @@
 
   /*#000000*/
 }
+.profilo {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  margin-top: 3px;
+  margin-right: 4px;
+}
+
+.header_search_result_list {
+  position: absolute;
+  margin-top: 35px;
+  background-color: whitesmoke;
+  padding: 0px;
+  border-radius: 3px;
+  border: 1px solid grey;
+}
+
+.header_search_result_item {
+  color: darkslategray;
+  font-size: 15px;
+  border-top: 1px dotted grey;
+  padding: 0px 3px;
+}
+
+.header_search_result_item a:hover {
+  color: #009D57;
+}
+
+
+.form-inline  {
+  align-items: baseline !important;
+}

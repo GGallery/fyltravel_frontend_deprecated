@@ -5,27 +5,42 @@
 
     <mat-card *ngFor="let travel of travels" class="travel-card" >
       <mat-card-header>
-        <div md-card-avatar class=""></div>
+        <div md-card-avatar class="w-100">
+
+
+          <div class="pull-right">
+           <span *ngIf="travel.tappe">
+              <i  class="material-icons">location_on</i> {{travel.tappe.length}}
+            </span>
+
+            <br>
+
+            <span *ngFor="let obj of travel.consigliatoa">
+              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            </span>
+          </div>
+
+
+        </div>
         <mat-card-title class="display-3"><a href="#" routerLink="/travel/{{travel.id}}">{{travel.title}}</a></mat-card-title>
         <mat-card-subtitle>{{travel.user.name }}</mat-card-subtitle>
       </mat-card-header>
       <div class="row pr-4">
         <div class="col">
           <mat-card-content>
-            <div *ngIf="travel.description">
+            <div *ngIf="travel.description" class="mb-3">
               {{(travel.description.length > 6) ? (travel.description | slice:0:400)+'...':(travel.description)}}
             </div>
 
 
 
-
+            <div *ngFor="let obj of travel.keywords" class="keyico">
+              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+              {{obj.value}}
+            </div>
 
 
           </mat-card-content>
-
-
-
-
 
         </div>
         <div class="col ">
@@ -35,37 +50,8 @@
 
       </div>
       <mat-card-actions>
-        <div class="row p-0 m-0 action">
-          <div class="col-md-1">
-            Tappe <br>
-            <span *ngIf="travel.tappe">
-              <i  class="material-icons">location_on</i> {{travel.tappe.length}}
-            </span>
-          </div>
-
-          <div class="col-md-3">
-            Scopo del viaggio <br>
-            <span *ngFor="let obj of travel.scopo">
-              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
-            </span>
-          </div>
-
-          <div class="col-md-3">
-            Parole chiave <br>
-
-            <span *ngFor="let obj of travel.keywords">
-              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
-            </span>
-          </div>
-          <div class="col-md-3">
-            Consigliato a <br>
-            <span *ngFor="let obj of travel.consigliatoa">
-              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
-            </span>
-          </div>
-
-
-
+        <div class="action">
+          HASHTAG
         </div>
       </mat-card-actions>
     </mat-card>

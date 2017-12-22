@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TravelService} from '../services/travel.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  private errMesg: string;
+  public uid = '15123363665a246beeee140';
+  public results: Object;
+
+  constructor(private TravelSv: TravelService) { }
 
   ngOnInit() {
+    console.log('footer');
+    this.getBestTravels(this.uid);
+  }
+
+  getBestTravels(uid: string) {
+    this.TravelSv.getBestTravels(uid)
+      .subscribe(
+        (result) => {
+          const travels = result;
+          this.results = travels;
+        },
+        error => this.errMesg = <any>error
+      );
   }
 
 }

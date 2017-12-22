@@ -8,6 +8,8 @@ export const environment = {
   apiUrl : 'https://api.fyltravel.it/api/',
   travelCoverPath : 'https://api.fyltravel.it/storage/_t/',
   travelImagePath : 'https://api.fyltravel.it/storage/_i/',
+  travelVideoPath : 'https://api.fyltravel.it/storage/_v/',
+
   profileImagePath : 'https://api.fyltravel.it/storage/_p/big/',
 
   customIconPath : 'assets/images/icon/',

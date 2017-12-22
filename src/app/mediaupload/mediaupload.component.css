@@ -1,8 +1,10 @@
 
-.my-drop-zone { border: dotted 3px lightgray;
-  min-height: 150px;
-}
+.my-drop-zone { border: dotted 3px lightgray;   min-height: 150px; }
+.video-drop-zone { border: dotted 3px lightgray;   min-height: 150px; }
+
 .nv-file-over { border: dotted 3px #009D57; } /* Default class applied to drop zones on over */
+.nv-video-over { border: dotted 3px #009D57; } /* Default class applied to drop zones on over */
+
 .another-file-over-class { border: dotted 3px green; }
 
 

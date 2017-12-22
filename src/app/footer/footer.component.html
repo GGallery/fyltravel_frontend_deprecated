@@ -1,9 +1,20 @@
 		<!-- Footer -->
 				<div id="footer">
 					<div class="container">
-						<div class="row">
 
-							<!-- Tweets -->
+            <div class="row">
+
+
+
+              <!--<div  class="col-md-8 offset-md-2 mt-6">-->
+
+                <app-latest *ngIf="results" [travels]="results"></app-latest>
+              <!--</div>-->
+
+
+
+
+              <!-- Tweets -->
 								<section class="col-md-4 12u(mobile)">
 									<header>
 										<h2 class="icon fa-info circled"><span class="label">Info</span></h2>

@@ -46,6 +46,8 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { UsermapComponent } from './usermap/usermap.component';
 import {ArchwizardModule} from 'ng2-archwizard/dist';
+import {TravelSearchResultsComponent} from './travel-search-results/travel-search-results';
+import { LatestComponent } from './latest/latest.component';
 
 
 const routes: Routes = [
@@ -78,6 +80,8 @@ const routes: Routes = [
     GalleryComponent,
     MediauploadComponent,
     UsermapComponent,
+    TravelSearchResultsComponent,
+    LatestComponent
 
   ],
   imports: [

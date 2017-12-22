@@ -1,6 +1,8 @@
 import {   Component, OnInit } from '@angular/core';
 import { AuthAppService } from '../services/auth.service';
 import {environment} from '../../environments/environment';
+import {Subject} from 'rxjs/Subject';
+import {TravelService} from '../services/travel.service';
 
 @Component({
   selector: 'app-header',
@@ -14,20 +16,45 @@ export class HeaderComponent implements OnInit {
   public uid: string;
 
 
+  public results: Object;
+
+  public showResult= false;
+
+  public searchTerm$ = new Subject<string>();
+  public travelCoverPath = environment.travelCoverPath;
+
+
   constructor(
     public  AuthAppService: AuthAppService,
+    public TravelService: TravelService
   ) {
 
     this.AuthAppService.loginStatus.subscribe(
       status => console.log('Login satus' + status),
       this.login()
     );
+
+
+    this.TravelService.search(this.searchTerm$)
+      .subscribe(results => {
+        this.results = results;
+        this.showResult = true;
+        console.log(this.results);
+        console.log(this.showResult);
+
+      });
+
   }
 
   ngOnInit() {
-   this.login();
+    this.login();
   }
 
+
+  hideResult() {
+    this.showResult = false;
+    console.log('out');
+  }
 
   login() {
     this.uid = this.AuthAppService.uid;

@@ -1,8 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top ">
   <div class="container">
     <a class="navbar-brand-custom" href="#" routerLink="/"><img width="40" src="/assets/images/logo1.png"></a>
-    <form class="form-inline  ">
-      <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Cerca un viaggio" aria-label="Search">
+    <form class="form-inline">
+      <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Cerca un viaggio" aria-label="Search"
+             (keyup)="searchTerm$.next($event.target.value)">
+
+      <div  class="header_search_result_list" *ngIf="showResult" >
+        <div *ngFor="let travel of results" class="header_search_result_item" >
+          <a href="#" routerLink="/travel/{{travel.id}}" (click)="hideResult()">
+            <img style="vertical-align:middle;" aria-hidden src="{{travelCoverPath + travel.cover}}" height="25" width="25" class=""  />
+            <span>{{ travel.title }}</span> |
+            <small>{{travel.user.name}}</small>
+          </a>
+        </div>
+      </div>
+
+
     </form>
 
     <ul class="navbar-nav ml-auto">
@@ -15,7 +28,7 @@
 
       <ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
         <li class="navbar-item ">
-          <a class="" href="#" [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo rounded-circle float-right" width="50"/></a>
+          <a class="" href="#" [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo   float-right" width="50"/></a>
         </li>
         <li>
           <a href="#" routerLink="/createtravel"><i class="material-icons">add_box</i></a>

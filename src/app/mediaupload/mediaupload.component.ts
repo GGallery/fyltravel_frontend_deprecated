@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 
 
 const URL_MEDIA = environment.apiUrl + 'upload_media';
+const URL_VIDEO = environment.apiUrl + 'upload_video';
 
 
 @Component({
@@ -16,8 +17,9 @@ const URL_MEDIA = environment.apiUrl + 'upload_media';
 })
 export class MediauploadComponent implements OnInit {
   public uploader_immagini: FileUploader = new FileUploader({url: URL_MEDIA,    });
-  public hasBaseDropZoneOver = false;
-  public hasAnotherDropZoneOver = false;
+  public uploader_video: FileUploader = new FileUploader({url: URL_VIDEO,    });
+  public hasImagesDropZoneOver = false;
+  public hasVideoDropZoneOver = false;
 
   private backgroundImg: SafeStyle;
 
@@ -41,8 +43,8 @@ export class MediauploadComponent implements OnInit {
   }
 
   public upload_immagini(e: any): void {
-    this.hasBaseDropZoneOver = e;
-
+    this.hasImagesDropZoneOver = e;
+    this.uploader_immagini.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader_immagini.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('travel_id' , this.travel_id);
     };
@@ -52,4 +54,19 @@ export class MediauploadComponent implements OnInit {
       console.log(responsePath);
     };
   }
+
+
+  public upload_video(e: any): void {
+    this.hasVideoDropZoneOver = e;
+    this.uploader_video.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader_video.onBuildItemForm = (fileItem: any, form: any) => {
+      form.append('travel_id' , this.travel_id);
+    };
+    this.uploader_video.uploadAll();
+    this.uploader_video.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
+      const responsePath = JSON.parse(response);
+      console.log(responsePath);
+    };
+  }
+
 }

@@ -25,18 +25,7 @@
 }
 
 
-.action{
-  border-top: 1px solid gray;
-
-}
-
-
 a:hover{
   color: #009D57;
 }
 
-.keyico {
-  width: 236px;
-  position: relative;
-  float: left;
-}

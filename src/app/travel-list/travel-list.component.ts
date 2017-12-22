@@ -45,8 +45,4 @@ export class TravelListComponent implements OnInit {
       );
   }
 
-  private like() {
-    console.log('like');
-  }
-
 }

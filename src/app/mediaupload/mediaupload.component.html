@@ -1,17 +1,32 @@
+<div class="row">
+  <div class="col-md-6">
+    <div ng2FileDrop
+         [ngClass]="{'nv-file-over': hasImagesDropZoneOver}"
+         (fileOver)="upload_immagini($event)"
+         [uploader]="uploader_immagini"
+         class=" my-drop-zone"
+    >
+      Trascina qui le immagini
+    </div>
+    <div class="progress" style="">
+      <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_immagini.progress + '%' }"></div>
+    </div>
+  </div>
+  <div class="col-md-6">
 
-<div ng2FileDrop
-     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-     (fileOver)="upload_immagini($event)"
-     [uploader]="uploader_immagini"
-     class="well my-drop-zone"
->
-  Trascina qui le immagini
+    <div ng2FileDrop
+         [ngClass]="{'nv-video-over': hasVideoDropZoneOver}"
+         (fileOver)="upload_video($event)"
+         [uploader]="uploader_video"
+         class=" video-drop-zone"
+    >
+      Trascina qui il video
+    </div>
+    <div class="progress" style="">
+      <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_video.progress + '%' }"></div>
+    </div>
+  </div>
 </div>
-<div class="progress" style="">
-  <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_immagini.progress + '%' }"></div>
-</div>
-
-
 
 <!--<input type="file" ng2FileSelect [uploader]="uploader" multiple  />-->
 <!--<input type="file" ng2FileSelect [uploader]="uploader" />-->

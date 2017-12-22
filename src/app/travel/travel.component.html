@@ -11,7 +11,7 @@
            [style.background-image]="backgroundImg">
 
         <img *ngIf="editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
-        
+
         <div [hidden]="cover">Trascina qui l'immagine di copertina del viaggio</div>
       </div>
 
@@ -40,6 +40,20 @@
         </div>
 
       </div>
+
+      <div>
+
+
+        <div *ngIf="video">
+          <video class="w-100"  controls>
+            <source src="{{travelVideoPath +video}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+
+      </div>
+
 
       <div class="lead text-justify">
         {{shortdescription}}

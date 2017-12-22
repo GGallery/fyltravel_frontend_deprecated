@@ -11,7 +11,7 @@ import {TravelService} from '../services/travel.service';
 export class GalleryComponent implements OnInit {
 
   public galleryOptions: NgxGalleryOptions[];
-  public galleryImages: NgxGalleryImage[];
+  public galleryImages: NgxGalleryImage[] = [];
 
   @Input() travel_id: number;
 
@@ -27,6 +27,7 @@ export class GalleryComponent implements OnInit {
     this.travelservice.getImages(this.travel_id).subscribe(
       (results: any[] ) => {
         const imagelist = results;
+        console.log('GalleryImagesLenght: ' + this.galleryImages.length);
          this.galleryImages = imagelist;
       },
       (error) => console.log(error)

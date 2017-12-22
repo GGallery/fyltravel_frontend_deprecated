@@ -3,14 +3,22 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { AuthAppService } from './auth.service';
-import {NgForm} from '@angular/forms';
 import 'rxjs/Rx';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+
 
 
 @Injectable()
 export class TravelService {
 
   private api = environment.apiUrl;
+
+  public baseUrl = 'https://api.cdnjs.com/libraries';
+  public queryUrl = '?search=';
 
   constructor(
     private _http: Http ,
@@ -162,15 +170,33 @@ export class TravelService {
 
 
 
+  public search(terms: Observable<string>) {
+    return terms.debounceTime(0)
+      .distinctUntilChanged()
+      .switchMap(
+        term => this.searchEntries(term));
+  }
+
+  public searchEntries(term) {
 
 
+    return this._http.post(this.api + 'search?token=' + this.AuthAppService.currentToken,
+      { search: term},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(
+        (response: Response) => {
+          const data = response.json();
+          for ( const obj of data ){
+            obj.stato = false;
+          }
+          return data;
+        }
+      );
 
-
-
-
-
-
-
+    // return this.http
+    //   .get(this.baseUrl + this.queryUrl + term)
+    //   .map(res => res.json());
+  }
 
 
   private handleError(error: Response | any) {

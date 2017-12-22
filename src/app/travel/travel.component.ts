@@ -21,6 +21,7 @@ export class TravelComponent implements OnInit {
   public cover: string;
   public coverurl: string;
   public tappe: any[];
+  public video: string;
 
   public scopo: any[]= [];
   public keywords: any[]= [];
@@ -33,7 +34,8 @@ export class TravelComponent implements OnInit {
   public uploader_cover: FileUploader = new FileUploader({ url: URL_COPERTINA });
   public hasBaseDropZoneOver = false;
 
-  public customIconPath = environment.customIconPath
+  public customIconPath = environment.customIconPath;
+  public travelVideoPath = environment.travelVideoPath;
 
 
   constructor(
@@ -57,6 +59,7 @@ export class TravelComponent implements OnInit {
               this.description = travel.description;
               this.shortdescription = travel.shortdescription;
               this.cover = travel.cover;
+              this.video = travel.video;
               this.scopo  = travel.scopo;
               this.keywords = travel.keywords;
               this.consigliatoa = travel.consigliatoa;
@@ -76,8 +79,7 @@ export class TravelComponent implements OnInit {
 
   public upload_cover(e: any): void {
     this.hasBaseDropZoneOver = e;
-
-
+    this.uploader_cover.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader_cover.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('token', this.auth.currentToken);
       form.append('travel_id', this.id);
