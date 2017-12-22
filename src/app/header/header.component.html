@@ -28,10 +28,10 @@
 
       <ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
         <li class="navbar-item ">
-          <a class="" href="#" [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo   float-right" width="50"/></a>
+          <a  [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo   float-right" width="50"/></a>
         </li>
         <li>
-          <a href="#" routerLink="/createtravel"><i class="material-icons">add_box</i></a>
+          <a  routerLink="/createtravel"><i class="material-icons">add_box</i></a>
         </li>
 
         <li class="navbar-item ">
