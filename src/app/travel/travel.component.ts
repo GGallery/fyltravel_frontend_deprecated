@@ -63,7 +63,7 @@ export class TravelComponent implements OnInit {
               this.scopo  = travel.scopo;
               this.keywords = travel.keywords;
               this.consigliatoa = travel.consigliatoa;
-              this.coverurl = environment.travelCoverPath + this.cover;
+              this.coverurl = environment.travelCoverPath + 'cover/' + this.cover;
 
               console.log(this.auth.userid);
               console.log(travel);
@@ -90,7 +90,7 @@ export class TravelComponent implements OnInit {
     this.uploader_cover.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
       const responsePath = JSON.parse(response);
       this.cover = responsePath.file;
-      this.coverurl = environment.travelCoverPath + this.cover;
+      this.coverurl = environment.travelCoverPath +  'cover/' + this.cover;
       console.log(this.coverurl);
 
     };

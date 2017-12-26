@@ -9,14 +9,13 @@ import {TravelService} from '../services/travel.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public results: Object;
+  public travels: Object;
   public searchTerm$ = new Subject<string>();
 
   constructor(private TravelService: TravelService) {
       this.TravelService.search(this.searchTerm$)
         .subscribe(results => {
-          this.results = results;
-          console.log(this.results);
+          this.travels = results;
         });
     }
 

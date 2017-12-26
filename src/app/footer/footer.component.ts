@@ -8,26 +8,12 @@ import {TravelService} from '../services/travel.service';
 })
 export class FooterComponent implements OnInit {
 
-  private errMesg: string;
-  public uid = '15123363665a246beeee140';
-  public results: Object;
 
-  constructor(private TravelSv: TravelService) { }
+  constructor() { }
+
 
   ngOnInit() {
-    console.log('footer');
-    this.getBestTravels(this.uid);
   }
 
-  getBestTravels(uid: string) {
-    this.TravelSv.getBestTravels(uid)
-      .subscribe(
-        (result) => {
-          const travels = result;
-          this.results = travels;
-        },
-        error => this.errMesg = <any>error
-      );
-  }
 
 }

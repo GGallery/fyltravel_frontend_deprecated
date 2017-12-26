@@ -86,6 +86,26 @@ export class TravelService {
       .catch(this.handleError);
   }
 
+
+  getLatestTravels():  Observable<any> {
+    return this._http.post(this.api + 'get_latest_travel?token=' + this.AuthAppService.currentToken,
+      {amount: 6},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+
+  getStarredTravels(amount: number):  Observable<any> {
+    return this._http.post(this.api + 'get_starred_travel?token=' + this.AuthAppService.currentToken,
+      {amount: amount},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+
+
   getTappe(travel_id: number ):  Observable<any> {
     return this._http.post(this.api + 'get_tappe?token=' + this.AuthAppService.currentToken,
       {travel_id:  travel_id},

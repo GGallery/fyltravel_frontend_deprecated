@@ -113,7 +113,8 @@ export class AuthAppService {
   logout() {
     this.cleanData();
     this.loginStatus.emit('false');
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
+    location.reload();
   }
 
   dologin() {

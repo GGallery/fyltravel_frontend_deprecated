@@ -10,7 +10,7 @@ import {environment} from '../../environments/environment';
 export class TravelSearchResultsComponent implements OnInit {
 
   private errMesg: string;
-  public travelCoverPath = environment.travelCoverPath;
+  public travelCoverPath = environment.travelCoverPath + 'cover/';
   public customIconPath = environment.customIconPath
 
   public loading= true;
