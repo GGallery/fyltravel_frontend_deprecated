@@ -67,12 +67,15 @@ export class AuthAppService {
           this.username = tokenData.user.username;
           this.userimage = tokenData.user.image;
 
-          // this.loginStatus.emit('true');
+
           localStorage.setItem('uid', tokenData.user.uid)
           localStorage.setItem('userid', tokenData.user.id);
           localStorage.setItem('username', tokenData.user.username);
           localStorage.setItem('userimage', tokenData.user.image);
           localStorage.setItem('token', tokenData.token);
+
+          this.loginStatus.emit('true');
+
         }
       );
   }

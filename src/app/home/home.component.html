@@ -7,7 +7,7 @@
       <input type="text" id="search" placeholder="next travel?"  (keyup)="searchTerm$.next($event.target.value)"/>
       <!-- <a href="#banner" class="button circled scrolly">Start</a> -->
       <div  class="col-md-8 offset-md-2 mt-6">
-        <app-travel-search-results *ngIf="results" [travels]="results" > </app-travel-search-results>
+        <app-travel-search-results *ngIf="travels" [travels]="travels" > </app-travel-search-results>
       </div>
 
     </footer>

@@ -49,6 +49,7 @@ import {ArchwizardModule} from 'ng2-archwizard/dist';
 import {TravelSearchResultsComponent} from './travel-search-results/travel-search-results';
 import { LatestComponent } from './latest/latest.component';
 
+import { ClickOutsideModule } from 'ng-click-outside';
 
 const routes: Routes = [
   { path: 'user/:uid', component: UserComponent },
@@ -90,6 +91,7 @@ const routes: Routes = [
       libraries: ['places']
     }),
 
+    ClickOutsideModule,
 
     AgmSnazzyInfoWindowModule,
 

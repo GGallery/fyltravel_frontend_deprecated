@@ -26,10 +26,11 @@ export class CaroselloComponent implements OnInit {
   }
 
   getStarredTravels() {
-    this.travelService.getStarredTravels(7)
+    this.travelService.getStarredTravels(4)
       .subscribe(
         (result) => {
-          this.travels = result;
+          this.travels = result,
+          console.log(this.travels);
         },
         error => this.errMesg = <any>error
       );

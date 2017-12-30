@@ -4,24 +4,27 @@
     <div class="loader" [hidden]="!loading"></div>
 
     <mat-card *ngFor="let travel of travels" class="travel-card" >
-      <mat-card-header>
-        <div md-card-avatar class="w-100">
 
-
-          <div class="pull-right">
+      <div class="pull-right">
            <span *ngIf="travel.tappe">
               <i  class="material-icons">location_on</i> {{travel.tappe.length}}
             </span>
 
-            <br>
+        <br>
 
-            <span *ngFor="let obj of travel.consigliatoa">
+        <span *ngFor="let obj of travel.consigliatoa">
               <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
             </span>
-          </div>
+      </div>
 
 
-        </div>
+      <mat-card-header>
+        <div md-card-avatar></div>
+
+
+
+
+
         <mat-card-title class="display-3"><a href="#" routerLink="/travel/{{travel.id}}">{{travel.title}}</a></mat-card-title>
         <mat-card-subtitle>{{travel.user.name }}</mat-card-subtitle>
       </mat-card-header>
@@ -29,7 +32,7 @@
         <div class="col">
           <mat-card-content>
             <div *ngIf="travel.description" class="mb-3">
-              {{(travel.description.length > 6) ? (travel.description | slice:0:400)+'...':(travel.description)}}
+              {{(travel.description.length > 6) ? (travel.description | slice:0:600)+'...':(travel.description)}}
             </div>
 
 

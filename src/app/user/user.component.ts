@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
   public countTravel: number;
   public bestTravels: any[];
 
-  public travelCoverPath = environment.travelCoverPath;
+  public travelCoverPath = environment.travelCoverPath + 'cover/';
 
   public userInfo: any;
   private errMesg: string;

@@ -3,17 +3,18 @@ import { AuthAppService } from '../services/auth.service';
 import {environment} from '../../environments/environment';
 import {Subject} from 'rxjs/Subject';
 import {TravelService} from '../services/travel.service';
+import {OnChanges} from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit  {
 
   public isAuthenticated: boolean ;
   public profileImagepath: string;
-  public uid: string;
+  public uid = '';
 
 
   public results: Object;
@@ -30,8 +31,10 @@ export class HeaderComponent implements OnInit {
   ) {
 
     this.AuthAppService.loginStatus.subscribe(
-      status => console.log('Login satus' + status),
-      this.login()
+      status => {
+        console.log('Login satus' + status)
+        this.login();
+      }
     );
 
 
@@ -46,6 +49,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
+
   ngOnInit() {
     this.login();
   }
@@ -57,9 +61,11 @@ export class HeaderComponent implements OnInit {
   }
 
   login() {
+    console.log('uid' + this.uid);
+
     this.uid = this.AuthAppService.uid;
 
-    console.log('utente corrente' + this.uid);
+    // console.log('utente corrente' + this.uid);
 
     this.isAuthenticated = this.AuthAppService.isAuthenticated();
     this.profileImagepath = environment.profileImagePath  + this.AuthAppService.userimage;
@@ -69,8 +75,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.AuthAppService.logout();
-    console.log(this.AuthAppService.currentToken);
-    console.log(this.AuthAppService.userAuthenticated);
   }
 
 }

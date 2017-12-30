@@ -3,33 +3,31 @@
     <a class="navbar-brand-custom" href="#" routerLink="/"><img width="40" src="/assets/images/logo1.png"></a>
     <form class="form-inline">
       <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Cerca un viaggio" aria-label="Search"
-             (keyup)="searchTerm$.next($event.target.value)">
+             (keyup)="searchTerm$.next($event.target.value)"
+      (clickOutside)="hideResult()"
+      >
 
       <div  class="header_search_result_list" *ngIf="showResult" >
         <div *ngFor="let travel of results" class="header_search_result_item" >
           <a href="#" routerLink="/travel/{{travel.id}}" (click)="hideResult()">
-            <img style="vertical-align:middle;" aria-hidden src="{{travelCoverPath + travel.cover}}" height="25" width="25" class=""  />
+            <img style="vertical-align:middle;" aria-hidden src="{{travelCoverPath + 'cover/' +travel.cover}}" height="25" width="25" class=""  />
             <span>{{ travel.title }}</span> |
             <small>{{travel.user.name}}</small>
           </a>
         </div>
+
+        <div *ngIf="results?.length == 0" class="header_search_result_item">
+          <span>Nessun risultato per questa ricerca</span>
+        </div>
       </div>
-
-
     </form>
 
     <ul class="navbar-nav ml-auto">
-      <li class="navbar-item">
-        <!--<a href="#" [routerLink]="['/travels']">Viaggi</a>-->
-        <ng-template [ngIf]="!this.AuthAppService.isAuthenticated()" >
-          <a class="justify-content-end" href="#" [routerLink]="['/signin']">Accedi</a>
-        </ng-template>
-      </li>
-
-      <ng-template [ngIf]="this.AuthAppService.isAuthenticated()">
+      <ng-template [ngIf]="isAuthenticated">
         <li class="navbar-item ">
           <a  [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo   float-right" width="50"/></a>
         </li>
+
         <li>
           <a  routerLink="/createtravel"><i class="material-icons">add_box</i></a>
         </li>
@@ -37,7 +35,16 @@
         <li class="navbar-item ">
           <a href="#" (click)="logout()"><i class="material-icons">exit_to_app</i></a>
         </li>
+
       </ng-template>
+
+      <ng-template [ngIf]="!isAuthenticated" >
+        <li class="navbar-item">
+          <a class="justify-content-end" href="#" [routerLink]="['/signin']">Accedi</a>
+        </li>
+      </ng-template>
+
+
 
 
     </ul>

@@ -46,13 +46,8 @@ export class SigninComponent implements OnInit {
     subscribe(
       tokenData => {
         const url = '/user/' + tokenData.user.uid;
-        console.log(url);
-
         // this.router.navigate([url]);
-
         this.zone.run(() => this.router.navigate([url]));
-
-
       },
       error => console.log(error),
     );
