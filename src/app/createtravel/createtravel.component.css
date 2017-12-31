@@ -31,3 +31,10 @@ label3{
 .rate{
   width: 18px;
 }
+
+
+.btn-fyl {
+  color: #111;
+  background-color: #009d57;
+  border-color: #009d57;
+}

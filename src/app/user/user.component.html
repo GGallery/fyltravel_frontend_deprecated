@@ -2,20 +2,34 @@
 
   <app-usermap [uid]="uid"></app-usermap>
 
-  <hr>
-
   <div class="row">
 
     <div class="col-md-3">
       <mat-card class="profileimage   p-0">
         <mat-card-content class="p-0">
-          <img class="w-100" [src]="userImagepath" alt="" />
+
+          <div *ngIf="editmode" ng2FileDrop=""
+               [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+               (fileOver)="upload_profile_image($event)"
+               [uploader]="uploader_profile_image"
+               class="well my-drop-zone "
+               [style.background-image]="backgroundImg">
+
+            <div *ngIf="editmode" class="editObject">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </div>
+            <img *ngIf="editmode" [src]="userImagepath"  class="w-100 img-thumbnail"/>
+
+          </div>
+
+          <img *ngIf="!editmode" [src]="userImagepath"  class="w-100 img-thumbnail"/>
+
         </mat-card-content>
       </mat-card>
 
     </div>
-    <!--<a href="#" routerLink="/createtravel"> <i class="fa fa-pencil" aria-hidden="true">modifica</i></a>-->
-    <div class="col-md-9 mt-1 userinfo">
+
+    <div class="col-md-9 mt-4  userinfo">
       <h3><a href="#">{{userName}}</a></h3>
       <span *ngIf="userCity">vive a <b>{{userCity}}</b>, </span>
       <span *ngIf="countTravel > 0">ha caricato <b>{{countTravel}}</b> viaggi, </span>
@@ -24,55 +38,26 @@
   </div>
 
   <hr>
-  <h4>I migliori 5 </h4>
-  <div class="row">
 
-    <div *ngFor="let travel of bestTravels" class="col text-center ">
-      <div class="titolo_best5">
-        {{travel.title}}
-      </div>
-      <div class="anteprima_best5">
-        <img style="max-height:150px" src="{{travelCoverPath + travel.cover}}" class="img-fluid img-thumbnail" alt="{{travel.title}}">
+
+  <div *ngIf="bestTravels?.length > 0">
+    <h4>I migliori 5 </h4>
+    <div class="row">
+
+      <div *ngFor="let travel of bestTravels" class="col text-center ">
+        <div class="titolo_best5">
+          {{travel.title}}
+        </div>
+        <div class="anteprima_best5">
+          <img style="max-height:150px" src="{{travelCoverPath + travel.cover}}" class="img-fluid img-thumbnail" alt="{{travel.title}}">
+        </div>
       </div>
     </div>
+
+    <hr>
   </div>
 
-  <hr>
+
   <app-travel-list [uid]="uid"></app-travel-list>
 
-
-
-  <hr>
-  <!--<div class="row">-->
-    <!--<article class="col-md-4 12u(mobile) special">-->
-      <!--<a href="#" class="image featured"><img src="assets/images/pic07.jpg" alt="" /></a>-->
-      <!--<header>-->
-        <!--<h3><a href="#">Gravida aliquam penatibus</a></h3>-->
-      <!--</header>-->
-      <!--<p>-->
-        <!--Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus-->
-        <!--cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.-->
-      <!--</p>-->
-    <!--</article>-->
-    <!--<article class="col-md-4 12u(mobile) special">-->
-      <!--<a href="#" class="image featured"><img src="assets/images/pic08.jpg" alt="" /></a>-->
-      <!--<header>-->
-        <!--<h3><a href="#">Sed quis rhoncus placerat</a></h3>-->
-      <!--</header>-->
-      <!--<p>-->
-        <!--Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus-->
-        <!--cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.-->
-      <!--</p>-->
-    <!--</article>-->
-    <!--<article class="col-md-4 12u(mobile) special">-->
-      <!--<a href="#" class="image featured"><img src="assets/images/pic09.jpg" alt="" /></a>-->
-      <!--<header>-->
-        <!--<h3><a href="#">Magna laoreet et aliquam</a></h3>-->
-      <!--</header>-->
-      <!--<p>-->
-        <!--Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam porttitor phasellus tempus-->
-        <!--cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.-->
-      <!--</p>-->
-    <!--</article>-->
-  <!--</div>-->
 </div>

@@ -57,6 +57,13 @@
   background-color: #009d57 !important;
 }
 
+.editObject {
+  position: absolute;
+  float: right;
+  margin: 8px;
+}
+
+
 @media screen and (max-width: 425px) {
   #search{
     width: 80vw !important;

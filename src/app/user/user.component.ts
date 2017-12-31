@@ -5,7 +5,10 @@ import {environment } from '../../environments/environment';
 import {forEach} from '@angular/router/src/utils/collection';
 import {TravelService} from '../services/travel.service';
 import {ActivatedRoute, Params} from '@angular/router';
+import {AuthAppService} from '../services/auth.service';
+import {FileUploader} from 'ng2-file-upload/file-upload/file-uploader.class';
 
+const URL_PROFILE_IMAGE = environment.apiUrl + 'upload_profile_image';
 
 @Component({
   selector: 'app-user',
@@ -13,6 +16,9 @@ import {ActivatedRoute, Params} from '@angular/router';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+
+
+  public editmode= false;
 
   public uid: string;
 
@@ -25,13 +31,17 @@ export class UserComponent implements OnInit {
 
   public travelCoverPath = environment.travelCoverPath + 'cover/';
 
+  public uploader_profile_image: FileUploader = new FileUploader({ url: URL_PROFILE_IMAGE });
+  public hasBaseDropZoneOver = false;
+
   public userInfo: any;
   private errMesg: string;
 
   constructor(
     private userService: UserService,
     private travelService: TravelService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private auth: AuthAppService
 
   ) {
 
@@ -81,9 +91,30 @@ export class UserComponent implements OnInit {
         this.userCity = 'Genova';
 
 
+        if (this.auth.userid === user.id) {
+          this.editmode = true;
+          console.log('è il mio profilo');
+        }
+
       },
       (error) => this.errMesg = <any>error
     );
+  }
+
+
+  public upload_profile_image(e: any): void {
+    this.hasBaseDropZoneOver = e;
+    this.uploader_profile_image.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader_profile_image.onBuildItemForm = (fileItem: any, form: any) => {
+      form.append('token', this.auth.currentToken);
+      form.append('uid', this.uid);
+    };
+    this.uploader_profile_image.uploadAll();
+
+    this.uploader_profile_image.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
+      const responsePath = JSON.parse(response);
+      this.userImagepath = environment.profileImagePath + responsePath.file;
+    };
   }
 }
 

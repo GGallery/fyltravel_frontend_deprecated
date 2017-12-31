@@ -5,3 +5,9 @@
 
 
   }
+
+
+  .my-drop-zone { border: dotted 3px lightgray;
+    min-height: 150px;
+  }
+  .nv-file-over { border: dotted 3px #009D57; } /* Default class applied to drop zones on over */

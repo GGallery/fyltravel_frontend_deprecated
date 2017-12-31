@@ -51,6 +51,8 @@ import { LatestComponent } from './latest/latest.component';
 
 import { ClickOutsideModule } from 'ng-click-outside';
 
+import { RatingModule } from 'ngx-bootstrap/rating';
+
 const routes: Routes = [
   { path: 'user/:uid', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
@@ -92,6 +94,8 @@ const routes: Routes = [
     }),
 
     ClickOutsideModule,
+
+    RatingModule.forRoot(),
 
     AgmSnazzyInfoWindowModule,
 

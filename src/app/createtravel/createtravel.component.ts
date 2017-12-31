@@ -23,20 +23,29 @@ export class CreatetravelComponent implements OnInit {
   public id: number;
   public title: string;
   public description: string;
+  public hashtag: string;
   public shortdescription: string;
-  public rate: number;
+  public rate = 6;
   public scopi: number[] =  [];
   public keywords: number[] =  [];
   public consigliatoa: number[] =  [];
 
 
+
+
   public customIconPath = environment.customIconPath;
+
+
+
+
 
 
   constructor(
     private TravelService: TravelService,
     private router: Router
-  ) {  }
+  ) {
+
+  }
 
   ngOnInit() {
 
@@ -120,12 +129,13 @@ export class CreatetravelComponent implements OnInit {
       this.title,
       this.description,
       this.shortdescription,
+      this.hashtag,
       this.rate,
       0,
       this.scopi,
       this.keywords,
       this.consigliatoa
-      ).subscribe(
+    ).subscribe(
       (success) => {
         this.router.navigate(['/travel/' + this.id ]);
       },
