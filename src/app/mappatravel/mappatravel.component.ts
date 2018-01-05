@@ -50,7 +50,7 @@ export class MappatravelComponent implements OnInit {
 
     this.searchControl = new FormControl();
 
-    this.setCurrentPosition();
+    // this.setCurrentPosition();
 
 
     this.mapsAPILoader.load().then(() => {
