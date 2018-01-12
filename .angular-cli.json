@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "angular"
+    "name": "angular",
+    "ejected": true
   },
   "apps": [
     {
@@ -19,13 +20,11 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "mobile": false,
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
         "../node_modules/font-awesome/css/font-awesome.css",
         "../node_modules/snazzy-info-window/dist/snazzy-info-window.css",
-
         "styles.css",
         "assets/css/main.css",
         "assets/css/custom.css",
@@ -33,17 +32,13 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-
-        "../node_modules/tether/dist/js/tether.min.js"
-        ,"assets/js/jquery.dropotron.min.js"
-        ,"assets/js/jquery.scrolly.min.js"
-        ,"assets/js/jquery.onvisible.min.js"
-        ,"assets/js/skel.min.js"
-        ,"assets/js/util.js"
-        ,"assets/js/main.js"
-
-
-
+        "../node_modules/tether/dist/js/tether.min.js",
+        "assets/js/jquery.dropotron.min.js",
+        "assets/js/jquery.scrolly.min.js",
+        "assets/js/jquery.onvisible.min.js",
+        "assets/js/skel.min.js",
+        "assets/js/util.js",
+        "assets/js/main.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -52,8 +47,6 @@
       }
     }
   ],
-  "addons": [],
-  "packages": [],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
@@ -78,8 +71,8 @@
   "defaults": {
     "styleExt": "css",
     "component": {
-      "inlineTemplate": false,
-      "spec": true
+      "spec": true,
+      "inlineTemplate": false
     }
   }
 }
