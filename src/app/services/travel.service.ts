@@ -33,6 +33,14 @@ export class TravelService {
       .catch(this.handleError);
   }
 
+  getUserItinerari(uid: string):  Observable<any> {
+    return this._http.post(this.api + 'userItinerari?token=' + this.AuthAppService.currentToken,
+      {uid:  uid},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
   newTravel(title: string ):  Observable<number> {
     return this._http.post(this.api + 'newtravel?token=' + this.AuthAppService.currentToken,
       {title: title },
@@ -59,7 +67,7 @@ export class TravelService {
         title: title,
         description: description,
         shortdescription: shortdescription,
-        hashtag:hashtag,
+        hashtag: hashtag,
         rate: rate,
         publish: publish,
         scopi: scopi,

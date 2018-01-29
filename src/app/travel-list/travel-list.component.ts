@@ -20,8 +20,7 @@ export class TravelListComponent implements OnInit {
   @Input() uid: string;
 
   constructor(
-    private travelService: TravelService,
-    private auth: AuthAppService
+    private travelService: TravelService
   ) {
     this.travels = [];
     this.errMesg;

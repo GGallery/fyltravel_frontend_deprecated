@@ -2,7 +2,7 @@
   <div [class]="mapWidth">
     <mat-card class="p-0">
       <mat-card-content class="p-0">
-        <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" class="map-height">
+        <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom" class="map-height">
           <div *ngFor="let travel of travels">
             <agm-marker *ngFor="let tappa of travel.tappe    "
                         [latitude]="tappa.latitude"

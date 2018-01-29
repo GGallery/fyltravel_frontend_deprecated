@@ -52,12 +52,15 @@ import { LatestComponent } from './latest/latest.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 
 import { RatingModule } from 'ngx-bootstrap/rating';
+import { CreateComponent } from './create/create.component';
+import { CreateitinerarioComponent } from './createitinerario/createitinerario.component';
 
 const routes: Routes = [
   { path: 'user/:uid', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
   { path: 'travel/:id', component: TravelComponent },
   { path: 'createtravel', component: CreatetravelComponent },
+  { path: 'createitinerario', component: CreateitinerarioComponent},
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
 
@@ -84,7 +87,9 @@ const routes: Routes = [
     MediauploadComponent,
     UsermapComponent,
     TravelSearchResultsComponent,
-    LatestComponent
+    LatestComponent,
+    CreateComponent,
+    CreateitinerarioComponent
 
   ],
   imports: [

@@ -1,31 +1,36 @@
-<agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [fitBounds]="latlngBounds" >
-  <agm-marker *ngFor="let travel of tappe    "
-              [latitude]="travel.latitude"
-              [longitude]="travel.longitude"
-              [title]="travel.title"
-              [iconUrl]="'assets/images/marker.png'"
-  >
+<div class="row">
+  <div class="col-9">
+    <agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [fitBounds]="latlngBounds" >
+      <agm-marker *ngFor="let travel of tappe    "
+                  [latitude]="travel.latitude"
+                  [longitude]="travel.longitude"
+                  [title]="travel.title"
+                  [iconUrl]="'assets/images/marker.png'"
+      >
 
-  </agm-marker>
+      </agm-marker>
 
-  <agm-polyline *ngFor="let data of tappe" [editable]="true">
-    <agm-polyline-point
-      [latitude]="data.latitude"
-      [longitude]="data.longitude">
-    </agm-polyline-point>
-  </agm-polyline>
-</agm-map>
+      <agm-polyline *ngFor="let data of tappe" [editable]="true">
+        <agm-polyline-point
+          [latitude]="data.latitude"
+          [longitude]="data.longitude">
+        </agm-polyline-point>
+      </agm-polyline>
+    </agm-map>
 
-<div   class="form-group mt-2 mb-4">
-  <input [hidden]="!editmode" placeholder="cerca località" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+    <div   class="form-group mt-2 mb-4">
+      <input [hidden]="!editmode" placeholder="cerca località" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+    </div>
+  </div>
+  <div class="col-3">
+    <div *ngIf="tappe?.length > 0" class="display-5">Tappe</div>
+
+    <ul >
+      <li *ngFor="let travel of tappe; let i = index">
+        <a  [hidden]="!editmode"><i class="fa fa-trash pull-right" (click)="removeTappa(i)"></i></a>
+        <b>{{travel.location}}</b>
+      </li>
+    </ul>
+  </div>
 </div>
-
-<div *ngIf="tappe?.length > 0" class="display-5">Tappe</div>
-
-<ul >
-  <li *ngFor="let travel of tappe; let i = index">
-    <a  [hidden]="!editmode"><i class="fa fa-trash pull-right" (click)="removeTappa(i)"></i></a>
-    <b>{{travel.location}}</b>
-  </li>
-</ul>
 <hr>

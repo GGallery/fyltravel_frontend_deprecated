@@ -47,8 +47,8 @@ export class UsermapComponent implements OnInit {
 
     this.travels = [];
     this.zoom = 2;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
+    this.latitude = 45.4642035;
+    this.longitude = 9.186515999999983;
 
     this.mapWidth = 'col-md-12';
     this.getUserTravels(this.uid);
