@@ -1,0 +1,46 @@
+<div class="container mt-2">
+
+  <div *ngIf="itinerario" class="itinerario " >
+
+    <div class="row">
+      <div class="col-6">
+        <h1>{{itinerario.title}}</h1>
+        <div *ngIf="itinerario.description" class="mb-3">
+          {{(itinerario.description.length > 6) ? (itinerario.description | slice:0:600)+'...':(itinerario.description)}}
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="col ">
+          <img src="{{travelCoverPath + itinerario.cover}}" class="img-fluid img-thumbnail" alt="{{itinerario.title}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div *ngFor="let obj of itinerario.travels" class="mb-2">
+        <div class="row">
+          <div class="col-2">
+            <img src="{{travelCoverPath + obj.cover}}" width="150" class="img-fluid img-thumbnail" alt="{{obj.title}} ">
+          </div>
+          <div class="col-10">
+            <h4><a routerLink="/travel/{{obj.id}}">{{obj.title}}</a></h4>
+            <p>{{obj.shortdescription}} <button class="btn"> <a routerLink="/travel/{{obj.id}}">Vai</a></button></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="row" *ngFor="let obj of freetravel" class="mb-2">
+      <div class="col-2">
+        <img src="{{travelCoverPath + obj.cover}}" width="50" class="img-fluid img-thumbnail" alt="{{obj.title}} ">
+      </div>
+      <div class="col-10">
+        <h4><a routerLink="/travel/{{obj.id}}">{{obj.title}}</a></h4>
+      </div>
+    </div>
+
+</div>

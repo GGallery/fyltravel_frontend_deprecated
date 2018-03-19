@@ -38,3 +38,8 @@ label3{
   background-color: #009d57;
   border-color: #009d57;
 }
+
+
+agm-map {
+  height: 250px;
+}

@@ -1,14 +1,4 @@
-.travel-card {
-  width: 100%;
-}
 
-.material-icons{
-  cursor: pointer;
-}
-
-.mat-card{
-  margin-bottom: 15px;
-}
 
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */
@@ -25,18 +15,11 @@
 }
 
 
-.action{
-  border-top: 1px solid gray;
-
+.mat-card-title {
+  font-size: 30px;
 }
 
-
-a:hover{
-  color: #009D57;
-}
-
-.keyico {
-  width: 236px;
-  position: relative;
-  float: left;
+.mat-card-subtitle
+{
+  font-size: 16px;
 }

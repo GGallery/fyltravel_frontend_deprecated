@@ -1,40 +1,42 @@
-<div class="container mt-2">
+<div class="container mt-2" *ngIf="objUSER">
 
-  <app-usermap [uid]="uid"></app-usermap>
+  <app-usermap [user]="objUSER"></app-usermap>
 
   <div class="row">
 
     <div class="col-md-3">
       <mat-card class="profileimage   p-0">
         <mat-card-content class="p-0">
-
-          <div *ngIf="editmode" ng2FileDrop=""
-               [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-               (fileOver)="upload_profile_image($event)"
-               [uploader]="uploader_profile_image"
-               class="well my-drop-zone "
-               [style.background-image]="backgroundImg">
-
-            <div *ngIf="editmode" class="editObject">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </div>
-            <img *ngIf="editmode" [src]="userImagepath"  class="w-100 img-thumbnail"/>
-
-          </div>
-
-          <img *ngIf="!editmode" [src]="userImagepath"  class="w-100 img-thumbnail"/>
-
+          <img [src]="userImagepath"  class="w-100 img-thumbnail"/>
         </mat-card-content>
       </mat-card>
 
     </div>
 
     <div class="col-md-9 mt-4  userinfo">
-      <h3><a href="#">{{userName}}</a></h3>
-      <span *ngIf="userCity">vive a <b>{{userCity}}</b>, </span>
-      <span *ngIf="countTravel > 0">ha caricato <b>{{countTravel}}</b> viaggi, </span>
-      <span *ngIf="userProfile?.length > 0 "> è un viaggiatore {{userProfile.join(', ')}} </span>
+      <span id="contatta" class="pull-right border">contatta</span>
+      <h3><a href="#">{{objUSER.name}}</a></h3>
+      <span *ngIf="objUSER.natoa">nato a <b>{{ objUSER.natoa }}</b>, </span>
+      <span *ngIf="objUSER.vivea">vive a <b>{{ objUSER.vivea }}</b>, </span>
+      <span *ngIf="userCity"><b>37 anni</b>, </span>
+      <span *ngIf="countTravel > 0">ha caricato <b>{{ countTravel }}</b> viaggi, </span>
+
+      <br>
+
+      <!-- TODO  PROVA SIMBOLI USATI-->
+      Simboli più frequenti:
+      <span><img width="40" src="{{customIconPath + '01.png'}}"/> </span>
+      <span><img width="40" src="{{customIconPath + '02.png'}}"/> </span>
+      <span><img width="40" src="{{customIconPath + '08.png'}}"/> </span>
+      <span> <img width="40" src="{{customIconPath + '03.png'}}"/> </span>
+      <span> <img width="40" src="{{customIconPath + '04.png'}}"/> </span>
+      <span>  <img width="40" src="{{customIconPath + '05.png'}}"/> </span>
     </div>
+
+      <p *ngIf="objUSER.descrizione">
+        {{ objUSER.descrizione }}
+      </p>
+
   </div>
 
   <hr>
@@ -58,6 +60,6 @@
   </div>
 
 
-  <app-travel-list [uid]="uid"></app-travel-list>
+  <app-travel-list [uid]="objUSER.uid"></app-travel-list>
 
 </div>

@@ -54,15 +54,23 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { CreateComponent } from './create/create.component';
 import { CreateitinerarioComponent } from './createitinerario/createitinerario.component';
+import {ItinerarioComponent} from './itinerario/itinerario.component';
+import {MappatravelcreateComponent} from './mappatravelcreate/mappatravelcreate.component';
+import {ItinerarioeditComponent} from './itinerarioedit/itinerarioedit.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
+import { TravelListItemComponent } from './travel-list-item/travel-list-item.component';
 
 const routes: Routes = [
   { path: 'user/:uid', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
   { path: 'travel/:id', component: TravelComponent },
   { path: 'createtravel', component: CreatetravelComponent },
+  { path: 'itinerario', component: ItinerarioComponent},
+  { path: 'itinerarioedit', component: ItinerarioeditComponent},
   { path: 'createitinerario', component: CreateitinerarioComponent},
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'userprofile', component: UserprofileComponent},
 
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
@@ -83,13 +91,18 @@ const routes: Routes = [
     SigninComponent,
     CreatetravelComponent,
     MappatravelComponent,
+    MappatravelcreateComponent,
     GalleryComponent,
     MediauploadComponent,
     UsermapComponent,
     TravelSearchResultsComponent,
     LatestComponent,
     CreateComponent,
-    CreateitinerarioComponent
+    CreateitinerarioComponent,
+    ItinerarioComponent,
+    ItinerarioeditComponent,
+    UserprofileComponent,
+    TravelListItemComponent
 
   ],
   imports: [

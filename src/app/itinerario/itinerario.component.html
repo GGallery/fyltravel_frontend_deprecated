@@ -1,0 +1,37 @@
+<div class="container mt-2">
+
+  <div *ngFor="let itineario of itinerari" class="itinerario " >
+
+    <div class="row">
+      <div class="col-6">
+        <h1>{{itineario.title}}</h1>
+        <div *ngIf="itineario.description" class="mb-3">
+          {{(itineario.description.length > 6) ? (itineario.description | slice:0:600)+'...':(itineario.description)}}
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="col ">
+          <img src="{{travelCoverPath + itineario.cover}}" class="img-fluid img-thumbnail" alt="{{itineario.title}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+        <div *ngFor="let obj of itineario.travels" class="mb-2">
+          <div class="row">
+            <div class="col-2">
+              <img src="{{travelCoverPath + obj.cover}}" width="150" class="img-fluid img-thumbnail" alt="{{obj.title}} ">
+            </div>
+            <div class="col-10">
+              <h4><a routerLink="/travel/{{obj.id}}">{{obj.title}}</a></h4>
+              <p>{{obj.shortdescription}} <button class="btn"> <a routerLink="/travel/{{obj.id}}">Vai</a></button></p>
+
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

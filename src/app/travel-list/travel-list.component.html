@@ -8,52 +8,29 @@
       <a href="#" routerLink="/createtravel"  > <button class="btn btn-lg">FALLO ORA</button></a>
     </div>
 
-
-
-    <mat-card *ngFor="let travel of travels" class="travel-card" >
-      <div class="pull-right">
-           <span *ngIf="travel.tappe">
-              <i  class="material-icons">location_on</i> {{travel.tappe.length}}
-            </span>
-        <br>
-        <span *ngFor="let obj of travel.consigliatoa">
-              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
-            </span>
-      </div>
-      <mat-card-header>
-        <div md-card-avatar></div>
-
-        <mat-card-title class="display-3"><a href="#" routerLink="/travel/{{travel.id}}">{{travel.title}}</a></mat-card-title>
-        <mat-card-subtitle>{{travel.user.name }}</mat-card-subtitle>
-      </mat-card-header>
-      <div class="row pr-4">
-        <div class="col">
-          <mat-card-content>
-            <div *ngIf="travel.description" class="mb-3">
-              {{(travel.description.length > 6) ? (travel.description | slice:0:600)+'...':(travel.description)}}
-            </div>
-            <div *ngFor="let obj of travel.keywords" class="keyico">
-              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
-              {{obj.value}}
-            </div>
-          </mat-card-content>
-
-        </div>
-        <div class="col ">
-          <img src="{{travelCoverPath + travel.cover}}" class="img-fluid img-thumbnail" alt="{{travel.title}}">
+    <div *ngFor="let itinerario of itinerari">
+      <mat-card class="mb-4">
+        <!--{{ itinerario | json }}-->
+        <mat-card-title class=" text-center"> {{ itinerario.title }}</mat-card-title>
+        <div class="col-md-12 text-center my-3">
+          <img src="{{travelCoverPath + itinerario.cover }}" class="img-fluid img-thumbnail" alt="{{itinerario.title}}">
         </div>
 
-      </div>
+        <mat-card-subtitle>
+           {{ itinerario.description }}
+        </mat-card-subtitle>
 
-      <mat-card-actions *ngIf="travel.hashtag">
-        <div class="action">
-          {{travel.hashtag}}
+        <div *ngFor="let travel of itinerario.travels">
+          <app-travel-list-item [travel]="travel" [child]="true"> </app-travel-list-item>
         </div>
-      </mat-card-actions>
-    </mat-card>
+      </mat-card>
 
 
+    </div>
+
+    <div *ngFor="let travel of travels"  >
+      <app-travel-list-item [travel]="travel" [child]="false"> </app-travel-list-item>
+    </div>
 
   </div>
-
 </div>

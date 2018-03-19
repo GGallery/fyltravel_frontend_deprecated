@@ -18,6 +18,22 @@
                 </ng-template>
               </agm-snazzy-info-window>
             </agm-marker>
+
+            <agm-marker
+              [latitude]="userViveA.latitude"
+              [longitude]="userViveA.longitude"
+              [title]="userViveA.location"
+              [iconUrl]="'assets/images/vivea.png'"
+            >
+            </agm-marker>
+
+            <ng-container>
+              <agm-polyline *ngFor="let travel of travels;let i = index;"  strokeColor="green">
+                <agm-polyline-point *ngFor="let point of travel.tappe" [latitude]="point.latitude" [longitude]="point.longitude">
+                </agm-polyline-point>
+              </agm-polyline>
+            </ng-container>
+
           </div>
         </agm-map>
       </mat-card-content>

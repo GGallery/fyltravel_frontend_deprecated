@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { AuthAppService } from './auth.service';
 
 import 'rxjs/Rx';
+import {IUser} from '../model/IUser';
 
 
 @Injectable()
@@ -25,7 +26,7 @@ export class UserService {
   // }
 
   get_CountTravel(uid):  Observable<number> {
-    console.log("get_CountTravel" + uid + this.AuthAppService.currentToken);
+    console.log('get_CountTravel' + uid + this.AuthAppService.currentToken);
     return this._http.post(this.api + 'get_CountTravel?token=' + this.AuthAppService.currentToken,
       {uid: uid},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
@@ -34,10 +35,19 @@ export class UserService {
   }
 
   get_UserInfo(uid):  Observable<any> {
-    console.log("get_UserInfo" + uid + this.AuthAppService.currentToken);
+    console.log('get_UserInfo' + uid + this.AuthAppService.currentToken);
     return this._http.post(this.api + 'get_UserInfo?token=' + this.AuthAppService.currentToken,
       {uid: uid},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  updateUser(user: IUser):  Observable<any> {
+    return this._http.post(this.api + 'updateUser?token=' + this.AuthAppService.currentToken, user,
+
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) }
+      )
       .map(res => res.json())
       .catch(this.handleError);
   }

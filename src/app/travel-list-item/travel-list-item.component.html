@@ -1,0 +1,38 @@
+<div *ngIf="travel">
+  <mat-card class="travel-card">
+    <div class="pull-right">
+        <span *ngFor="let obj of travel.consigliatoa">
+              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            </span>
+    </div>
+    <div class="row pr-4">
+      <div class="col-md-9">
+        <mat-card-content>
+
+          <a href="#" routerLink="/travel/{{travel.id}}">{{travel.title}}</a>
+          <div *ngIf="!child" class="author">{{travel.user.name }}</div>
+
+
+          <div *ngIf="travel.description" class="mb-3 description">
+            {{(travel.description.length > 6) ? (travel.description | slice:0:600)+'...':(travel.description)}}
+          </div>
+          <div *ngFor="let obj of travel.keywords" class="keyico">
+            <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            {{obj.value}}
+          </div>
+        </mat-card-content>
+
+      </div>
+      <div class="col-md-3">
+        <img src="{{travelCoverPath + travel.cover}}" class="img-fluid img-thumbnail" alt="{{travel.title}}">
+      </div>
+
+    </div>
+
+    <mat-card-actions *ngIf="travel.hashtag && !child" >
+      <div class="action">
+        {{travel.hashtag}}
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

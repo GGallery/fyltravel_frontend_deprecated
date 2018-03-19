@@ -1,32 +1,6 @@
 <div class="container wizard-viaggio my-4 p-4">
-
-
-
-
   <form>
     <wizard navBarLayout="large-filled">
-
-      <!--******************************************************************-->
-      <!--BENVENUTO-->
-      <!--******************************************************************-->
-
-      <wizard-step stepTitle="Viaggio o itinerario?" class="text-center" >
-        <div class="mt-3 p-4">
-          <h2>Benvenuto viaggiatore!</h2>
-        </div>
-
-        <div class="mt-3">
-          <button   type="button" class="btn mt-3" nextStep>Inizia a creare il tuo viaggio</button>
-        </div>
-
-        <div *ngIf="userTravels > 2">
-          <hr>
-          Hai già caricato <strong>{{userTravels }}</strong> viaggi, vuoi creare un itinerario per raggrupparli?
-          <div class="mt-3">
-            <a href="#" routerLink="/itinerarioedit"><button   type="button" class="btn mt-3" nextStep>Crea il tuo itinerario</button></a>
-          </div>
-        </div>
-      </wizard-step>
 
       <!--******************************************************************-->
       <!--TITOLO DEL VIAGGIO-->
@@ -46,31 +20,20 @@
                required
                [(ngModel)]="title"
         >
+        <div class="mt-3">
+          <button [hidden]="!title" type="button" class="btn" (click)="preinsert()" nextStep>Prosegui</button>
+        </div>
 
-        <br>
+      </wizard-step>
 
+      <!--******************************************************************-->
+      <!--DESCRIZIONE BREVE DEL VIAGGIO-->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="Descrizione breve del viaggio" class="text-center"    >
 
-        <input type="text"
-               name="dal"
-               id="dal"
-               class="form-control  col-md-5"
-               aria-describedby="Titolo"
-               placeholder="Data partenza"
-               required
-               [(ngModel)]="dal"
-        >
-
-        <input type="text"
-               name="al"
-               id="al"
-               class="form-control col-md-5 "
-               aria-describedby="Titolo"
-               placeholder="Data ritorno"
-               required
-               [(ngModel)]="al"
-        >
-
-        <br>
+        <div class="mt-3 p-4">
+          E' il momento di inserire la breve descrizione  del tuo viaggio! Raccontaci in poche righe com'è andata in <b>{{title}}</b>
+        </div>
 
         <textarea
           name="shortdescription"
@@ -83,7 +46,20 @@
         >
       </textarea>
 
-        <br>
+        <div class="mt-3">
+          <button [hidden]="!shortdescription" type="button" class="btn" nextStep>Prosegui</button>
+        </div>
+
+      </wizard-step>
+
+      <!--******************************************************************-->
+      <!--DESCRIZIONE DEL VIAGGIO-->
+      <!--******************************************************************-->
+      <wizard-step stepTitle="Descrizione del viaggio" class="text-center"    >
+
+        <div class="mt-3 p-4">
+          E' il momento di inserire la descrizione del tuo viaggio! Raccontaci com'è andata in <b>{{title}}</b>
+        </div>
 
         <textarea
           name="description"
@@ -94,91 +70,13 @@
           required
           [(ngModel)]="description"
         >
-
-
-
-
-
-
       </textarea>
+
         <div class="mt-3">
-          <button [hidden]="!title" type="button" class="btn" (click)="preinsert()" nextStep>Prosegui</button>
+          <button [hidden]="!description" type="button" class="btn " nextStep>Prosegui</button>
         </div>
 
       </wizard-step>
-
-
-
-      <!--&lt;!&ndash;******************************************************************&ndash;&gt;-->
-      <!--&lt;!&ndash;DESCRIZIONE BREVE DEL VIAGGIO&ndash;&gt;-->
-      <!--&lt;!&ndash;******************************************************************&ndash;&gt;-->
-      <!--<wizard-step stepTitle="Descrizione breve del viaggio" class="text-center"    >-->
-
-      <!--<div class="mt-3 p-4">-->
-      <!--E' il momento di inserire la breve descrizione  del tuo viaggio! Raccontaci in poche righe com'è andata in <b>{{title}}</b>-->
-      <!--</div>-->
-
-      <!--&lt;!&ndash;<textarea&ndash;&gt;-->
-      <!--&lt;!&ndash;name="shortdescription"&ndash;&gt;-->
-      <!--&lt;!&ndash;id="shortdescription"&ndash;&gt;-->
-      <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
-      <!--&lt;!&ndash;aria-describedby="Descrizione"&ndash;&gt;-->
-      <!--&lt;!&ndash;placeholder="Breve descrizione"&ndash;&gt;-->
-      <!--&lt;!&ndash;required&ndash;&gt;-->
-      <!--&lt;!&ndash;[(ngModel)]="shortdescription"&ndash;&gt;-->
-      <!--&lt;!&ndash;&gt;&ndash;&gt;-->
-      <!--&lt;!&ndash;</textarea>&ndash;&gt;-->
-
-      <!--<div class="mt-3">-->
-      <!--<button [hidden]="!shortdescription" type="button" class="btn" nextStep>Prosegui</button>-->
-      <!--</div>-->
-
-      <!--</wizard-step>-->
-
-      <!--&lt;!&ndash;******************************************************************&ndash;&gt;-->
-      <!--&lt;!&ndash;DESCRIZIONE DEL VIAGGIO&ndash;&gt;-->
-      <!--&lt;!&ndash;******************************************************************&ndash;&gt;-->
-      <!--<wizard-step stepTitle="Descrizione del viaggio" class="text-center"    >-->
-
-      <!--<div class="mt-3 p-4">-->
-      <!--E' il momento di inserire la descrizione del tuo viaggio! Raccontaci com'è andata in <b>{{title}}</b>-->
-      <!--</div>-->
-
-      <!---->
-
-      <!--<div class="mt-3">-->
-      <!--<button [hidden]="!description" type="button" class="btn " nextStep>Prosegui</button>-->
-      <!--</div>-->
-
-      <!--</wizard-step>-->
-
-
-      <!--******************************************************************-->
-      <!--Puntatore -->
-      <!--******************************************************************-->
-      <wizard-step stepTitle="Geolocalizza" class="text-center" >
-        <div class="mt-3 p-4">
-          <h2>Geolocalizza il tuo viaggio</h2>
-        </div>
-
-        <!--<agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"   ></agm-map>-->
-
-        <div class="form-group mt-2 mb-4">
-          <input placeholder="cerca località" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
-        </div>
-
-        <div *ngIf="tappe.length > 0" class="text-left">
-          <h4>Longitude: {{tappe|json}}</h4>
-
-        </div>
-
-        <div class="mt-3">
-          <button [hidden]="tappe.length == 0" type="button" class="btn mt-3" nextStep>Prosegui</button>
-        </div>
-
-      </wizard-step>
-
-
 
 
       <!--******************************************************************-->

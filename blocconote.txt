@@ -21,3 +21,6 @@ https://stackoverflow.com/questions/34202588/google-maps-v3-markers-and-polyline
 ng serve --ssl 1 --ssl-key "C:\www\www.fyltravel.it\frontend\node_modules\browser-sync\lib\server\certs\server.key" --ssl-cert "C:\www\www.fyltravel.it\frontend\node_modules\browser-sync\lib\server\certs\server.crt"
 
 ng serve --ssl 1 --ssl-key "C:\www\www.fyltravel.it\frontend\node_modules\browser-sync\lib\server\certs\server.key" --ssl-cert "C:\www\www.fyltravel.it\frontend\node_modules\browser-sync\lib\server\certs\server.crt" --disable-host-check
+
+
+http://bootstrap-wysiwyg.github.io/bootstrap3-wysiwyg/ EDITOR

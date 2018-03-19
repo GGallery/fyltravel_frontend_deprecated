@@ -7,6 +7,7 @@ import {TravelService} from '../services/travel.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {AuthAppService} from '../services/auth.service';
 import {FileUploader} from 'ng2-file-upload/file-upload/file-uploader.class';
+import {IUser} from '../model/IUser';
 
 const URL_PROFILE_IMAGE = environment.apiUrl + 'upload_profile_image';
 
@@ -17,25 +18,22 @@ const URL_PROFILE_IMAGE = environment.apiUrl + 'upload_profile_image';
 })
 export class UserComponent implements OnInit {
 
-
-  public editmode= false;
-
-  public uid: string;
+  public editmode = false;
 
   public userImagepath: string;
-  public userName: string;
-  public userProfile: string[] = [];
-  public userCity: string;
+
   public countTravel: number;
   public bestTravels: any[];
 
+  public customIconPath = environment.customIconPath;
   public travelCoverPath = environment.travelCoverPath + 'cover/';
 
-  public uploader_profile_image: FileUploader = new FileUploader({ url: URL_PROFILE_IMAGE });
-  public hasBaseDropZoneOver = false;
+  // public uploader_profile_image: FileUploader = new FileUploader({ url: URL_PROFILE_IMAGE });
+  // public hasBaseDropZoneOver = false;
 
-  public userInfo: any;
   private errMesg: string;
+
+  public objUSER: IUser;
 
   constructor(
     private userService: UserService,
@@ -45,18 +43,15 @@ export class UserComponent implements OnInit {
 
   ) {
 
-
-
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.uid = params['uid'];
-      this.get_CountTravel(this.uid);
-      this.get_UserInfo(this.uid);
-      this.getBestTravels(this.uid);
+      const uid = params['uid'];
+      this.get_CountTravel(uid);
+      this.get_UserInfo(uid);
+      this.getBestTravels(uid);
     });
-
   }
 
   private get_CountTravel(uid: string) {
@@ -77,23 +72,17 @@ export class UserComponent implements OnInit {
       );
   }
 
-
   private get_UserInfo(uid: string ) {
     this.userService.get_UserInfo(uid).subscribe(
       (response) => {
-        const user = response;
+        this.objUSER = response;
+        console.log('UserDAta' , this.objUSER);
 
-        this.userImagepath = environment.profileImagePath + user.image;
-        this.userName = user.name;
-        user.tipology.forEach(single => {
-          this.userProfile.push(single.tipologia);
-        });
-        this.userCity = 'Genova';
+        this.userImagepath = environment.profileImagePath + this.objUSER.image;
 
-
-        if (this.auth.userid === user.id) {
+        if (this.auth.userid === this.objUSER.id) {
           this.editmode = true;
-          console.log('è il mio profilo');
+          console.log('E\' proprio il mio profilo');
         }
 
       },
@@ -102,19 +91,5 @@ export class UserComponent implements OnInit {
   }
 
 
-  public upload_profile_image(e: any): void {
-    this.hasBaseDropZoneOver = e;
-    this.uploader_profile_image.onAfterAddingFile = (file) => { file.withCredentials = false; };
-    this.uploader_profile_image.onBuildItemForm = (fileItem: any, form: any) => {
-      form.append('token', this.auth.currentToken);
-      form.append('uid', this.uid);
-    };
-    this.uploader_profile_image.uploadAll();
-
-    this.uploader_profile_image.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
-      const responsePath = JSON.parse(response);
-      this.userImagepath = environment.profileImagePath + responsePath.file;
-    };
-  }
 }
 

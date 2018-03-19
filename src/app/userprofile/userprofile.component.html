@@ -1,0 +1,91 @@
+<div class="container">
+  <form
+    #userForm="ngForm"
+    class=" "
+    *ngIf="user"
+  >
+    <div class="row my-5">
+      <div class="col col-md-4">
+
+        <div ng2FileDrop=""
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+             (fileOver)="upload_profile_image($event)"
+             [uploader]="uploader_profile_image"
+             class="well my-drop-zone "
+             [style.background-image]="backgroundImg">
+          <img   [src]="userImagepath"  class="w-100 img-thumbnail"/>
+        </div>
+
+        <div class="form-group">
+          <textarea
+            class="form-control mt-2"
+            id="descrizione"
+            name="descrizione"
+            [(ngModel)]="user.descrizione"
+            placeholder="Una mia breve descrizione"
+          ></textarea>
+        </div>
+
+      </div>
+      <div class="col col-md-8">
+
+        <div class="form-group">
+          <label for="name">Nome e cognome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            [(ngModel)]="user.name"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            [(ngModel)]="user.email"
+            required email
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="natoa">Sono nato a</label>
+          <input
+            type="text"
+            class="form-control"
+            id="natoa"
+            name="natoa"
+            [(ngModel)]="user.natoa">
+        </div>
+
+        <div class="form-group">
+          <label for="vivea">Attualmente vivo a</label>
+          <input
+            placeholder="cerca località"
+            autocorrect="on"
+            autocapitalize="on"
+            spellcheck="off"
+            type="text"
+            class="form-control"
+            #vivea
+            id="vivea"
+            name="vivea"
+            [formControl]="searchControl"
+            [(ngModel)] = "user.vivea"
+          >
+        </div>
+
+        <button type="submit" class="btn btn-success" (click)="onSubmit()">Salva</button>
+
+
+      </div>
+    </div>
+
+  </form>
+</div>
+

@@ -1,0 +1,9 @@
+.itinerario {
+  border-bottom: 6px grey;
+  border-bottom-style: dashed;
+  margin-bottom: 32px;
+}
+
+h1{
+  font-size: 2em;
+}

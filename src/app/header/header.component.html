@@ -25,15 +25,15 @@
     <ul class="navbar-nav ml-auto">
       <ng-template [ngIf]="isAuthenticated">
         <li class="navbar-item ">
-          <a  [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo   float-right" width="50"/></a>
+          <a  [routerLink]="['/user',uid]" class=""><img [src]="profileImagepath" alt="" class="profilo   float-right" width="80"/></a>
         </li>
 
         <li>
-          <a  routerLink="/createtravel"><i class="material-icons">add_box</i></a>
+          <a  routerLink="/createtravel"><i class="material-icons middler">add_box</i></a>
         </li>
 
         <li class="navbar-item ">
-          <a href="#" (click)="logout()"><i class="material-icons">exit_to_app</i></a>
+          <a href="#" (click)="logout()"><i class="material-icons smaller ">exit_to_app</i></a>
         </li>
 
       </ng-template>

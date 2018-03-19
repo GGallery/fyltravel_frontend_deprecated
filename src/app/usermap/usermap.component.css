@@ -11,5 +11,8 @@
 .cover-travel-select {
   float: left;
   margin-right: 10px;
+}
 
+.mat-card {
+  background-color: ghostwhite;
 }

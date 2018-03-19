@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import { TravelService } from '../services/travel.service';
 import { AuthAppService } from '../services/auth.service';
 import {environment} from '../../environments/environment';
+import {ITravel} from '../model/ITravel';
+import {IItinerario} from '../model/IItinerario';
 
 @Component({
   selector: 'app-travel-list',
@@ -10,7 +12,10 @@ import {environment} from '../../environments/environment';
 })
 export class TravelListComponent implements OnInit {
 
-  public travels;
+  public travels: ITravel[];
+  public itinerari: IItinerario[];
+
+
   private errMesg: string;
   public travelCoverPath = environment.travelCoverPath + 'cover/';
   public customIconPath = environment.customIconPath
@@ -23,24 +28,34 @@ export class TravelListComponent implements OnInit {
     private travelService: TravelService
   ) {
     this.travels = [];
-    this.errMesg;
-
+    this.itinerari = [];
    }
 
   ngOnInit() {
-    this.getUserTravels(this.uid);
+    this.getUserFreeTravels(this.uid);
+    this.getItinerari(this.uid);
   }
 
-  private getUserTravels(uid: string) {
-    this.travelService.getUserTravels(uid)
+  private getUserFreeTravels(uid: string) {
+    this.travelService.getUserFreeTravels(uid)
       .subscribe(
-      results => {
-        this.loading = false;
-        const travels = results;
-        this.travels = travels;
-        console.log(travels);
-      },
-      error => this.errMesg = <any>error
+        results => {
+          this.loading = false;
+          this.travels = results;
+          console.log('travel' , this.travels);
+        },
+        error => this.errMesg = <any>error
+      );
+  }
+
+  private getItinerari(uid: string) {
+    this.travelService.getUserItinerari(uid)
+      .subscribe(
+        results => {
+          this.itinerari = results;
+          console.log('itinerari' , this.itinerari);
+        },
+        error => this.errMesg = <any>error
       );
   }
 

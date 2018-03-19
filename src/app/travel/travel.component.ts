@@ -22,6 +22,12 @@ export class TravelComponent implements OnInit {
   public coverurl: string;
   public tappe: any[];
   public video: string;
+  public hashtag: string;
+  public rate: number;
+  public author: any;
+
+  public latitude: any;
+  public longitude: any;
 
   public scopo: any[]= [];
   public keywords: any[]= [];
@@ -62,7 +68,11 @@ export class TravelComponent implements OnInit {
               this.video = travel.video;
               this.scopo  = travel.scopo;
               this.keywords = travel.keywords;
+              this.hashtag = travel.hashtag;
               this.consigliatoa = travel.consigliatoa;
+              this.rate = travel.rate;
+              this.author = travel.user;
+
               this.coverurl = environment.travelCoverPath + 'cover/' + this.cover;
 
               console.log(this.auth.userid);

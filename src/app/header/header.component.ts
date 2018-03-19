@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit  {
 
     this.AuthAppService.loginStatus.subscribe(
       status => {
-        console.log('Login satus' + status)
+        console.log('Login satus' + status);
         this.login();
       }
     );

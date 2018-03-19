@@ -1,0 +1,38 @@
+.action{
+  border-top: 1px solid gray;
+  font-size: 12px;
+
+}
+
+
+a:hover{
+  color: #009D57;
+}
+
+.keyico {
+  width: 236px;
+  position: relative;
+  float: left;
+}
+.travel-card {
+  width: 100%;
+}
+
+.material-icons{
+  cursor: pointer;
+}
+
+.mat-card{
+  margin-bottom: 15px;
+}
+
+.author{
+  font-size: 12px;
+
+}
+
+.description{
+  font-size: 15px;
+  line-height: 20px;
+  text-align: justify;
+}

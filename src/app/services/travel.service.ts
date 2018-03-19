@@ -12,6 +12,7 @@ import 'rxjs/add/operator/switchMap';
 
 
 
+
 @Injectable()
 export class TravelService {
 
@@ -33,9 +34,27 @@ export class TravelService {
       .catch(this.handleError);
   }
 
+  getUserFreeTravels(uid: string):  Observable<any> {
+    return this._http.post(this.api + 'userFreeTravels?token=' + this.AuthAppService.currentToken,
+      {uid:  uid},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(res => res.json())
+
+      .catch(this.handleError);
+
+  }
+
   getUserItinerari(uid: string):  Observable<any> {
     return this._http.post(this.api + 'userItinerari?token=' + this.AuthAppService.currentToken,
       {uid:  uid},
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  getItinerario(id: number):  Observable<any> {
+    return this._http.post(this.api + 'getItinerario?token=' + this.AuthAppService.currentToken,
+      {id:  id},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
       .catch(this.handleError);
@@ -49,6 +68,8 @@ export class TravelService {
       .catch(this.handleError);
   }
 
+
+
   updateTravel(
     id: number,
     title: string,
@@ -59,7 +80,10 @@ export class TravelService {
     publish: number,
     scopi: number[],
     keywords: number[],
-    consigliatoa: number[]
+    consigliatoa: number[],
+    latitude: any,
+    longitude: any
+
   ):  any {
     return this._http.post(this.api + 'updatetravel?token=' + this.AuthAppService.currentToken,
       {
@@ -72,7 +96,9 @@ export class TravelService {
         publish: publish,
         scopi: scopi,
         keywords: keywords,
-        consigliatoa: consigliatoa
+        consigliatoa: consigliatoa,
+        latitude: latitude,
+        longitude: longitude
       },
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())

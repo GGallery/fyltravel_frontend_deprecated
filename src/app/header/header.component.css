@@ -30,8 +30,8 @@
   /*#000000*/
 }
 .profilo {
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   border-radius: 3px;
   margin-top: 3px;
   margin-right: 4px;
@@ -60,4 +60,12 @@
 
 .form-inline  {
   align-items: baseline !important;
+}
+
+.middler{
+  font-size: 35px;
+}
+
+.smaller{
+  font-size: 25px;
 }

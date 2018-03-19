@@ -1,64 +1,103 @@
-<div class="container">
-  <div class="display-3">{{title}}</div>
-
+<div class="container" *ngIf="title">
+  <div class="row">
+    <div class="col-md-12">
+    <div class="display-3">{{title}}</div>
+    <span>di {{author.name}}</span>
+    <span class="pull-right">dal 10/02/2018 al 20/02/2018</span>
+    </div>
+  </div>
   <div class="row">
 
     <div class="col-md-12">
-
-
-
-
       <div *ngIf="video">
         <video class="w-100"  controls>
           <source src="{{travelVideoPath +video}}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
+
+      <div *ngIf="!video">
+        <div *ngIf="editmode" ng2FileDrop
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+             (fileOver)="upload_cover($event)"
+             [uploader]="uploader_cover"
+             class="well my-drop-zone "
+             [style.background-image]="backgroundImg">
+
+          <img *ngIf="editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
+
+          <div [hidden]="cover">Trascina qui l'immagine di copertina del viaggio</div>
+        </div>
+
+        <img *ngIf="!editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
+
+        <div class="progress">
+          <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_cover.progress + '%' }"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9">
+      <app-gallery [travel_id]='id' ></app-gallery>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-3 text-center">
 
-      <app-mappatravel  [editmode]="editmode" [travel_id]='id' ></app-mappatravel>
+      Caratteristiche<br>
+      <span *ngFor="let obj of keywords">
+              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            </span>
+      <br><br>
+
+      Scopo<br>
+      <span *ngFor="let obj of scopo">
+              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            </span>
+
+      <br><br>
+      Consigliato a <br>
+      <span *ngFor="let obj of consigliatoa">
+              <img width="30" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
+            </span>
+
+      <br><br>
+      <button class="btn"> VIAGGIO DA FARE </button>
     </div>
+  </div>
 
+  <br> <br>
+
+  <app-mappatravel  [editmode]="editmode" [travel_id]='id' ></app-mappatravel>
+
+
+  <div class="col-md-12">
+
+    {{hashtag}}
+    <hr>
+  </div>
+
+  <div class="row">
     <div class="col-md-12">
-      <!--<div *ngIf="editmode" ng2FileDrop-->
-      <!--[ngClass]="{'nv-file-over': hasBaseDropZoneOver}"-->
-      <!--(fileOver)="upload_cover($event)"-->
-      <!--[uploader]="uploader_cover"-->
-      <!--class="well my-drop-zone "-->
-      <!--[style.background-image]="backgroundImg">-->
 
-      <!--<img *ngIf="editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>-->
 
-      <!--<div [hidden]="cover">Trascina qui l'immagine di copertina del viaggio</div>-->
+      <!--<div class="row p-0 m-0">-->
+      <!--<div class="col-md-3 p-0 m-0">-->
+      <!--<span *ngFor="let obj of scopo">-->
+      <!--<img width="20" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">-->
+      <!--</span>-->
       <!--</div>-->
 
-      <!--<img *ngIf="!editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>-->
 
-      <div class="progress">
-        <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_cover.progress + '%' }"></div>
-      </div>
 
-      <div class="row p-0 m-0">
-        <div class="col-md-3 p-0 m-0">
-          <span *ngFor="let obj of scopo">
-              <img width="20" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
-            </span>
-        </div>
-
-        <div class="col-md-3 p-0 m-0">
-          <span *ngFor="let obj of keywords">
-              <img width="20" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
-            </span>
-        </div>
-        <div class="col-md-3 p-0 m-0">
-          <span *ngFor="let obj of consigliatoa">
-              <img width="20" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">
-            </span>
-        </div>
-
-      </div>
+      <!--<div class="col-md-3 p-0 m-0">-->
+      <!--<span *ngFor="let obj of consigliatoa">-->
+      <!--<img width="20" src="{{customIconPath + obj.icona}}" title="{{obj.value}}">-->
+      <!--</span>-->
+      <!--</div>-->
+      <!---->
+      <!--</div>-->
 
       <div>
 
@@ -75,6 +114,27 @@
       <div class="lead text-justify">
         {{description}}
       </div>
+
+      <div class="lead text-center">
+        <h4>{{author.name}} ha assegnato un punteggio di {{rate}}</h4>
+
+
+        <!--
+        **********************************
+        AGGIUNGERE QUI LE STELLINE DEL RATE
+        **********************************
+        -->
+
+        <!--<ng-template #tt let-i="index" let-v="value">-->
+        <!--<button class="btn btn-{{i < v ? 'fyl' : 'default'}}">-->
+        <!--{{i < v ? '&#9733;' : '&#9734;'}}-->
+        <!--</button>-->
+        <!--</ng-template>-->
+
+
+      </div>
+
+
 
     </div>
 

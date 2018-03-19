@@ -8,6 +8,8 @@ import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { Travel } from '../model/travel';
 import {forEach} from '@angular/router/src/utils/collection';
+import {IUser} from '../model/IUser';
+import {IPosition} from '../model/IPosition';
 
 @Component({
   selector: 'app-usermap',
@@ -31,15 +33,16 @@ export class UsermapComponent implements OnInit {
   public mappa: any;
 
 
+  public userViveA: any;
+
   private errMesg: any;
   public travelCoverPath = environment.travelCoverPath;
 
-  @Input() uid: string;
+  @Input() user: IUser;
+
 
   constructor(
     private travelService: TravelService,
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
   ) { }
 
 
@@ -51,16 +54,19 @@ export class UsermapComponent implements OnInit {
     this.longitude = 9.186515999999983;
 
     this.mapWidth = 'col-md-12';
-    this.getUserTravels(this.uid);
+
+    this.userViveA = JSON.parse(this.user.viveageolocation);
+
+    this.getUserTravels();
 
   }
 
-  public getUserTravels(uid: string) {
-    this.travelService.getUserTravels(uid)
+  public getUserTravels() {
+    this.travelService.getUserTravels(this.user.uid.toString())
       .subscribe(
         (result) => {
-          const travels = result;
-          this.travels = travels;
+          this.travels = result;
+          console.log(this.travels);
         },
         error => this.errMesg = <any>error
       );
