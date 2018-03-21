@@ -10,6 +10,8 @@ import { Travel } from '../model/travel';
 import {forEach} from '@angular/router/src/utils/collection';
 import {IUser} from '../model/IUser';
 import {IPosition} from '../model/IPosition';
+import {IItinerario} from '../model/IItinerario';
+import {ITravel} from '../model/ITravel';
 
 @Component({
   selector: 'app-usermap',
@@ -20,35 +22,46 @@ import {IPosition} from '../model/IPosition';
 export class UsermapComponent implements OnInit {
 
 
+  @Input() travels: ITravel[];
+  @Input() itinerari: IItinerario[];
+  @Input() user: IUser;
+
+  public userViveA: any;
+  public polilyne: ITravel[] = [];
+
   public currentTravel;
   public currentTappa;
-
-  public travels;
   public latitude: number ;
+
   public longitude: number ;
   public zoom: number ;
 
   public mapWidth: string;
 
   public mappa: any;
-
-
-  public userViveA: any;
-
   private errMesg: any;
+
   public travelCoverPath = environment.travelCoverPath;
 
-  @Input() user: IUser;
-
-
   constructor(
-    private travelService: TravelService,
+
   ) { }
 
 
   ngOnInit() {
 
-    this.travels = [];
+    console.log('MapTRavel', this.travels);
+    console.log('MapItinerari', this.itinerari);
+
+
+
+    this.itinerari.forEach(itinerario => {
+      this.travels = [...this.travels, ...itinerario.travels];
+      this.polilyne = [...this.polilyne, ...itinerario.travels];
+    });
+
+    console.log(this.polilyne);
+
     this.zoom = 2;
     this.latitude = 45.4642035;
     this.longitude = 9.186515999999983;
@@ -57,20 +70,10 @@ export class UsermapComponent implements OnInit {
 
     this.userViveA = JSON.parse(this.user.viveageolocation);
 
-    this.getUserTravels();
-
   }
 
-  public getUserTravels() {
-    this.travelService.getUserTravels(this.user.uid.toString())
-      .subscribe(
-        (result) => {
-          this.travels = result;
-          console.log(this.travels);
-        },
-        error => this.errMesg = <any>error
-      );
-  }
+
+
   clickedMarker(travel: any, tappa: any) {
     this.currentTravel = travel;
     this.currentTappa = tappa;

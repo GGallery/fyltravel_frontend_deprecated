@@ -16,3 +16,7 @@
 .mat-card {
   background-color: ghostwhite;
 }
+
+.mat-card-content {
+  line-height: 25px;
+}

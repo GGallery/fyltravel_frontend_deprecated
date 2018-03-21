@@ -1,6 +1,9 @@
 <div class="container mt-2" *ngIf="objUSER">
 
-  <app-usermap [user]="objUSER"></app-usermap>
+
+  <div *ngIf="travels && itinerari">
+    <app-usermap [travels]="travels" [itinerari]="itinerari" [user]="objUSER"></app-usermap>
+  </div>
 
   <div class="row">
 
@@ -14,7 +17,8 @@
     </div>
 
     <div class="col-md-9 mt-4  userinfo">
-      <span id="contatta" class="pull-right border">contatta</span>
+      <div *ngIf="!editmode"><span class="pull-right border">Contatta</span></div>
+
       <h3><a href="#">{{objUSER.name}}</a></h3>
       <span *ngIf="objUSER.natoa">nato a <b>{{ objUSER.natoa }}</b>, </span>
       <span *ngIf="objUSER.vivea">vive a <b>{{ objUSER.vivea }}</b>, </span>
@@ -33,9 +37,9 @@
       <span>  <img width="40" src="{{customIconPath + '05.png'}}"/> </span>
     </div>
 
-      <p *ngIf="objUSER.descrizione">
-        {{ objUSER.descrizione }}
-      </p>
+    <p *ngIf="objUSER.descrizione">
+      {{ objUSER.descrizione }}
+    </p>
 
   </div>
 
@@ -59,7 +63,7 @@
     <hr>
   </div>
 
-
-  <app-travel-list [uid]="objUSER.uid"></app-travel-list>
-
+  <div *ngIf="travels, itinerari">
+    <app-travel-list [travels]="travels" [itinerari]="itinerari"></app-travel-list>
+  </div>
 </div>

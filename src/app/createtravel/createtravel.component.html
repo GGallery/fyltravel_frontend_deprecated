@@ -1,9 +1,6 @@
-<div class="container wizard-viaggio my-4 p-4">
+<div   class="container wizard-viaggio my-4 p-4">
 
-
-
-
-  <form>
+  <form #createTravel = "ngForm" >
     <wizard navBarLayout="large-filled">
 
       <!--******************************************************************-->
@@ -44,31 +41,36 @@
                aria-describedby="Titolo"
                placeholder="Titolo del viaggio"
                required
-               [(ngModel)]="title"
+               [(ngModel)]="newTravel.title"
         >
-
         <br>
 
 
-        <input type="text"
-               name="dal"
-               id="dal"
-               class="form-control  col-md-5"
-               aria-describedby="Titolo"
-               placeholder="Data partenza"
-               required
-               [(ngModel)]="dal"
-        >
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text"
+                   name="dal"
+                   id="dal"
+                   class="form-control"
+                   aria-describedby="Titolo"
+                   placeholder="Data partenza gg-mm-aaaa"
+                   required
+                   [(ngModel)]="newTravel.dal"
+            >
+          </div>
+          <div class="col-md-6">
+            <input type="text"
+                   name="al"
+                   id="al"
+                   class="form-control"
+                   aria-describedby="Titolo"
+                   placeholder="Data ritorno gg-mm-aaaa"
+                   required
+                   [(ngModel)]="newTravel.al"
+            >
+          </div>
+        </div>
 
-        <input type="text"
-               name="al"
-               id="al"
-               class="form-control col-md-5 "
-               aria-describedby="Titolo"
-               placeholder="Data ritorno"
-               required
-               [(ngModel)]="al"
-        >
 
         <br>
 
@@ -79,7 +81,7 @@
           aria-describedby="Descrizione"
           placeholder="Breve descrizione"
           required
-          [(ngModel)]="shortdescription"
+          [(ngModel)]="newTravel.shortdescription"
         >
       </textarea>
 
@@ -92,65 +94,15 @@
           aria-describedby="Descrizione"
           placeholder="Descrizione"
           required
-          [(ngModel)]="description"
+          [(ngModel)]="newTravel.description"
         >
-
-
-
-
-
 
       </textarea>
         <div class="mt-3">
-          <button [hidden]="!title" type="button" class="btn" (click)="preinsert()" nextStep>Prosegui</button>
+          <button [hidden]="!newTravel.title" type="button" class="btn"   nextStep>Prosegui</button>
         </div>
 
       </wizard-step>
-
-
-
-      <!--&lt;!&ndash;******************************************************************&ndash;&gt;-->
-      <!--&lt;!&ndash;DESCRIZIONE BREVE DEL VIAGGIO&ndash;&gt;-->
-      <!--&lt;!&ndash;******************************************************************&ndash;&gt;-->
-      <!--<wizard-step stepTitle="Descrizione breve del viaggio" class="text-center"    >-->
-
-      <!--<div class="mt-3 p-4">-->
-      <!--E' il momento di inserire la breve descrizione  del tuo viaggio! Raccontaci in poche righe com'è andata in <b>{{title}}</b>-->
-      <!--</div>-->
-
-      <!--&lt;!&ndash;<textarea&ndash;&gt;-->
-      <!--&lt;!&ndash;name="shortdescription"&ndash;&gt;-->
-      <!--&lt;!&ndash;id="shortdescription"&ndash;&gt;-->
-      <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
-      <!--&lt;!&ndash;aria-describedby="Descrizione"&ndash;&gt;-->
-      <!--&lt;!&ndash;placeholder="Breve descrizione"&ndash;&gt;-->
-      <!--&lt;!&ndash;required&ndash;&gt;-->
-      <!--&lt;!&ndash;[(ngModel)]="shortdescription"&ndash;&gt;-->
-      <!--&lt;!&ndash;&gt;&ndash;&gt;-->
-      <!--&lt;!&ndash;</textarea>&ndash;&gt;-->
-
-      <!--<div class="mt-3">-->
-      <!--<button [hidden]="!shortdescription" type="button" class="btn" nextStep>Prosegui</button>-->
-      <!--</div>-->
-
-      <!--</wizard-step>-->
-
-      <!--&lt;!&ndash;******************************************************************&ndash;&gt;-->
-      <!--&lt;!&ndash;DESCRIZIONE DEL VIAGGIO&ndash;&gt;-->
-      <!--&lt;!&ndash;******************************************************************&ndash;&gt;-->
-      <!--<wizard-step stepTitle="Descrizione del viaggio" class="text-center"    >-->
-
-      <!--<div class="mt-3 p-4">-->
-      <!--E' il momento di inserire la descrizione del tuo viaggio! Raccontaci com'è andata in <b>{{title}}</b>-->
-      <!--</div>-->
-
-      <!---->
-
-      <!--<div class="mt-3">-->
-      <!--<button [hidden]="!description" type="button" class="btn " nextStep>Prosegui</button>-->
-      <!--</div>-->
-
-      <!--</wizard-step>-->
 
 
       <!--******************************************************************-->
@@ -159,26 +111,27 @@
       <wizard-step stepTitle="Geolocalizza" class="text-center" >
         <div class="mt-3 p-4">
           <h2>Geolocalizza il tuo viaggio</h2>
-        </div>
 
-        <!--<agm-map [id]="mappa" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom"   ></agm-map>-->
+          Inizia a scrivere la località e scegline una tra quelle che ti vengono proposte.
+        </div>
 
         <div class="form-group mt-2 mb-4">
-          <input placeholder="cerca località" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
-        </div>
-
-        <div *ngIf="tappe.length > 0" class="text-left">
-          <h4>Longitude: {{tappe|json}}</h4>
-
+          <input
+            placeholder="cerca località"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="off"
+            type="text"
+            class="form-control"
+            #search
+            [formControl]="searchControl">
         </div>
 
         <div class="mt-3">
-          <button [hidden]="tappe.length == 0" type="button" class="btn mt-3" nextStep>Prosegui</button>
+          <button [hidden]="!newTravel.position" type="button" class="btn mt-3" nextStep>Prosegui</button>
         </div>
 
       </wizard-step>
-
-
 
 
       <!--******************************************************************-->
@@ -259,7 +212,7 @@
                aria-describedby="Hashtag"
                placeholder="Hashtag"
                required
-               [(ngModel)]="hashtag"
+               [(ngModel)]="objTravel.hashtag"
         >
         <div class="mt-3">
           <button type="button" class="btn" nextStep>Prosegui</button>

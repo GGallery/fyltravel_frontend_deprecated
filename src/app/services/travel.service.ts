@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
+import {ITravel} from '../../../../../../../www/www.fyltravel.it/frontend/src/app/model/ITravel';
 
 
 
@@ -60,46 +61,18 @@ export class TravelService {
       .catch(this.handleError);
   }
 
-  newTravel(title: string ):  Observable<number> {
-    return this._http.post(this.api + 'newtravel?token=' + this.AuthAppService.currentToken,
-      {title: title },
-      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
+  newTravel(travel: ITravel ):  Observable<number> {
+    return this._http.post(this.api + 'newtravel?token=' + this.AuthAppService.currentToken, travel,
+      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) }
+      )
       .map(res => res.json())
       .catch(this.handleError);
   }
 
 
 
-  updateTravel(
-    id: number,
-    title: string,
-    description: string,
-    shortdescription: string,
-    hashtag: string,
-    rate: number,
-    publish: number,
-    scopi: number[],
-    keywords: number[],
-    consigliatoa: number[],
-    latitude: any,
-    longitude: any
-
-  ):  any {
-    return this._http.post(this.api + 'updatetravel?token=' + this.AuthAppService.currentToken,
-      {
-        id: id,
-        title: title,
-        description: description,
-        shortdescription: shortdescription,
-        hashtag: hashtag,
-        rate: rate,
-        publish: publish,
-        scopi: scopi,
-        keywords: keywords,
-        consigliatoa: consigliatoa,
-        latitude: latitude,
-        longitude: longitude
-      },
+  updateTravel(travel: ITravel):  any {
+    return this._http.post(this.api + 'updatetravel?token=' + this.AuthAppService.currentToken, travel,
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
       .catch(this.handleError);

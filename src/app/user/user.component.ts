@@ -8,6 +8,8 @@ import {ActivatedRoute, Params} from '@angular/router';
 import {AuthAppService} from '../services/auth.service';
 import {FileUploader} from 'ng2-file-upload/file-upload/file-uploader.class';
 import {IUser} from '../model/IUser';
+import {IItinerario} from '../model/IItinerario';
+import {ITravel} from '../model/ITravel';
 
 const URL_PROFILE_IMAGE = environment.apiUrl + 'upload_profile_image';
 
@@ -28,6 +30,10 @@ export class UserComponent implements OnInit {
   public customIconPath = environment.customIconPath;
   public travelCoverPath = environment.travelCoverPath + 'cover/';
 
+  public travels: ITravel[] ;
+  public itinerari: IItinerario[] ;
+
+
   // public uploader_profile_image: FileUploader = new FileUploader({ url: URL_PROFILE_IMAGE });
   // public hasBaseDropZoneOver = false;
 
@@ -42,7 +48,6 @@ export class UserComponent implements OnInit {
     private auth: AuthAppService
 
   ) {
-
   }
 
   ngOnInit() {
@@ -51,6 +56,8 @@ export class UserComponent implements OnInit {
       this.get_CountTravel(uid);
       this.get_UserInfo(uid);
       this.getBestTravels(uid);
+      this.getUserFreeTravels(uid);
+      this.getItinerari(uid);
     });
   }
 
@@ -90,6 +97,28 @@ export class UserComponent implements OnInit {
     );
   }
 
+  private getUserFreeTravels(uid: string) {
+    this.travelService.getUserFreeTravels(uid)
+      .subscribe(
+        results => {
+          this.travels = [];
+          this.travels = results;
+        },
+        error => this.errMesg = <any>error
+      );
+  }
+
+  private getItinerari(uid: string) {
+    this.travelService.getUserItinerari(uid)
+      .subscribe(
+        results => {
+          this.itinerari = [];
+          this.itinerari = results;
+          console.log('itinerari' , this.itinerari);
+        },
+        error => this.errMesg = <any>error
+      );
+  }
 
 }
 

@@ -18,7 +18,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 import { TravelService } from './services/travel.service';
 import { TravelListComponent } from './travel-list/travel-list.component';
-import { TravelComponent } from './travel/travel.component';
+import {TravelComponent} from './travel/travel.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule, MatIconModule, MatProgressSpinnerModule} from '@angular/material';
@@ -102,8 +102,7 @@ const routes: Routes = [
     ItinerarioComponent,
     ItinerarioeditComponent,
     UserprofileComponent,
-    TravelListItemComponent
-
+    TravelListItemComponent,
   ],
   imports: [
     AgmCoreModule.forRoot({

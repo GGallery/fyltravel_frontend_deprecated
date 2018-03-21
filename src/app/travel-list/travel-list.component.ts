@@ -12,51 +12,50 @@ import {IItinerario} from '../model/IItinerario';
 })
 export class TravelListComponent implements OnInit {
 
-  public travels: ITravel[];
-  public itinerari: IItinerario[];
+  @Input() travels: ITravel[];
+  @Input() itinerari: IItinerario[];
 
 
   private errMesg: string;
   public travelCoverPath = environment.travelCoverPath + 'cover/';
-  public customIconPath = environment.customIconPath
+  public customIconPath = environment.customIconPath;
 
   public loading= true;
 
-  @Input() uid: string;
 
   constructor(
     private travelService: TravelService
   ) {
-    this.travels = [];
-    this.itinerari = [];
+    // this.travels = [];
+    // this.itinerari = [];
    }
 
   ngOnInit() {
-    this.getUserFreeTravels(this.uid);
-    this.getItinerari(this.uid);
+    // this.getUserFreeTravels(this.uid);
+    // this.getItinerari(this.uid);
   }
 
-  private getUserFreeTravels(uid: string) {
-    this.travelService.getUserFreeTravels(uid)
-      .subscribe(
-        results => {
-          this.loading = false;
-          this.travels = results;
-          console.log('travel' , this.travels);
-        },
-        error => this.errMesg = <any>error
-      );
-  }
-
-  private getItinerari(uid: string) {
-    this.travelService.getUserItinerari(uid)
-      .subscribe(
-        results => {
-          this.itinerari = results;
-          console.log('itinerari' , this.itinerari);
-        },
-        error => this.errMesg = <any>error
-      );
-  }
+  // private getUserFreeTravels(uid: string) {
+  //   this.travelService.getUserFreeTravels(uid)
+  //     .subscribe(
+  //       results => {
+  //         this.loading = false;
+  //         this.travels = results;
+  //         console.log('travel' , this.travels);
+  //       },
+  //       error => this.errMesg = <any>error
+  //     );
+  // }
+  //
+  // private getItinerari(uid: string) {
+  //   this.travelService.getUserItinerari(uid)
+  //     .subscribe(
+  //       results => {
+  //         this.itinerari = results;
+  //         console.log('itinerari' , this.itinerari);
+  //       },
+  //       error => this.errMesg = <any>error
+  //     );
+  // }
 
 }

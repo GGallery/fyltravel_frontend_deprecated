@@ -15,9 +15,6 @@ export class GalleryComponent implements OnInit {
 
   @Input() travel_id: number;
 
-
-  // URL GIT HUB https://github.com/lukasz-galka/ngx-gallery
-
   constructor(
     private travelservice: TravelService
   ) { }
@@ -58,46 +55,6 @@ export class GalleryComponent implements OnInit {
       }
     ];
 
-
-
-
-
-
-    // this.galleryImages = [
-    //   {
-    //     small: 'https://api.fyltravel.it/storage/_i/15105876165a09bce009252.jpg',
-    //     medium: 'https://api.fyltravel.it/storage/_i/15105876165a09bce009252.jpg',
-    //     big: 'https://api.fyltravel.it/storage/_i/15105876165a09bce009252.jpg',
-    //     description: 'description1'
-    //   },
-    //   {
-    //     small: 'https://api.fyltravel.it/storage/_i/15105876175a09bce12ba4b.jpg',
-    //     medium: 'https://api.fyltravel.it/storage/_i/15105876175a09bce12ba4b.jpg',
-    //     big: 'https://api.fyltravel.it/storage/_i/15105876175a09bce12ba4b.jpg',
-    //     description: 'description1'
-    //   },
-    //   {
-    //     small: 'https://api.fyltravel.it/storage/_i/15105876185a09bce246aa9.jpg',
-    //     medium: 'https://api.fyltravel.it/storage/_i/15105876185a09bce246aa9.jpg',
-    //     big: 'https://api.fyltravel.it/storage/_i/15105876185a09bce246aa9.jpg',
-    //     description: 'description1'
-    //   },
-    //   {
-    //     small: 'https://api.fyltravel.it/storage/_i/15105876195a09bce33555d.jpg',
-    //     medium: 'https://api.fyltravel.it/storage/_i/15105876195a09bce33555d.jpg',
-    //     big: 'https://api.fyltravel.it/storage/_i/15105876195a09bce33555d.jpg'
-    //   },
-    //   {
-    //     small: 'https://api.fyltravel.it/storage/_i/15105876205a09bce4909e9.jpg',
-    //     medium: 'https://api.fyltravel.it/storage/_i/15105876205a09bce4909e9.jpg',
-    //     big: 'https://api.fyltravel.it/storage/_i/15105876205a09bce4909e9.jpg'
-    //   },
-    //   {
-    //     small: 'https://api.fyltravel.it/storage/_i/15105876225a09bce61be9f.jpg',
-    //     medium: 'https://api.fyltravel.it/storage/_i/15105876225a09bce61be9f.jpg',
-    //     big: 'https://api.fyltravel.it/storage/_i/15105876225a09bce61be9f.jpg'
-    //   }
-    // ];
   }
 
 

@@ -9,6 +9,9 @@ import {environment} from '../../environments/environment';
 import { ElementRef, NgZone,  ViewChild, Input } from '@angular/core';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import {ITravel} from '../model/ITravel';
+import {publish} from 'rxjs/operator/publish';
+import {IPosition} from '../model/IPosition';
 
 
 @Component({
@@ -23,35 +26,16 @@ export class CreatetravelComponent implements OnInit {
   public list_keyword: any[] = [];
   public list_consigliatoa: any[]= [];
 
-  public id: number;
-  public title: string;
-  public description: string;
-  public hashtag: string;
-  public shortdescription: string;
-  public rate = 6;
+  public newTravel: ITravel;
+
   public scopi: number[] = [];
   public keywords: number[] = [];
   public consigliatoa: number[] = [];
-  public dal: string;
-  public al: string;
+
   public customIconPath = environment.customIconPath;
 
-  public latitude: number;
-  public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
-
-  public  userTravels= 0;
-
-  public latlngBounds: any;
-  public bounds: any;
-
-  public mappa: any;
-
-  public tappe: any[] = [];
-
-  @Input() travel_id: number;
-  @Input() editmode: boolean;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -67,8 +51,24 @@ export class CreatetravelComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.newTravel = new ITravel({
+      title: '',
+      author: this.AuthAppService.userid,
+      description: '',
+      shortdescriptio: '',
+      hashtag: '',
+      position: '',
+      pubblicato: 0,
+      consigliatoa: '',
+      keywords: '',
+      scopo: '',
+      rate: '',
+      dal: '',
+      al: '',
+    });
+    console.log(this.newTravel);
 
-    this.getUserTravels(this.AuthAppService.uid);
+
     this.getScopi();
     this.getKeywords();
     this.getConsigliatoa();
@@ -88,15 +88,14 @@ export class CreatetravelComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          // this.tappe.push({
-          //   'latitude': place.geometry.location.lat(),
-          //   'longitude': place.geometry.location.lng(),
-          //   'location': place.name,
-          // });
 
-          this.searchControl.reset();
-
-          console.log(place);
+          const position: IPosition = {
+              'latitude': place.geometry.location.lat(),
+              'longitude': place.geometry.location.lng(),
+              'location': place.name,
+            }
+          ;
+          this.newTravel.position = JSON.stringify(position);
 
         });
       });
@@ -129,15 +128,6 @@ export class CreatetravelComponent implements OnInit {
       (response) => this.list_consigliatoa = response,
       (error) => console.log(error),
       () => console.log(this.list_consigliatoa)
-    );
-  }
-
-
-  getUserTravels(uid: string) {
-    this.TravelService.getUserFreeTravels(uid).subscribe(
-      (response) => this.userTravels = response.length,
-      (error) => console.log(error),
-      () => console.log(this.userTravels)
     );
   }
 
@@ -174,36 +164,18 @@ export class CreatetravelComponent implements OnInit {
     console.log(JSON.stringify(this.consigliatoa));
   }
 
-  preinsert() {
-    this.TravelService.newTravel(this.title ).subscribe(
-      (res) => this.id = res,
-      (error) => console.log(error)
-    );
-  }
-
   saveTravel() {
-    this.TravelService.updateTravel(
-      this.id,
-      this.title,
-      this.description,
-      this.shortdescription,
-      this.hashtag,
-      this.rate,
-      0,
-      this.scopi,
-      this.keywords,
-      this.consigliatoa,
-      this.latitude,
-      this.longitude
-    ).subscribe(
-      (success) => {
-        this.TravelService.setTappe(this.id, this.tappe).subscribe(
-          (res) => console.log('aggiornate tappe')
-        );
-        this.router.navigate(['/travel/' + this.id ]);
-      },
-      (error) => console.log(error)
-    );
-  }
+    this.newTravel.scopo        = this.scopi;
+    this.newTravel.keywords     = this.keywords;
+    this.newTravel.consigliatoa = this.consigliatoa;
 
+    this.TravelService.newTravel(this.newTravel)
+      .subscribe(
+        (success) => {
+          console.log('salvato travel');
+          this.router.navigate(['/travel/' + success ]);
+        },
+        (error) => console.log(error)
+      );
+  }
 }

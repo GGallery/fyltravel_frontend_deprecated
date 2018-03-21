@@ -1,9 +1,11 @@
-import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from '../../environments/environment';
 import { TravelService } from '../services/travel.service';
 import { AuthAppService } from '../services/auth.service';
+import {ITravel} from '../model/ITravel';
+import event = google.maps.event;
 
 const URL_COPERTINA = environment.apiUrl + 'upload_cover';
 
@@ -12,22 +14,8 @@ const URL_COPERTINA = environment.apiUrl + 'upload_cover';
   templateUrl: './travel.component.html',
   styleUrls: ['./travel.component.css']
 })
-
 export class TravelComponent implements OnInit {
-  public id: number;
-  public title: string;
-  public description: string;
-  public shortdescription: string;
-  public cover: string;
   public coverurl: string;
-  public tappe: any[];
-  public video: string;
-  public hashtag: string;
-  public rate: number;
-  public author: any;
-
-  public latitude: any;
-  public longitude: any;
 
   public scopo: any[]= [];
   public keywords: any[]= [];
@@ -43,6 +31,11 @@ export class TravelComponent implements OnInit {
   public customIconPath = environment.customIconPath;
   public travelVideoPath = environment.travelVideoPath;
 
+  public textLong = 800;
+  public readMoreBtn = true;
+
+
+  public objTravel: ITravel;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,28 +50,13 @@ export class TravelComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
-          this.travelservice.getTravel(this.id).subscribe(
+          const id = +params['id'];
+          this.travelservice.getTravel(id).subscribe(
             (res) => {
-              const travel = res;
-              this.title = travel.title;
-              this.description = travel.description;
-              this.shortdescription = travel.shortdescription;
-              this.cover = travel.cover;
-              this.video = travel.video;
-              this.scopo  = travel.scopo;
-              this.keywords = travel.keywords;
-              this.hashtag = travel.hashtag;
-              this.consigliatoa = travel.consigliatoa;
-              this.rate = travel.rate;
-              this.author = travel.user;
-
-              this.coverurl = environment.travelCoverPath + 'cover/' + this.cover;
-
+              this.objTravel = res;
+              this.coverurl = environment.travelCoverPath + 'cover/' + this.objTravel.cover;
               console.log(this.auth.userid);
-              console.log(travel);
-
-              if (this.auth.userid === travel.author) {
+              if (this.auth.userid === this.objTravel.author) {
                 this.editmode = true;
               }
             }
@@ -92,18 +70,23 @@ export class TravelComponent implements OnInit {
     this.uploader_cover.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader_cover.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('token', this.auth.currentToken);
-      form.append('travel_id', this.id);
-      form.append('current_cover', this.cover);
+      form.append('travel_id', this.objTravel.id);
+      form.append('current_cover', this.objTravel.cover);
     };
     this.uploader_cover.uploadAll();
 
     this.uploader_cover.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
       const responsePath = JSON.parse(response);
-      this.cover = responsePath.file;
-      this.coverurl = environment.travelCoverPath +  'cover/' + this.cover;
+      this.objTravel.cover = responsePath.file;
+      this.coverurl = environment.travelCoverPath +  'cover/' + this.objTravel.cover;
       console.log(this.coverurl);
 
     };
+  }
+
+  public readMore() {
+    this.textLong = 900000;
+    this.readMoreBtn = false;
   }
 
 
