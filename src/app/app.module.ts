@@ -45,29 +45,27 @@ import { GalleryComponent } from './gallery/gallery.component';
 
 import { NgxGalleryModule } from 'ngx-gallery';
 import { UsermapComponent } from './usermap/usermap.component';
-import {ArchwizardModule} from 'ng2-archwizard/dist';
-import {TravelSearchResultsComponent} from './travel-search-results/travel-search-results';
+import { ArchwizardModule } from 'ng2-archwizard/dist';
+import { TravelSearchResultsComponent } from './travel-search-results/travel-search-results';
 import { LatestComponent } from './latest/latest.component';
 
 import { ClickOutsideModule } from 'ng-click-outside';
 
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { CreateComponent } from './create/create.component';
-import { CreateitinerarioComponent } from './createitinerario/createitinerario.component';
-import {ItinerarioComponent} from './itinerario/itinerario.component';
-import {MappatravelcreateComponent} from './mappatravelcreate/mappatravelcreate.component';
-import {ItinerarioeditComponent} from './itinerarioedit/itinerarioedit.component';
+
+import { MappatravelcreateComponent } from './mappatravelcreate/mappatravelcreate.component';
+
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { TravelListItemComponent } from './travel-list-item/travel-list-item.component';
+import { ItinerarioeditComponent } from './itinerarioedit/itinerarioedit.component';
 
 const routes: Routes = [
   { path: 'user/:uid', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
   { path: 'travel/:id', component: TravelComponent },
   { path: 'createtravel', component: CreatetravelComponent },
-  { path: 'itinerario', component: ItinerarioComponent},
-  { path: 'itinerarioedit', component: ItinerarioeditComponent},
-  { path: 'createitinerario', component: CreateitinerarioComponent},
+  { path: 'itinerarioedit/:id', component: ItinerarioeditComponent},
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'userprofile', component: UserprofileComponent},
@@ -98,8 +96,6 @@ const routes: Routes = [
     TravelSearchResultsComponent,
     LatestComponent,
     CreateComponent,
-    CreateitinerarioComponent,
-    ItinerarioComponent,
     ItinerarioeditComponent,
     UserprofileComponent,
     TravelListItemComponent,

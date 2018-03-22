@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-12">
-    <agm-map [id]="mappa" [latitude]="geoData.latitude" [longitude]="geoData.longitude" [scrollwheel]="false" [zoom]="zoom">
+    <agm-map [id]="mappa" [latitude]="travel.latitude" [longitude]="travel.longitude" [scrollwheel]="true" [zoom]="zoom">
       <agm-marker
-        [latitude]="geoData.latitude"
-        [longitude]="geoData.longitude"
-        [title]="geoData.localita"
+        [latitude]="travel.latitude"
+        [longitude]="travel.longitude"
+        [title]="travel.location"
         [iconUrl]="'assets/images/marker.png'"
       >
 

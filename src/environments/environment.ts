@@ -6,9 +6,11 @@
 export const environment = {
   production: false,
   apiUrl : 'https://api.fyltravel.it/api/',
-  travelCoverPath : 'https://api.fyltravel.it/storage/_t/',
+  travelCoverPath : 'https://api.fyltravel.it/storage/_travel/',
   travelImagePath : 'https://api.fyltravel.it/storage/_i/',
   travelVideoPath : 'https://api.fyltravel.it/storage/_v/',
+
+  itinerarioCoverPath : 'https://api.fyltravel.it/storage/_itinerari/',
 
   profileImagePath : 'https://api.fyltravel.it/storage/_p/big/',
 

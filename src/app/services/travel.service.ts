@@ -71,7 +71,7 @@ export class TravelService {
 
 
 
-  updateTravel(travel: ITravel):  any {
+  public updateTravel(travel: ITravel):  any {
     return this._http.post(this.api + 'updatetravel?token=' + this.AuthAppService.currentToken, travel,
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
       .map(res => res.json())
@@ -79,7 +79,7 @@ export class TravelService {
   }
 
 
-  getTravel(travel_id: number ):  Observable<any> {
+  public getTravel(travel_id: number ):  Observable<any> {
     return this._http.post(this.api + 'get_travel?token=' + this.AuthAppService.currentToken,
       {travel_id:  travel_id},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
@@ -87,7 +87,7 @@ export class TravelService {
       .catch(this.handleError);
   }
 
-  getBestTravels(uid):  Observable<any> {
+  public getBestTravels(uid):  Observable<any> {
     return this._http.post(this.api + 'get_best_travel?token=' + this.AuthAppService.currentToken,
       {uid:  uid, amount: 5},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
@@ -96,7 +96,7 @@ export class TravelService {
   }
 
 
-  getLatestTravels():  Observable<any> {
+  public getLatestTravels():  Observable<any> {
     return this._http.post(this.api + 'get_latest_travel?token=' + this.AuthAppService.currentToken,
       {amount: 6},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
@@ -105,7 +105,7 @@ export class TravelService {
   }
 
 
-  getStarredTravels(amount: number):  Observable<any> {
+  public getStarredTravels(amount: number):  Observable<any> {
     return this._http.post(this.api + 'get_starred_travel?token=' + this.AuthAppService.currentToken,
       {amount: amount},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
@@ -114,24 +114,7 @@ export class TravelService {
   }
 
 
-
-  getTappe(travel_id: number ):  Observable<any> {
-    return this._http.post(this.api + 'get_tappe?token=' + this.AuthAppService.currentToken,
-      {travel_id:  travel_id},
-      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
-      .map(res => res.json())
-      .catch(this.handleError);
-  }
-
-  setTappe(travel_id: number, tappe: any[] ):  Observable<any> {
-    return this._http.post(this.api + 'set_tappe?token=' + this.AuthAppService.currentToken,
-      {travel_id:  travel_id, tappe: tappe},
-      { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })
-      .map(res => res.json())
-      .catch(this.handleError);
-  }
-
-  getImages(travel_id: number ) {
+  public getImages(travel_id: number ) {
     return this._http.post(this.api + 'get_images?token=' + this.AuthAppService.currentToken,
       {travel_id:  travel_id},
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) })

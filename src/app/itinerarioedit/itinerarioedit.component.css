@@ -1,9 +1,13 @@
-.itinerario {
-  border-bottom: 6px grey;
-  border-bottom-style: dashed;
-  margin-bottom: 32px;
+.profileimage{
+  width: 200px;
+  margin-top: -50px;
+  margin-left : 30px;
+
+
 }
 
-h1{
-  font-size: 2em;
+
+.my-drop-zone { border: dotted 3px lightgray;
+  min-height: 150px;
 }
+.nv-file-over { border: dotted 3px #009D57; } /* Default class applied to drop zones on over */

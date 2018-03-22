@@ -1,17 +1,13 @@
-///<reference path="../../environments/environment.ts"/>
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import {environment } from '../../environments/environment';
-import {forEach} from '@angular/router/src/utils/collection';
 import {TravelService} from '../services/travel.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {AuthAppService} from '../services/auth.service';
-import {FileUploader} from 'ng2-file-upload/file-upload/file-uploader.class';
 import {IUser} from '../model/IUser';
 import {IItinerario} from '../model/IItinerario';
 import {ITravel} from '../model/ITravel';
 
-const URL_PROFILE_IMAGE = environment.apiUrl + 'upload_profile_image';
 
 @Component({
   selector: 'app-user',
@@ -33,10 +29,6 @@ export class UserComponent implements OnInit {
   public travels: ITravel[] ;
   public itinerari: IItinerario[] ;
 
-
-  // public uploader_profile_image: FileUploader = new FileUploader({ url: URL_PROFILE_IMAGE });
-  // public hasBaseDropZoneOver = false;
-
   private errMesg: string;
 
   public objUSER: IUser;
@@ -46,7 +38,6 @@ export class UserComponent implements OnInit {
     private travelService: TravelService,
     private activatedRoute: ActivatedRoute,
     private auth: AuthAppService
-
   ) {
   }
 
@@ -83,8 +74,6 @@ export class UserComponent implements OnInit {
     this.userService.get_UserInfo(uid).subscribe(
       (response) => {
         this.objUSER = response;
-        console.log('UserDAta' , this.objUSER);
-
         this.userImagepath = environment.profileImagePath + this.objUSER.image;
 
         if (this.auth.userid === this.objUSER.id) {

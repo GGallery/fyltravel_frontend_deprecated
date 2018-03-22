@@ -1,46 +1,83 @@
-<div class="container mt-2">
+<div class="container">
 
-  <div *ngIf="itinerario" class="itinerario " >
-
-    <div class="row">
-      <div class="col-6">
-        <h1>{{itinerario.title}}</h1>
-        <div *ngIf="itinerario.description" class="mb-3">
-          {{(itinerario.description.length > 6) ? (itinerario.description | slice:0:600)+'...':(itinerario.description)}}
+  <div class="row my-1">
+    <div class="col col-md-6">
+      <mat-card>
+      <form
+        #itinearioForm="ngForm"
+        class=" "
+        *ngIf="itinerario"
+      >
+        <div ng2FileDrop=""
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+             (fileOver)="upload_cover($event)"
+             [uploader]="uploader_cover"
+             class="well my-drop-zone "
+             [style.background-image]="backgroundImg">
+          <img [src]="coverUrl" class="w-100 img-thumbnail"/>
         </div>
-      </div>
 
-      <div class="col-6">
-        <div class="col ">
-          <img src="{{travelCoverPath + itinerario.cover}}" class="img-fluid img-thumbnail" alt="{{itinerario.title}}">
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control mt-2"
+            id="name"
+            name="name"
+            placeholder="Titolo dell'itinerario"
+            [(ngModel)]="itinerario.title"
+            required
+          >
         </div>
-      </div>
+
+        <div class="form-group">
+          <textarea
+            class="form-control mt-2"
+            id="description"
+            name="description"
+            [(ngModel)]="itinerario.description"
+            placeholder="Una breve descrizione dell'itinerario"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success" (click)="onSubmit()">Salva</button>
+
+      </form>
+      </mat-card>
     </div>
 
-    <div class="row mt-3">
-      <div *ngFor="let obj of itinerario.travels" class="mb-2">
-        <div class="row">
-          <div class="col-2">
-            <img src="{{travelCoverPath + obj.cover}}" width="150" class="img-fluid img-thumbnail" alt="{{obj.title}} ">
-          </div>
-          <div class="col-10">
-            <h4><a routerLink="/travel/{{obj.id}}">{{obj.title}}</a></h4>
-            <p>{{obj.shortdescription}} <button class="btn"> <a routerLink="/travel/{{obj.id}}">Vai</a></button></p>
 
-          </div>
-        </div>
+    <div class="col col-md-6">
+      <h4>Le tappe dell'itinerario</h4>
+      <div *ngFor="let itTravel of itinerariotravels">
+        <img
+          width="60"
+          class="img-thumbnail"
+          src="{{travelCoverPath+itTravel.cover}}"
+        />
+        {{ itTravel.title }}
+
+        <span class="pull-right">
+            <i class='btn btn-xs' (click)='remove(itTravel)' class="btn fa fa-minus" aria-hidden="true"></i>
+        </span>
       </div>
+      <hr>
+      Viaggi che puoi associare
+      <div *ngFor="let freeTravel of freetravels">
+        <img
+          width="60"
+          class="img-thumbnail"
+          src="{{travelCoverPath+freeTravel.cover}}"
+        />
+        {{ freeTravel.title }}
+        <span class="pull-right">
+            <i class='btn btn-xs' (click)='add(freeTravel)' class="btn fa fa-plus" aria-hidden="true"></i>
+        </span>
+      </div>
+
+
     </div>
   </div>
 
-
-    <div class="row" *ngFor="let obj of freetravel" class="mb-2">
-      <div class="col-2">
-        <img src="{{travelCoverPath + obj.cover}}" width="50" class="img-fluid img-thumbnail" alt="{{obj.title}} ">
-      </div>
-      <div class="col-10">
-        <h4><a routerLink="/travel/{{obj.id}}">{{obj.title}}</a></h4>
-      </div>
-    </div>
-
 </div>
+

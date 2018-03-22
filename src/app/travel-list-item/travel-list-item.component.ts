@@ -14,16 +14,13 @@ export class TravelListItemComponent implements OnInit {
   @Input() travel: ITravel;
   @Input() child: boolean;
 
-  public travelCoverPath = environment.travelCoverPath + 'cover/';
+  public travelCoverPath = environment.travelCoverPath + 'big/';
   public customIconPath = environment.customIconPath
 
 
   constructor() {
-
   }
 
   ngOnInit() {
-
   }
-
 }

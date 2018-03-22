@@ -78,7 +78,7 @@
 
 
   <mat-card>
-    <app-mappatravel [travel]='objTravel' ></app-mappatravel>
+    <app-mappatravel *ngIf="objTravel" [travel]='objTravel' ></app-mappatravel>
 
     <div class="col-md-12 my-2">
       {{ objTravel.hashtag }}

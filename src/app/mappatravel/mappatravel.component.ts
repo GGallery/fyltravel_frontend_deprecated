@@ -13,7 +13,6 @@ import {ITravel} from '../model/ITravel';
 export class MappatravelComponent implements OnInit {
 
   public zoom: number;
-  public geoData: any;
   public mappa: any;
 
   @Input() travel: ITravel;
@@ -24,7 +23,6 @@ export class MappatravelComponent implements OnInit {
 
   ngOnInit() {
 
-    this.geoData = JSON.parse(this.travel.position);
     this.zoom = 2;
     this.mapsAPILoader.load();
   }

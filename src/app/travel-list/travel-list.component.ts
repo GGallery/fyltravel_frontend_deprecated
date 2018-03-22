@@ -15,47 +15,12 @@ export class TravelListComponent implements OnInit {
   @Input() travels: ITravel[];
   @Input() itinerari: IItinerario[];
 
-
-  private errMesg: string;
-  public travelCoverPath = environment.travelCoverPath + 'cover/';
+  public itinerarioCoverPath = environment.itinerarioCoverPath;
   public customIconPath = environment.customIconPath;
 
-  public loading= true;
-
-
-  constructor(
-    private travelService: TravelService
-  ) {
-    // this.travels = [];
-    // this.itinerari = [];
-   }
-
-  ngOnInit() {
-    // this.getUserFreeTravels(this.uid);
-    // this.getItinerari(this.uid);
+  constructor() {
   }
 
-  // private getUserFreeTravels(uid: string) {
-  //   this.travelService.getUserFreeTravels(uid)
-  //     .subscribe(
-  //       results => {
-  //         this.loading = false;
-  //         this.travels = results;
-  //         console.log('travel' , this.travels);
-  //       },
-  //       error => this.errMesg = <any>error
-  //     );
-  // }
-  //
-  // private getItinerari(uid: string) {
-  //   this.travelService.getUserItinerari(uid)
-  //     .subscribe(
-  //       results => {
-  //         this.itinerari = results;
-  //         console.log('itinerari' , this.itinerari);
-  //       },
-  //       error => this.errMesg = <any>error
-  //     );
-  // }
-
+  ngOnInit() {
+  }
 }

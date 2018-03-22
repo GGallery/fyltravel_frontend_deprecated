@@ -57,7 +57,9 @@ export class CreatetravelComponent implements OnInit {
       description: '',
       shortdescriptio: '',
       hashtag: '',
-      position: '',
+      latitude: '',
+      longitude: '',
+      location: '',
       pubblicato: 0,
       consigliatoa: '',
       keywords: '',
@@ -89,13 +91,9 @@ export class CreatetravelComponent implements OnInit {
             return;
           }
 
-          const position: IPosition = {
-              'latitude': place.geometry.location.lat(),
-              'longitude': place.geometry.location.lng(),
-              'location': place.name,
-            }
-          ;
-          this.newTravel.position = JSON.stringify(position);
+          this.newTravel.location = place.geometry.location.lat();
+          this.newTravel.longitude = place.geometry.location.lng();
+          this.newTravel.location = place.name;
 
         });
       });

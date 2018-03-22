@@ -1,7 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-12">
 
-    <div class="loader" [hidden]="!loading"></div>
     <div *ngIf="travels?.length == 0" class="text-center m-3">
       NON  HAI ANCORA CARICATO ALCUN VIAGGIO,
       <br>
@@ -13,7 +12,7 @@
         <!--{{ itinerario | json }}-->
         <mat-card-title class=" text-center"> {{ itinerario.title }}</mat-card-title>
         <div class="col-md-12 text-center my-3">
-          <img src="{{travelCoverPath + itinerario.cover }}" class="img-fluid img-thumbnail" alt="{{itinerario.title}}">
+          <img src="{{itinerarioCoverPath + itinerario.cover }}" class="img-fluid img-thumbnail" alt="{{itinerario.title}}">
         </div>
 
         <mat-card-subtitle>

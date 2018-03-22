@@ -9,14 +9,16 @@ export class ITravel {
   public video: string;
   public hashtag: string;
   public cover: string;
-  public position: string;
-  public pubblicato: number;
+  public latitude: number;
+  public longitude: number;
+  public location: any;
   public consigliatoa: any;
   public keywords: any;
   public scopo: any;
   public rate: number;
   public dal: string;
   public al: string;
+  public itinerario: number;
   public user?: IUser;
 
   constructor(values: Object = {}) {
