@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
   public bestTravels: any[];
 
   public customIconPath = environment.customIconPath;
-  public travelCoverPath = environment.travelCoverPath + 'cover/';
+  public travelCoverPath = environment.travelCoverPath;
 
   public travels: ITravel[] ;
   public itinerari: IItinerario[] ;
@@ -63,8 +63,7 @@ export class UserComponent implements OnInit {
     this.travelService.getBestTravels(uid)
       .subscribe(
         (result) => {
-          const travels = result;
-          this.bestTravels = travels;
+          this.bestTravels = result;
         },
         error => this.errMesg = <any>error
       );

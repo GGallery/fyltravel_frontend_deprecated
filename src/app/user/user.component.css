@@ -1,27 +1,36 @@
-  .profileimage{
-    width: 200px;
-    margin-top: -50px;
-    margin-left : 30px;
+.profileimage{
+  width: 200px;
+  margin-top: -50px;
+  margin-left : 30px;
+}
 
+.my-drop-zone { border: dotted 3px lightgray;
+  min-height: 150px;
+}
+.nv-file-over { border: dotted 3px #009D57; } /* Default class applied to drop zones on over */
 
-  }
+.readMore{
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  background: green; /* For browsers that do not support gradients */
+  background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,0,0,1));
+}
 
+.no-overflow{
+  overflow: hidden;
+}
 
-  .my-drop-zone { border: dotted 3px lightgray;
-    min-height: 150px;
-  }
-  .nv-file-over { border: dotted 3px #009D57; } /* Default class applied to drop zones on over */
+.no-margin{
+}
 
+.anteprima_best5{
+  height: 150px;
+  background-size: cover;
+  color: white;
+  font-size: 15px;
+}
 
-  .readMore{
-    position: absolute;
-    bottom: 0;
-    height: 20px;
-    background: green; /* For browsers that do not support gradients */
-    background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,0,0,1));
-  }
-
-
-  .userinfo{
-    overflow: hidden;
-  }
+.titolo_best5{
+  background-color: rgba(1, 16, 1, 0.5);
+}

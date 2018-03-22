@@ -7,36 +7,31 @@
     </div>
   </div>
 
+  <mat-card class="no-overflow">
+    <div class="col-md-12">
+      <div *ngIf="objTravel.video">
+        <video class="w-100"  controls>
+          <source src="{{ travelVideoPath + objTravel.video }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div *ngIf="!objTravel.video">
+        <div *ngIf="editmode" ng2FileDrop
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+             (fileOver)="upload_cover($event)"
+             [uploader]="uploader_cover"
+             class="well my-drop-zone "
+             [style.background-image]="backgroundImg">
 
+          <img *ngIf="editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
 
-
-  <mat-card>
-    <div class="row">
-      <div class="col-md-12">
-        <div *ngIf="objTravel.video">
-          <video class="w-100"  controls>
-            <source src="{{ travelVideoPath + objTravel.video }}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <div [hidden]="cover">Trascina qui l'immagine di copertina del viaggio</div>
         </div>
-        <div *ngIf="!objTravel.video">
-          <div *ngIf="editmode" ng2FileDrop
-               [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
-               (fileOver)="upload_cover($event)"
-               [uploader]="uploader_cover"
-               class="well my-drop-zone "
-               [style.background-image]="backgroundImg">
 
-            <img *ngIf="editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
+        <img *ngIf="!editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
 
-            <div [hidden]="cover">Trascina qui l'immagine di copertina del viaggio</div>
-          </div>
-
-          <img *ngIf="!editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
-
-          <div class="progress">
-            <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_cover.progress + '%' }"></div>
-          </div>
+        <div class="progress">
+          <div class="progress-bar-fyl" role="progressbar" [ngStyle]="{ 'width': uploader_cover.progress + '%' }"></div>
         </div>
       </div>
     </div>

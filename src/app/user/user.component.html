@@ -5,56 +5,65 @@
       <app-usermap [travels]="travels" [itinerari]="itinerari" [user]="objUSER"></app-usermap>
     </div>
 
-    <div class="row">
 
-      <div class="col-md-3">
-        <mat-card class="profileimage   p-0">
-          <mat-card-content class="p-0">
-            <img [src]="userImagepath"  class="w-100 img-thumbnail"/>
-          </mat-card-content>
-        </mat-card>
+      <div class="row">
 
-      </div>
+        <div class="col-md-3">
+          <mat-card class="profileimage   p-0">
+            <mat-card-content class="p-0">
+              <img [src]="userImagepath"  class="w-100 img-thumbnail"/>
+            </mat-card-content>
+          </mat-card>
 
-      <div class="userinfo">
-        <div class="col-md-9 mt-4">
-          <div *ngIf="!editmode"><span class="pull-right border">Contatta</span></div>
-
-          <h3><a href="#">{{objUSER.name}}</a></h3>
-          <span *ngIf="objUSER.natoa">nato a <b>{{ objUSER.natoa }}</b>, </span>
-          <span *ngIf="objUSER.vivea">vive a <b>{{ objUSER.vivea }}</b>, </span>
-          <span *ngIf="userCity"><b>37 anni</b>, </span>
-          <span *ngIf="countTravel > 0">ha caricato <b>{{ countTravel }}</b> viaggi, </span>
         </div>
 
+        <div class=" col-md-9 mt-4">
+          <div class="no-overflow">
+            <div *ngIf="!editmode"><span class="pull-right border">Contatta</span></div>
 
-        <!-- TODO  PROVA SIMBOLI USATI-->
-        Simboli più frequenti:
-        <span><img width="40" src="{{customIconPath + '01.png'}}"/> </span>
-        <span><img width="40" src="{{customIconPath + '02.png'}}"/> </span>
-        <span><img width="40" src="{{customIconPath + '08.png'}}"/> </span>
-        <span><img width="40" src="{{customIconPath + '03.png'}}"/> </span>
-        <span><img width="40" src="{{customIconPath + '04.png'}}"/> </span>
-        <span><img width="40" src="{{customIconPath + '05.png'}}"/> </span>
-        <br>
+            <h3><a href="#">{{objUSER.name}}</a></h3>
+            <span *ngIf="objUSER.natoa">nato a <b>{{ objUSER.natoa }}</b>, </span>
+            <span *ngIf="objUSER.vivea">vive a <b>{{ objUSER.vivea }}</b>, </span>
+            <span *ngIf="userCity"><b>37 anni</b>, </span>
+            <span *ngIf="countTravel > 0">ha caricato <b>{{ countTravel }}</b> viaggi, </span>
+          </div>
+
+
+          <!-- TODO  PROVA SIMBOLI USATI-->
+          Simboli più frequenti:
+          <span><img width="40" src="{{customIconPath + '01.png'}}"/> </span>
+          <span><img width="40" src="{{customIconPath + '02.png'}}"/> </span>
+          <span><img width="40" src="{{customIconPath + '08.png'}}"/> </span>
+          <span><img width="40" src="{{customIconPath + '03.png'}}"/> </span>
+          <span><img width="40" src="{{customIconPath + '04.png'}}"/> </span>
+          <span><img width="40" src="{{customIconPath + '05.png'}}"/> </span>
+          <br>
+        </div>
+
+        <div *ngIf="objUSER.descrizione" class="descrizione mx-3">
+          {{ objUSER.descrizione }}
+        </div>
+
       </div>
 
-      <div *ngIf="objUSER.descrizione" class="descrizione mx-3">
-        {{ objUSER.descrizione }}
-      </div>
 
-    </div>
+    <hr>
 
     <div *ngIf="bestTravels?.length > 0">
       <h4>I migliori 5 </h4>
       <div class="row">
         <div *ngFor="let travel of bestTravels" class="col text-center ">
-          <div class="titolo_best5">
-            {{travel.title}}
-          </div>
-          <div class="anteprima_best5">
-            <img style="max-height:150px" src="{{travelCoverPath + travel.cover}}" class="img-fluid img-thumbnail" alt="{{travel.title}}">
-          </div>
+          <mat-card style="padding: 1px !important;">
+            <a routerLink="/travel/{{travel.id}}">
+              <div
+                class="anteprima_best5"
+                [style.background-image]="'url(' + travelCoverPath + 'small/'+travel.cover + ')'">
+                <div class="titolo_best5">
+                  {{travel.title}}
+                </div>
+              </div>
+            </a>
+          </mat-card>
         </div>
       </div>
     </div>

@@ -54,8 +54,6 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { CreateComponent } from './create/create.component';
 
-import { MappatravelcreateComponent } from './mappatravelcreate/mappatravelcreate.component';
-
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { TravelListItemComponent } from './travel-list-item/travel-list-item.component';
 import { ItinerarioeditComponent } from './itinerarioedit/itinerarioedit.component';
@@ -89,7 +87,6 @@ const routes: Routes = [
     SigninComponent,
     CreatetravelComponent,
     MappatravelComponent,
-    MappatravelcreateComponent,
     GalleryComponent,
     MediauploadComponent,
     UsermapComponent,
