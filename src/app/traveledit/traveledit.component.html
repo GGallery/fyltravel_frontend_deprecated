@@ -1,13 +1,13 @@
-<!--<div class="container">-->
+<div class="container">
 
-  <!--<div class="row my-1">-->
-    <!--<div class="col col-md-6">-->
-      <!--<mat-card>-->
-      <!--<form-->
-        <!--#itinearioForm="ngForm"-->
-        <!--class=" "-->
-        <!--*ngIf="itinerario"-->
-      <!--&gt;-->
+  <div class="row my-1">
+    <div class="col col-md-12">
+      <mat-card>
+      <form
+        #itinearioForm="ngForm"
+        class=" "
+        *ngIf="objTravel"
+      >
         <!--<div ng2FileDrop=""-->
              <!--[ngClass]="{'nv-file-over': hasBaseDropZoneOver}"-->
              <!--(fileOver)="upload_cover($event)"-->
@@ -18,33 +18,79 @@
         <!--</div>-->
 
 
-        <!--<div class="form-group">-->
-          <!--<input-->
-            <!--type="text"-->
-            <!--class="form-control mt-2"-->
-            <!--id="name"-->
-            <!--name="name"-->
-            <!--placeholder="Titolo dell'itinerario"-->
-            <!--[(ngModel)]="itinerario.title"-->
-            <!--required-->
-          <!--&gt;-->
-        <!--</div>-->
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control mt-2"
+            id="title"
+            name="title"
+            placeholder="Titolo del viaggio"
+            [(ngModel)]="objTravel.title"
+            required
+          >
+        </div>
 
-        <!--<div class="form-group">-->
-          <!--<textarea-->
-            <!--class="form-control mt-2"-->
-            <!--id="description"-->
-            <!--name="description"-->
-            <!--[(ngModel)]="itinerario.description"-->
-            <!--placeholder="Una breve descrizione dell'itinerario"-->
-          <!--&gt;</textarea>-->
-        <!--</div>-->
+        <div class="form-group">
+          <textarea
+            class="form-control mt-2"
+            id="description"
+            name="description"
+            [(ngModel)]="objTravel.description"
+            placeholder="Una descrizione dell'itinerario"
+          ></textarea>
+        </div>
 
-        <!--<button type="submit" class="btn btn-success" (click)="onSubmit()">Salva</button>-->
+        <div class="form-group">
+          <textarea
+            class="form-control mt-2"
+            id="shortdescription"
+            name="shortdescription"
+            [(ngModel)]="objTravel.shortdescription"
+            placeholder="Una breve descrizione dell'itinerario"
+          ></textarea>
+        </div>
 
-      <!--</form>-->
-      <!--</mat-card>-->
-    <!--</div>-->
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control mt-2"
+            id="hashtag"
+            name="hashtag"
+            placeholder="Parole chiave del viaggio"
+            [(ngModel)]="objTravel.hashtag"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="geo">Geolocalizza</label>
+          <input
+            placeholder="cerca località"
+            autocorrect="on"
+            autocapitalize="on"
+            spellcheck="off"
+            type="text"
+            class="form-control"
+            #geo
+            id="geo"
+            name="geo"
+            [formControl]="searchControl"
+            [(ngModel)] = "objTravel.location"
+          >
+        </div>
+
+
+
+        <button
+          type="submit"
+          class="btn btn-success"
+          (click)="onSubmit()"
+        >Salva
+        </button>
+
+      </form>
+      </mat-card>
+    </div>
 
 
     <!--<div class="col col-md-6">-->
@@ -76,8 +122,8 @@
       <!--</div>-->
 
 
-    <!--</div>-->
-  <!--</div>-->
+    </div>
+  </div>
 
-<!--</div>-->
+
 

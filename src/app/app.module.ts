@@ -57,13 +57,18 @@ import { CreateComponent } from './create/create.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { TravelListItemComponent } from './travel-list-item/travel-list-item.component';
 import { ItinerarioeditComponent } from './itinerarioedit/itinerarioedit.component';
+import {TraveleditComponent} from './traveledit/traveledit.component';
 
 const routes: Routes = [
   { path: 'user/:uid', component: UserComponent },
   { path: 'travels', component: TravelListComponent },
+
   { path: 'travel/:id', component: TravelComponent },
+  { path: 'traveledit/:id', component: TraveleditComponent},
+
   { path: 'createtravel', component: CreatetravelComponent },
   { path: 'itinerarioedit/:id', component: ItinerarioeditComponent},
+
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'userprofile', component: UserprofileComponent},
@@ -96,6 +101,7 @@ const routes: Routes = [
     ItinerarioeditComponent,
     UserprofileComponent,
     TravelListItemComponent,
+    TraveleditComponent,
   ],
   imports: [
     AgmCoreModule.forRoot({

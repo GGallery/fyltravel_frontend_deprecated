@@ -12,6 +12,7 @@ import { MapsAPILoader } from '@agm/core';
 import {ITravel} from '../model/ITravel';
 import {publish} from 'rxjs/operator/publish';
 import {IPosition} from '../model/IPosition';
+import {IItinerario} from '../model/IItinerario';
 
 
 @Component({
@@ -32,10 +33,15 @@ export class CreatetravelComponent implements OnInit {
   public keywords: number[] = [];
   public consigliatoa: number[] = [];
 
+  public freetravels: ITravel[];
+  public itinerari: IItinerario[];
+
   public customIconPath = environment.customIconPath;
+  public itinerarioCoverPath = environment.itinerarioCoverPath;
 
   public searchControl: FormControl;
   public zoom: number;
+  public errMesg: any;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -68,13 +74,13 @@ export class CreatetravelComponent implements OnInit {
       dal: '',
       al: '',
     });
-    console.log(this.newTravel);
-
 
     this.getScopi();
     this.getKeywords();
     this.getConsigliatoa();
 
+    this.getItinerari(this.AuthAppService.uid);
+    // this.getUserFreeTravels();
 
     this.zoom = 4;
 
@@ -91,13 +97,15 @@ export class CreatetravelComponent implements OnInit {
             return;
           }
 
-          this.newTravel.location = place.geometry.location.lat();
+          this.newTravel.latitude = place.geometry.location.lat();
           this.newTravel.longitude = place.geometry.location.lng();
           this.newTravel.location = place.name;
 
         });
       });
     });
+
+
 
   }
 
@@ -176,4 +184,30 @@ export class CreatetravelComponent implements OnInit {
         (error) => console.log(error)
       );
   }
+
+  getItinerari(uid: string) {
+    this.TravelService.getUserItinerari(uid)
+      .subscribe(
+        results => {
+          this.itinerari = results;
+          // this.coverUrl = this.itinerarioCoverPath + this.itinerario.cover;
+          // this.itinerariotravels = this.itinerario.travels;
+          // console.log(this.itinerario);
+        },
+        error => this.errMesg = <any>error
+      );
+  }
+
+  getUserFreeTravels(uid: string) {
+    // this.travelService.getUserFreeTravels(uid)
+    //   .subscribe(
+    //     results => {
+    //       this.freetravels = results;
+    //       console.log(this.freetravels);
+    //     },
+    //     error => this.errMesg = <any>error
+    //   );
+  }
+
+
 }

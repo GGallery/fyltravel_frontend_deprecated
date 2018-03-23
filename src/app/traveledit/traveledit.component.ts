@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { ElementRef, NgZone,  ViewChild, Input } from '@angular/core';
 import {TravelService} from '../services/travel.service';
 import {AuthAppService} from '../services/auth.service';
 import {environment} from '../../environments/environment';
 import {ITravel} from '../model/ITravel';
-import {IItinerario} from '../model/IItinerario';
 import {ActivatedRoute} from '@angular/router';
 import {FileUploader} from 'ng2-file-upload/file-upload/file-uploader.class';
+import { MapsAPILoader } from '@agm/core';
+import { } from 'googlemaps';
+import {FormControl} from '@angular/forms';
 
 const URL_COPERTINA_ITINERARIO = environment.apiUrl + 'upload_cover_itinerario';
-
 
 @Component({
   selector: 'app-traveledit',
@@ -26,17 +28,25 @@ export class TraveleditComponent implements OnInit {
   public itinerarioCoverPath = environment.itinerarioCoverPath;
   public travelCoverPath = environment.travelCoverPath + 'small/';
   public coverUrl = '';
+  public geo: any;
+  public searchControl: FormControl;
+
+  @ViewChild('geo')
+  public searchElementRef: ElementRef;
 
   constructor(
     private travelService: TravelService,
     private auth: AuthAppService,
     private activatedRoute: ActivatedRoute,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
   ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
       this.getTravel(id);
+
     });
   }
 
@@ -45,25 +55,51 @@ export class TraveleditComponent implements OnInit {
       .subscribe(
         results => {
           this.objTravel = results;
-          this.coverUrl = this.objTravel+ this.objTravel.cover;
+          this.coverUrl = this.objTravel + this.objTravel.cover;
+          this.autosearch();
         },
         error => this.errMesg = <any>error
       );
   }
+
+  public autosearch() {
+    this.searchControl = new FormControl();
+    this.mapsAPILoader.load().then(() => {
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['geocode']
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          this.objTravel.latitude = place.geometry.location.lat();
+          this.objTravel.longitude = place.geometry.location.lng();
+          this.objTravel.location = place.name;
+
+        });
+      });
+    });
+  }
+
+
+
 
   public upload_cover(e: any): void {
     this.hasBaseDropZoneOver = e;
     this.uploader_cover.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader_cover.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('token', this.auth.currentToken);
-      form.append('itinerario_id', this.itinerario.id);
+      form.append('itinerario_id', this.objTravel.id);
     };
     this.uploader_cover.uploadAll();
 
     this.uploader_cover.onSuccessItem = (item: any, response: any, status: any, headers: any) => {
       const responsePath = JSON.parse(response);
-      this.itinerario.cover = responsePath.file;
-      this.coverUrl = this.itinerarioCoverPath + this.itinerario.cover;
+      this.objTravel.cover = responsePath.file;
+      this.coverUrl = this.travelCoverPath + this.objTravel.cover;
       console.log(this.coverUrl);
 
     };

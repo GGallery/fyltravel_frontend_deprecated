@@ -61,6 +61,7 @@ export class TravelService {
       .catch(this.handleError);
   }
 
+
   newTravel(travel: ITravel ):  Observable<number> {
     return this._http.post(this.api + 'newtravel?token=' + this.AuthAppService.currentToken, travel,
       { headers: new Headers({ 'X-Requested-With': 'XMLHttpRequest' }) }

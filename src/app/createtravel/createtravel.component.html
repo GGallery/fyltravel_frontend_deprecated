@@ -1,4 +1,7 @@
-<div   class="container wizard-viaggio my-4 p-4">
+<div
+  *ngIf="newTravel"
+  class="container wizard-viaggio my-4 p-4"
+>
 
   <form #createTravel = "ngForm" >
     <wizard navBarLayout="large-filled">
@@ -16,12 +19,29 @@
           <button   type="button" class="btn mt-3" nextStep>Inizia a creare il tuo viaggio</button>
         </div>
 
-        <div *ngIf="userTravels > 2">
+        <div *ngIf="itinerari?.length > 0" class="text-center">
           <hr>
-          Hai già caricato <strong>{{userTravels }}</strong> viaggi, vuoi creare un itinerario per raggrupparli?
-          <div class="mt-3">
-            <a href="#" routerLink="/itinerarioedit"><button   type="button" class="btn mt-3" nextStep>Crea il tuo itinerario</button></a>
+          oppure gestisci i tuoi itinerari
+          <div class="mt-3" *ngFor="let itinerario of itinerari">
+            <a
+              href="#"
+              routerLink="/itinerarioedit/{{itinerario.id}}"
+            >
+              <img
+                width="100"
+                src="{{itinerarioCoverPath + itinerario.cover}}"
+                class="img-fluid img-thumbnail"
+                alt="{{itinerario.title}}">
+              {{itinerario.title}}
+            </a>
           </div>
+
+
+
+
+
+
+
         </div>
       </wizard-step>
 
@@ -128,7 +148,7 @@
         </div>
 
         <div class="mt-3">
-          <button [hidden]="!newTravel.position" type="button" class="btn mt-3" nextStep>Prosegui</button>
+          <button [hidden]="!newTravel.latitude" type="button" class="btn mt-3" nextStep>Prosegui</button>
         </div>
 
       </wizard-step>
@@ -212,7 +232,7 @@
                aria-describedby="Hashtag"
                placeholder="Hashtag"
                required
-               [(ngModel)]="objTravel.hashtag"
+               [(ngModel)]="newTravel.hashtag"
         >
         <div class="mt-3">
           <button type="button" class="btn" nextStep>Prosegui</button>
@@ -262,7 +282,7 @@
         </div>
 
         <div class="text-center">
-          <rating max="10" [(ngModel)]="rate"  name="rate" [customTemplate]="tt"></rating>
+          <rating max="10" [(ngModel)]="newTravel.rate"  name="rate" [customTemplate]="tt"></rating>
 
           <ng-template #tt let-i="index" let-v="value">
             <button class="btn btn-{{i < v ? 'fyl' : 'default'}}">
@@ -271,11 +291,16 @@
           </ng-template>
 
           <br>
-          <b>(<i>Voto:</i> {{rate}})</b>
+          <b>(<i>Voto:</i> {{newTravel.rate}})</b>
         </div>
 
         <div class="mt-3">
-          <button [hidden]="!rate" type="button" class="btn mt-3"  (click)="saveTravel()"  nextStep>Prosegui</button>
+          <button [hidden]="!newTravel.rate"
+                  type="button"
+                  class="btn mt-3"
+                  (click)="saveTravel()"
+                  nextStep
+          >Prosegui</button>
         </div>
 
       </wizard-step>

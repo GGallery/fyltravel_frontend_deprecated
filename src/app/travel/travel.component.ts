@@ -7,7 +7,7 @@ import { AuthAppService } from '../services/auth.service';
 import {ITravel} from '../model/ITravel';
 import event = google.maps.event;
 
-const URL_COPERTINA = environment.apiUrl + 'upload_cover';
+const URL_COPERTINA = environment.apiUrl + 'upload_cover_travel';
 
 @Component({
   selector: 'app-travel',
@@ -54,7 +54,7 @@ export class TravelComponent implements OnInit {
           this.travelservice.getTravel(id).subscribe(
             (res) => {
               this.objTravel = res;
-              this.coverurl = environment.travelCoverPath + 'cover/' + this.objTravel.cover;
+              this.coverurl = environment.travelCoverPath + 'big/' + this.objTravel.cover;
               console.log(this.auth.userid);
               if (this.auth.userid === this.objTravel.author) {
                 this.editmode = true;

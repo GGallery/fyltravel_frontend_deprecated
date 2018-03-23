@@ -25,7 +25,7 @@
 
           <img *ngIf="editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
 
-          <div [hidden]="cover">Trascina qui l'immagine di copertina del viaggio</div>
+          <div [hidden]="objTravel.cover">Trascina qui l'immagine di copertina del viaggio</div>
         </div>
 
         <img *ngIf="!editmode" [src]="coverurl"  class="w-100 img-thumbnail"/>
